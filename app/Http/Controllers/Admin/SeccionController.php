@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Identity;
 use App\Models\AboutMe;
+use App\Models\Customer;
+use App\Models\ClientImage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SeccionController extends Controller
 {
@@ -13,7 +18,9 @@ class SeccionController extends Controller
     {
         $aboutMe = AboutMe::where('id', 1)->first();
         $identity = Identity::where('id', 1)->first();
-        return view('admin.seccion.inicio.index', compact('identity', 'aboutMe'));
+        $customer = Customer::with('clientImages')->where('id', 1)->first();
+        $clientImages = $customer->clientImages;
+        return view('admin.seccion.inicio.index', compact('identity', 'aboutMe', 'customer', 'clientImages'));
     }
 
     public function storeIdentities(Request $request)
@@ -56,4 +63,56 @@ class SeccionController extends Controller
 
         return redirect()->back()->with('success_about_me', 'Se guardaron los cambios de la Seccion Sobre Mi.');
     }   
+
+    public function storeClientes(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            if ($request->has('delete_images')) {
+                foreach ($request->delete_images as $id) {
+                    $image = ClientImage::find($id);
+                    if ($image) {
+                        $filePath = public_path($image->image_path);
+                        if (File::exists($filePath)) {
+                            File::delete($filePath);
+                        }
+                        $image->delete();
+                    }
+                }
+            }
+            $request->validate([
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'title_two' => 'string|max:150',
+                'subtitle_two' => 'string|max:255'
+            ]);
+            Customer::updateOrCreate(
+                ['id' => 1],
+                [
+                    'titulo' => $request->title_two,
+                    'subtitulo' => $request->subtitle_two
+                ]
+            );
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $randomName = uniqid() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                    $destinationPath = public_path('ecommerce/assets/web/clientes');
+                    if (!File::isDirectory($destinationPath)) {
+                        File::makeDirectory($destinationPath, 0755, true);
+                    }
+                    $image->move($destinationPath, $randomName);
+                    ClientImage::create([
+                        'customer_id' => 1,
+                        'image_path' => 'ecommerce/assets/web/clientes/' . $randomName
+                    ]);
+                }
+            }
+            DB::commit();
+            return redirect()->back()->with('success_clients', 'Se guardaron los cambios de la Sección Clientes.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error al guardar clientes: ' . $e->getMessage());
+            return redirect()->back()->with('error_clients', 'Ocurrió un error al guardar los datos. Intenta nuevamente.');
+        }
+    }
+
 }

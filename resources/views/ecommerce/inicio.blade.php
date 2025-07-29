@@ -426,7 +426,7 @@
 
 
     <!--start cartegory slider-->
-    <section class="cartegory-slider section-padding bg-section-2">
+    {{-- <section class="cartegory-slider section-padding bg-section-2">
       <div class="container">
         <div class="text-center pb-3">
           <h3 class="mb-0 h3 fw-bold">Nuestros Servicios</h3>
@@ -514,7 +514,7 @@
 
         </div>
       </div>
-    </section>
+    </section> --}}
     <!--end cartegory slider-->
 
 

@@ -1,5 +1,17 @@
 @extends('layouts.admin.app')
 
+<style>
+    .image-card img {
+        object-fit: cover;
+        height: 200px;
+        width: 100%;
+    }
+    .preview-img {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
 @section('content')
 
     <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
@@ -155,6 +167,64 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-body row">
+
+                    <form action="{{ route('admin.seccion.clientes.store') }}" class="col-lg-12 d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-3 col-lg-4 col-12">
+                            <label for="" class="form-label">Titulo</label>
+                            <input type="text" class="form-control form-control-sm" id="" name="title_two" value="{{ $customer->titulo ?? '' }}">
+                            @error('title_two')
+                                <div style="color:red;">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3 col-lg-6 col-12">
+                            <label for="" class="form-label">SubTitulo</label>
+                            <input type="text" class="form-control form-control-sm" id="" name="subtitle_two" value="{{ $customer->subtitulo ?? '' }}">
+                            @error('subtitle_two')
+                                <div style="color:red;">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <p><b>Agregar nuevas imágenes</b></p>
+                        <div id="fileInputs" class="row col-lg-12"></div>
+
+                        <button type="button" class="btn btn-outline-primary mb-3 btn-sm" id="addInput">+ Agregar imagen</button>
+                        <br>
+
+                        <div class="row mb-4 text-center col-lg-12">
+                            <p><b>Imágenes guardadas</b></p>
+                            @forelse($clientImages as $image)
+                                <div class="col-md-3 mb-3 image-card" data-id="{{ $image->id }}">
+                                    <div class="card">
+                                        <img src="{{ asset($image->image_path) }}" class="card-img-top" alt="Imagen">
+                                        <div class="card-body text-center">
+                                            <input type="checkbox" name="delete_images[]" value="{{ $image->id }}">
+                                            <label>Eliminar</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p style="color: #919191; font-size: 0.7rem;">No hay imágenes guardadas.</p>
+                            @endforelse
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     @if(session('success_identities'))
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -183,5 +253,22 @@
         </script>
     @endif
 
+    @if(session('success_clients'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: '{{ session('success_clients') }}',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Aceptar'
+                });
+            });
+        </script>
+    @endif
 
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('admin/assets/js/seccion/inicio.js') }}"></script>
 @endsection

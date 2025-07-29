@@ -81,6 +81,9 @@
 
         @yield('scripts')
 
+        <script>
+            var APP_URL = "{{ env('APP_URL') }}";
+        </script>
         <!-- Custom JS -->
         <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
 

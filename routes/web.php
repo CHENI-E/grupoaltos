@@ -35,4 +35,16 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('/seccion_inicio', [App\Http\Controllers\Admin\SeccionController::class, 'inicio'])->name('seccion.inicio');
     Route::post('/seccion_inicio/store', [App\Http\Controllers\Admin\SeccionController::class, 'storeIdentities'])->name('seccion.identities.store');
     Route::post('/seccion_inicio/store_about_me', [App\Http\Controllers\Admin\SeccionController::class, 'storeAboutMe'])->name('seccion.about_me.store');
+    Route::post('/seccion_inicio/store_clientes', [App\Http\Controllers\Admin\SeccionController::class, 'storeClientes'])->name('seccion.clientes.store');
+
+    Route::prefix('categoria')->name('categoria.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\CategoriaController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\CategoriaController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Admin\CategoriaController::class, 'store'])->name('store');
+        Route::get('/listCategory', [App\Http\Controllers\Admin\CategoriaController::class, 'listCategory'])->name('listCategory');
+        Route::get('/mostrar_registro', [App\Http\Controllers\Admin\CategoriaController::class, 'mostrar_registro'])->name('mostrar_registro');
+        Route::post('/update', [App\Http\Controllers\Admin\CategoriaController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\CategoriaController::class, 'destroy'])->name('destroy');
+    });
+
 });

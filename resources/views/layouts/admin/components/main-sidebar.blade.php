@@ -4,10 +4,10 @@
                 <!-- Start::main-sidebar-header -->
                 <div class="main-sidebar-header">
                     <a href="index.php" class="header-logo">
-                        <img src="{{ asset('admin/assets/images/brand-logos/desktop-logo.png') }}" alt="logo" class="desktop-logo">
+                        <img src="{{ asset('ecommerce/assets/web/logo/LOGO-ALTOS-COLOR.png') }}" alt="logo" class="desktop-logo">
                         <img src="{{ asset('admin/assets/images/brand-logos/toggle-dark.png') }}" alt="logo" class="toggle-dark">
                         <img src="{{ asset('admin/assets/images/brand-logos/desktop-dark.png') }}" alt="logo" class="desktop-dark">
-                        <img src="{{ asset('admin/assets/images/brand-logos/toggle-logo.png') }}" alt="logo" class="toggle-logo">
+                        <img src="{{ asset('ecommerce/assets/web/logo/LOGO-ALTOS-COLOR-CUADRADO.png') }}" alt="logo" class="toggle-logo">
                         <img src="{{ asset('admin/assets/images/brand-logos/toggle-white.png') }}" alt="logo" class="toggle-white">
                         <img src="{{ asset('admin/assets/images/brand-logos/desktop-white.png') }}" alt="logo" class="desktop-white">
                     </a>
@@ -93,69 +93,18 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 side-menu__icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                                     </svg>
-                                    <span class="side-menu__label">Ui Elements</span>
+                                    <span class="side-menu__label">Productos</span>
                                     <i class="ri-arrow-right-s-line side-menu__angle"></i>
                                 </a>
                                 <ul class="slide-menu child1 mega-menu">
                                     <li class="slide side-menu__label1">
-                                        <a href="javascript:void(0)">Ui Elements</a>
+                                        <a href="javascript:void(0)">Productos</a>
                                     </li>
                                     <li class="slide">
-                                        <a href="alerts.php" class="side-menu__item">Alerts</a>
+                                        <a href="{{ route('admin.categoria.index') }}" class="side-menu__item">Categorias</a>
                                     </li>
                                     <li class="slide">
-                                        <a href="badge.php" class="side-menu__item">Badge</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="breadcrumb.php" class="side-menu__item">Breadcrumb</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="buttons.php" class="side-menu__item">Buttons</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="buttongroup.php" class="side-menu__item">Button Group</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="cards.php" class="side-menu__item">Cards</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="dropdowns.php" class="side-menu__item">Dropdowns</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="images-figures.php" class="side-menu__item">Images & Figures</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="links-interactions.php" class="side-menu__item">Links & Interactions</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="listgroup.php" class="side-menu__item">List Group</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="navs-tabs.php" class="side-menu__item">Navs & Tabs</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="object-fit.php" class="side-menu__item">Object Fit</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="pagination.php" class="side-menu__item">Pagination</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="popovers.php" class="side-menu__item">Popovers</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="progress.php" class="side-menu__item">Progress</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="spinners.php" class="side-menu__item">Spinners</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="toasts.php" class="side-menu__item">Toasts</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="tooltips.php" class="side-menu__item">Tooltips</a>
-                                    </li>
-                                    <li class="slide">
-                                        <a href="typography.php" class="side-menu__item">Typography</a>
+                                        <a href="badge.php" class="side-menu__item">Items</a>
                                     </li>
                                 </ul>
                             </li>
