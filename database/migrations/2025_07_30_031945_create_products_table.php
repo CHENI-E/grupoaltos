@@ -28,10 +28,10 @@ return new class extends Migration
             $table->decimal('precio', 10, 2);
             $table->decimal('precio_oferta', 10, 2)->nullable();
             $table->string('pdf_ficha_tecnica')->nullable();
-            $table->string('imagen_one')->nullable();
-            $table->string('imagen_two')->nullable();
-            $table->string('imagen_three')->nullable();
-            $table->string('imagen_four')->nullable();
+            $table->text('imagen_one')->nullable();
+            $table->text('imagen_two')->nullable();
+            $table->text('imagen_three')->nullable();
+            $table->text('imagen_four')->nullable();
             $table->timestamps();
         });
     }

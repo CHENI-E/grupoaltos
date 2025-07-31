@@ -108,5 +108,5 @@
 
 @section('scripts')
     <script src="{{ asset('admin/assets/libs/quill/quill.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/banner/inicio_create.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/banner/inicio_create.js') }}?v={{ time() }}"></script>
 @endsection

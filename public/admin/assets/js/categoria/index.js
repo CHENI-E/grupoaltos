@@ -89,10 +89,7 @@ $(document).on('click', '.btn_eliminar', function() {
 });
 
 $(document).on('click', '.btn_editar', function() {
-    console.log('Edit button clicked');
-    
     const id = $(this).data('id');
-    console.log('ID a editar:', id);
     $.ajax({
         url: `categoria/mostrar_registro`,
         data: { id: id },
@@ -104,7 +101,6 @@ $(document).on('click', '.btn_editar', function() {
             $('#input-orden').val('');
         },
         success: function(data) {
-            console.log('Datos recibidos:', data);
             $('#input-nombre').val(data.nombre);
             $('#input-description').val(data.descripcion);
             $('#input-estado').val(data.estado);
@@ -114,7 +110,6 @@ $(document).on('click', '.btn_editar', function() {
             $('#imagen_defecto').val(data.imagen);
         },
         error: function(xhr, status, error) {
-            console.error('Error al obtener los datos:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -150,12 +145,7 @@ $(document).ready(function () {
 
 $(document).on('submit', '#form_update_categoria', function(e) {
     e.preventDefault();
-    console.log('Formulario de actualización enviado');
-
     const formData = new FormData(this);
-    /* const id = $('#id_categoria').val();
-    console.log('ID de la categoría a actualizar:', id); */
-
     $.ajax({
         url: `categoria/update`,
         type: 'POST',
@@ -167,7 +157,6 @@ $(document).on('submit', '#form_update_categoria', function(e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-            console.log('Respuesta del servidor:', response);
             if (response.errors) {
                 const mensajes = [];
                 for (const campo in response.errors) {

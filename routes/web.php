@@ -47,4 +47,17 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\CategoriaController::class, 'destroy'])->name('destroy');
     });
 
+    Route::prefix('item')->name('item.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\ItemController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('store');
+        Route::get('/listItems', [App\Http\Controllers\Admin\ItemController::class, 'listItems'])->name('listItems');
+        Route::get('/mostrar_registro_item', [App\Http\Controllers\Admin\ItemController::class, 'mostrar_registro_item'])->name('mostrar_registro_item');
+        /* Route::post('/store', [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('store');
+        Route::get('/listItem', [App\Http\Controllers\Admin\ItemController::class, 'listItem'])->name('listItem');
+        Route::get('/mostrar_registro', [App\Http\Controllers\Admin\ItemController::class, 'mostrar_registro'])->name('mostrar_registro');
+        Route::post('/update', [App\Http\Controllers\Admin\ItemController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('destroy'); */
+    });
+
 });

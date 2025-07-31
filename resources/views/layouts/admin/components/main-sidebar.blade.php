@@ -104,7 +104,7 @@
                                         <a href="{{ route('admin.categoria.index') }}" class="side-menu__item">Categorias</a>
                                     </li>
                                     <li class="slide">
-                                        <a href="badge.php" class="side-menu__item">Items</a>
+                                        <a href="{{ route('admin.item.index') }}" class="side-menu__item">Items</a>
                                     </li>
                                 </ul>
                             </li>

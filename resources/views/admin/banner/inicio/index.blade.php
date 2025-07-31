@@ -51,5 +51,5 @@
     <script>
         var APP_URL = "{{ env('APP_URL') }}";
     </script>
-    <script src="{{ asset('admin/assets/js/banner/inicio_index.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/banner/inicio_index.js') }}?v={{ time() }}"></script>
 @endsection

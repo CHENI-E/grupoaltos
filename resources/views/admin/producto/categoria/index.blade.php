@@ -109,5 +109,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('admin/assets/js/categoria/index.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/categoria/index.js') }}?v={{ time() }}"></script>
 @endsection

@@ -20,3 +20,10 @@ yarn-error.log
 /public/admin/assets/images
 /public/ecommerce/assets/images
 /public/admin/assets/video
+/public/uploads/blog/*
+/public/uploads/categorias/*
+/public/uploads/items/*.png
+/public/uploads/items/*.jpg
+/public/uploads/items/*.jpeg
+/public/uploads/items/*.svg
+/public/uploads/items/pdf/*
