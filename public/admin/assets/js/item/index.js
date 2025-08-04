@@ -2,6 +2,10 @@ console.log('esto es el index');
 
 // 🔓 Declarar Quill como variable global para usarlo fuera del scope
 var quill;
+var file_imagenes_detalle;
+var file_imagen_portada;
+var file_pdf;
+var placeholderUrl = 'https://cdn-icons-png.flaticon.com/512/12048/12048902.png';
 
 (function () {
 
@@ -25,32 +29,6 @@ var quill;
         theme: 'snow'
     });
 
-    // FilePond - Imagen detalle (múltiples imágenes)
-    FilePond.create(document.querySelector('.product-Images'), {
-        allowMultiple: true,
-        acceptedFileTypes: ['image/png', 'image/jpeg'],
-        maxFiles: 4,
-        labelFileTypeNotAllowed: 'Solo se permiten imágenes PNG o JPG',
-        fileValidateTypeLabelExpectedTypes: 'Se espera una imagen en formato .png o .jpg'
-    });
-
-    // FilePond - Imagen portada (solo 1 archivo)
-    FilePond.create(document.querySelector('.product_imagen_portada'), {
-        allowMultiple: false,
-        acceptedFileTypes: ['image/png', 'image/jpeg'],
-        maxFiles: 1,
-        labelFileTypeNotAllowed: 'Solo se permite una imagen PNG o JPG',
-        fileValidateTypeLabelExpectedTypes: 'Se espera una imagen en formato .png o .jpg'
-    });
-
-    // FilePond - Ficha técnica (solo 1 archivo PDF)
-    FilePond.create(document.querySelector('.product-documents'), {
-        allowMultiple: false,
-        acceptedFileTypes: ['application/pdf'],
-        maxFiles: 1,
-        labelFileTypeNotAllowed: 'Solo se permite un archivo PDF',
-        fileValidateTypeLabelExpectedTypes: 'Se espera un archivo en formato .pdf'
-    });
 
 })();
 
@@ -137,6 +115,138 @@ $(document).ready(function() {
     });
 
 
+    $('#formulario_update_item').on('submit', function (e) {
+        e.preventDefault();
+
+        const form = $(this)[0];
+        const formData = new FormData(form);
+
+        // ✏️ Agregar contenido de Quill al FormData
+        const descripcion = quill.root.innerHTML;
+        formData.append('descripcion', descripcion);
+
+        // 🚀 Enviar vía AJAX
+        $.ajax({
+            url: 'item/update', // ⚠️ Asegúrate que esta ruta sea correcta
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                console.log(response);
+                if (response.status === 200) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Bien',
+                        html: response.message,
+                        confirmButtonText: 'Vale'
+                    });
+
+                    $('#tabla_items').DataTable().ajax.reload();
+                    $('.btn-close').click();
+
+                }else{
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hubo un error',
+                        html: 'No se pudo guardar el item, intentelo más tarde',
+                        confirmButtonText: 'Vale'
+                    });
+
+                }
+
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    const errores = xhr.responseJSON.errors;
+                    let mensaje = '';
+
+                    // Construir lista de errores
+                    Object.keys(errores).forEach(function (campo) {
+                        errores[campo].forEach(function (error) {
+                            mensaje += `• ${error}<br>`;
+                        });
+                    });
+
+                    // Mostrar en SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Errores de validación',
+                        html: mensaje,
+                        confirmButtonText: 'Corregir'
+                    });
+                } else {
+                    // Otro error (500, etc)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error al guardar el artículo.',
+                        confirmButtonText: 'Cerrar'
+                    });
+                }
+            }
+        });
+    });
+
+
+});
+
+
+$(document).on('click', '.btn_eliminar', function() {
+    const id = $(this).data('id');
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás recuperar esta Item!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `item/delete/${id}`,
+                type: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    if (response.status == 200) {
+                        Swal.fire(
+                            'Eliminado!',
+                            response.message,
+                            'success'
+                        ).then(() => {
+                            $('#tabla_items').DataTable().ajax.reload();
+                        });
+                        return;
+                    }
+
+                    if (response.error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.error
+                        });
+                        return;
+                    }
+
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se pudo eliminar la categoría.'
+                    });
+                }
+            });
+        }
+    });
 });
 
 
@@ -153,26 +263,41 @@ $(document).on('click', '.btn_editar_item', function() {
             $('#input-orden').val(''); */
         },
         success: function(data) {
+            $('#id_formulario').val(data.id)
             console.log('data : ', data);
+
+            if (data.pdf_ficha_tecnica) {
+                $('#pdf-preview-frame').attr('src', APP_URL + data.pdf_ficha_tecnica);
+                $('#pdf-preview-card').removeClass('d-none');
+            } else {
+                $('#pdf-preview-frame').attr('src', '');
+                $('#pdf-preview-card').addClass('d-none');
+            }
+
+
+            // Portada
+            $('#preview_imagen_portada').attr('src', data.imagen_portada ? APP_URL + '/' + data.imagen_portada : placeholderUrl);
+
+            // Detalle 1
+            $('#preview_imagen_detalle_one').attr('src', data.imagen_one ? APP_URL + '/' + data.imagen_one : placeholderUrl);
+
+            // Detalle 2
+            $('#preview_imagen_detalle_two').attr('src', data.imagen_two ? APP_URL + '/' + data.imagen_two : placeholderUrl);
+
+            // Detalle 3
+            $('#preview_imagen_detalle_tree').attr('src', data.imagen_three ? APP_URL + '/' + data.imagen_three : placeholderUrl);
+
+            // Detalle 4
+            $('#preview_imagen_detalle_four').attr('src', data.imagen_four ? APP_URL + '/' + data.imagen_four : placeholderUrl);
+
+
             $('#product-name').val(data.nombre);
             $('#categoria').val(data.category_id);
             $('#product-actual-price').val(data.precio);
             $('#product-dealer-price').val(data.descuento);
             $('#product-discount').val(data.precio_oferta);
             $('#product-status-add').val(data.estado);
-            /* $('#').val(data.);
-            $('#').val(data.);
-            $('#').val(data.);
-            $('#').val(data.);
-            $('#').val(data.); */
-            return;
-            $('#input-nombre').val(data.nombre);
-            $('#input-description').val(data.descripcion);
-            $('#input-estado').val(data.estado);
-            $('#input-orden').val(data.orden);
-            $('#previewImage').attr('src', data.imagen ? `${APP_URL}${data.imagen}` : '#').fadeIn();
-            $('#id_categoria').val(data.id);
-            $('#imagen_defecto').val(data.imagen);
+            quill.root.innerHTML = data.descripcion
         },
         error: function(xhr, status, error) {
             Swal.fire({
@@ -184,3 +309,126 @@ $(document).on('click', '.btn_editar_item', function() {
     });
 
 });
+
+
+
+$(document).ready(function () {
+
+    configurarPrevisualizadorImagen({
+        inputSelector: '.imagen_portada',
+        previewImageSelector: '#preview_imagen_portada',
+        removeButtonSelector: '#btn_remove_imagen_portada',
+        placeholderUrl: placeholderUrl
+    });
+
+    configurarPrevisualizadorImagen({
+        inputSelector: '.imagen_detalle_one',
+        previewImageSelector: '#preview_imagen_detalle_one',
+        removeButtonSelector: '#btn_remove_imagen_detalle_one',
+        placeholderUrl: placeholderUrl
+    });
+
+    configurarPrevisualizadorImagen({
+        inputSelector: '.imagen_detalle_two',
+        previewImageSelector: '#preview_imagen_detalle_two',
+        removeButtonSelector: '#btn_remove_imagen_detalle_two',
+        placeholderUrl: placeholderUrl
+    });
+
+    configurarPrevisualizadorImagen({
+        inputSelector: '.imagen_detalle_tree',
+        previewImageSelector: '#preview_imagen_detalle_tree',
+        removeButtonSelector: '#btn_remove_imagen_detalle_tree',
+        placeholderUrl: placeholderUrl
+    });
+
+    configurarPrevisualizadorImagen({
+        inputSelector: '.imagen_detalle_four',
+        previewImageSelector: '#preview_imagen_detalle_four',
+        removeButtonSelector: '#btn_remove_imagen_detalle_four',
+        placeholderUrl: placeholderUrl
+    });
+
+    configurarPrevisualizadorPDF({
+        inputSelector: '.product-documents',
+        previewFrameSelector: '#pdf-preview-frame',
+        previewCardSelector: '#pdf-preview-card',
+        removeButtonSelector: '#btn_remove_pdf'
+    });
+
+
+});
+
+
+function configurarPrevisualizadorImagen({
+        inputSelector,
+        previewImageSelector,
+        removeButtonSelector,
+        placeholderUrl
+    })
+{
+    const fileInput = $(inputSelector);
+    const previewImage = $(previewImageSelector);
+    const removeBtn = $(removeButtonSelector);
+
+    fileInput.on('change', function (event) {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+        if (!validTypes.includes(file.type)) {
+            alert('Por favor selecciona una imagen válida (.jpg, .jpeg, .png).');
+            fileInput.val('');
+            previewImage.attr('src', placeholderUrl);
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            previewImage.attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    });
+
+    removeBtn.on('click', function () {
+        previewImage.attr('src', placeholderUrl);
+        fileInput.val('');
+    });
+}
+
+
+function configurarPrevisualizadorPDF({ inputSelector, previewFrameSelector, previewCardSelector, removeButtonSelector }) {
+    const fileInput = $(inputSelector);
+    const previewFrame = $(previewFrameSelector);
+    const previewCard = $(previewCardSelector);
+    const removeBtn = $(removeButtonSelector);
+
+    fileInput.on('change', function (event) {
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        const validType = 'application/pdf';
+        if (file.type !== validType) {
+            alert('Por favor selecciona un archivo PDF válido.');
+            fileInput.val('');
+            previewCard.addClass('d-none');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            previewFrame.attr('src', e.target.result);
+            previewCard.removeClass('d-none');
+        };
+        reader.readAsDataURL(file);
+    });
+
+    removeBtn.on('click', function () {
+        previewFrame.attr('src', '');
+        previewCard.addClass('d-none');
+        fileInput.val('');
+    });
+}
+

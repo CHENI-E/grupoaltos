@@ -77,20 +77,83 @@
                                                             <label for="product-discount" class="form-label">Precio Oferta</label>
                                                             <input type="text" class="form-control" id="product-discount" name="oferta" placeholder="0.00">
                                                         </div>
+
+
+                                                        <!-- INPUT IMAGEN PORTADA -->
                                                         <div class="col-xl-12 product-documents-container">
-                                                            <p class="fw-medium mb-2 fs-14">Imagen Portada :</p>
-                                                            <input type="file" class="product_imagen_portada" name="imagen_portada" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Portada:</p>
+                                                            <input type="file" class="form-control imagen_portada" name="imagen_portada" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                                         </div>
-                                                        <label class="form-label text-muted mt-3 fw-normal fs-12">*Se debe cargar un mínimo de 1 imágenen, todas las imágenes deben mantener un ancho 
+
+                                                        <div id="preview-card-container" class="col-xl-12">
+                                                            <div class="card shadow-sm border rounded">
+                                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                                    <img id="preview_imagen_portada"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                                        class="card-img-top"
+                                                                        alt="Vista previa"
+                                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <button type="button" id="btn_remove_imagen_portada" class="btn btn-outline-danger btn-sm">
+                                                                        Quitar Imagen
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <label class="form-label text-muted fw-normal fs-12 mt-0">
+                                                            *Se debe cargar un mínimo de 1 imágenen, todas las imágenes deben mantener un ancho 
                                                             y alto uniformes según el contenedor.
                                                         </label>
+                                                        {{-- ============================================================== --}}
+
                                                         <div class="col-xl-12 product-documents-container">
-                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle :</p>
-                                                            <input type="file" class="product-Images" name="imagen_detalle" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4">
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 1 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <input type="file" class="form-control imagen_detalle_one" name="imagen_detalle_one" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                                         </div>
-                                                        <label class="form-label text-muted mt-3 fw-normal fs-12">*Se debe cargar un mínimo de 4 imágenes, todas las imágenes deben mantener un ancho 
-                                                            y alto uniformes según el contenedor.
-                                                        </label>
+
+                                                        <div id="preview-card-container" class="col-xl-12">
+                                                            <div class="card shadow-sm border rounded">
+                                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                                    <img id="preview_imagen_detalle_one"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                                        class="card-img-top"
+                                                                        alt="Vista previa"
+                                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <button type="button" id="btn_remove_imagen_detalle_one" class="btn btn-outline-danger btn-sm">
+                                                                        Quitar Imagen
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-xl-12 product-documents-container">
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 2 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <input type="file" class="form-control imagen_detalle_two" name="imagen_detalle_two" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                                        </div>
+
+                                                        <div id="preview-card-container" class="col-xl-12">
+                                                            <div class="card shadow-sm border rounded">
+                                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                                    <img id="preview_imagen_detalle_two"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                                        class="card-img-top"
+                                                                        alt="Vista previa"
+                                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <button type="button" id="btn_remove_imagen_detalle_two" class="btn btn-outline-danger btn-sm">
+                                                                        Quitar Imagen
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,6 +162,51 @@
                                             <div class="card custom-card shadow-none mb-0 border-0">
                                                 <div class="card-body p-0">
                                                     <div class="row gy-3">
+
+                                                        <div class="col-xl-12 product-documents-container">
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 3 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <input type="file" class="form-control imagen_detalle_tree" name="imagen_detalle_tree" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                                        </div>
+
+                                                        <div id="preview-card-container" class="col-xl-12">
+                                                            <div class="card shadow-sm border rounded">
+                                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                                    <img id="preview_imagen_detalle_tree"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                                        class="card-img-top"
+                                                                        alt="Vista previa"
+                                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <button type="button" id="btn_remove_imagen_detalle_tree" class="btn btn-outline-danger btn-sm">
+                                                                        Quitar Imagen
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-12 product-documents-container">
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 4 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <input type="file" class="form-control imagen_detalle_four" name="imagen_detalle_four" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                                        </div>
+
+                                                        <div id="preview-card-container" class="col-xl-12">
+                                                            <div class="card shadow-sm border rounded">
+                                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                                    <img id="preview_imagen_detalle_four"
+                                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                                        class="card-img-top"
+                                                                        alt="Vista previa"
+                                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                                </div>
+                                                                <div class="card-body text-center">
+                                                                    <button type="button" id="btn_remove_imagen_detalle_four" class="btn btn-outline-danger btn-sm">
+                                                                        Quitar Imagen
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="col-xl-12">
                                                             <label class="form-label">Descripción del Item <b class="text-danger">(*)</b> :</label>
                                                             <div id="product-features"></div>

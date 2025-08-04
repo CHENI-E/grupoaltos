@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::post('/store', [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('store');
         Route::get('/listItems', [App\Http\Controllers\Admin\ItemController::class, 'listItems'])->name('listItems');
         Route::get('/mostrar_registro_item', [App\Http\Controllers\Admin\ItemController::class, 'mostrar_registro_item'])->name('mostrar_registro_item');
+        Route::post('/update', [App\Http\Controllers\Admin\ItemController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('destroy');
         /* Route::post('/store', [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('store');
         Route::get('/listItem', [App\Http\Controllers\Admin\ItemController::class, 'listItem'])->name('listItem');
         Route::get('/mostrar_registro', [App\Http\Controllers\Admin\ItemController::class, 'mostrar_registro'])->name('mostrar_registro');
