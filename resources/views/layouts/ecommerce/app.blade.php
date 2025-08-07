@@ -62,7 +62,7 @@
               <a class="nav-link" href="{{ route('ecommerce.nosotros') }}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ada.dhtml">Productos</a>
+              <a class="nav-link" href="{{ route('ecommerce.productos') }}">Productos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('ecommerce.servicio') }}">Servicios</a>

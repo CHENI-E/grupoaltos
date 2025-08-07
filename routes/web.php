@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,7 @@ Route::get('/nosotros', [App\Http\Controllers\Ecommerce\NosotrosController::clas
 Route::get('/contactanos', [App\Http\Controllers\Ecommerce\ContactanosController::class, 'index'])->name('ecommerce.contactanos');
 Route::get('/servicio', [App\Http\Controllers\Ecommerce\ServicioController::class, 'index'])->name('ecommerce.servicio');
 Route::get('/blog', [App\Http\Controllers\Ecommerce\BlogController::class, 'index'])->name('ecommerce.blog');
+Route::get('/productos', [App\Http\Controllers\Ecommerce\ProductosController::class, 'index'])->name('ecommerce.productos');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [App\Http\Controllers\Admin\LoginController::class, 'index'])->name('login');
@@ -62,4 +63,13 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('destroy'); */
     });
 
+});
+
+Route::get('/test-mail', function () {
+    Mail::raw('Este es un correo de prueba desde Laravel', function ($message) {
+        $message->to('ignieve16@gmail.com')
+                ->subject('Correo de prueba');
+    });
+
+    return 'Correo enviado!';
 });

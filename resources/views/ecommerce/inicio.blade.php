@@ -139,135 +139,36 @@
     <!--end carousel-->
 
     <!--start Featured Products slider-->
-    <section class="section-padding">
-      <div class="container">
-        <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">Productos Destacados</h3>
-          <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
-        </div>
-        <div class="product-thumbs">
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/andamios-md48.jpeg') }}" class="card-img-top rounded-0" alt="...">
+    @if (count($category) > 0)
+      <section class="section-padding">
+        <div class="container">
+          <div class="text-center pb-3">
+            <h3 class="mb-0 h3 fw-bold">Productos Destacados</h3>
+            <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
+          </div>
+          <div class="product-thumbs">
+
+            @foreach ($category as $item)
+              <a href="shop-grid-type-4.html">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="overflow-hidden">
+                      <img src="{{ asset($item->imagen) }}" class="card-img-top rounded-0" alt="...">
+                    </div>
+                    <div class="text-center">
+                      <h5 class="mb-1 cartegory-name mt-3 fw-bold">{{ $item->nombre }}</h5>
+                      <h6 class="mb-0 product-number fw-bold">{{ $item->products_count }} Productos</h6>
+                    </div>
+                  </div>
                 </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Andamios MD48</h5>
-                  <h6 class="mb-0 product-number fw-bold">856 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/andamios-mf48.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Andamios MF48</h5>
-                  <h6 class="mb-0 product-number fw-bold">169 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/e-bici.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">E-Bici</h5>
-                  <h6 class="mb-0 product-number fw-bold">589 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/e-bike.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">E-Bike</h5>
-                  <h6 class="mb-0 product-number fw-bold">278 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/estructuras-metalicas.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Estructuras Metálicas</h5>
-                  <h6 class="mb-0 product-number fw-bold">985 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/graderias-multi-stark.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Graderías Multi Stark</h5>
-                  <h6 class="mb-0 product-number fw-bold">489 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/puntuales-pro.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Puntuales Pro</h5>
-                  <h6 class="mb-0 product-number fw-bold">985 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/sistema-proteccion-borde.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Sistema de Protección de Borde</h5>
-                  <h6 class="mb-0 product-number fw-bold">489 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/productos_generales/vallas-seguridad.jpeg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Vallas de Seguridad</h5>
-                  <h6 class="mb-0 product-number fw-bold">985 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
+              </a>
+            @endforeach
+
+          </div>
 
         </div>
-
-      </div>
-    </section>
+      </section>
+    @endif
     <!--end Featured Products slider-->
 
     <!--start features-->
