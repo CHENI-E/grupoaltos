@@ -76,7 +76,7 @@
                                   <input type="text" class="form-control rounded-0" placeholder="s/10" id="minPrecio">
                                   <span class="input-group-text bg-section-1 border-0">-</span>
                                   <input type="text" class="form-control rounded-0" placeholder="s/10000" id="maxPrecio">
-                                  <button type="button" class="btn btn-outline-dark rounded-0 ms-2"><i class="bi bi-chevron-right"></i></button>
+                                  <button type="button" class="btn btn-outline-dark rounded-0 ms-2" id="filter_precio"><i class="bi bi-chevron-right"></i></button>
                                 </div>
                               </div>
                             </div>

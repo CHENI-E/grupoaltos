@@ -110,8 +110,12 @@ $(document).ready(function () {
     });
 
     // Cuando cambias un filtro
-    $('.categoria-checkbox, #minPrecio, #maxPrecio, input[name="exampleRadios"]').on('change keyup', function () {
+    $('.categoria-checkbox, input[name="exampleRadios"]').on('change keyup', function () {
         cargarProductos(true); // Reinicia
+    });
+
+    $('#filter_precio').on('click', function () {
+        cargarProductos(true);
     });
 
     $('#filtroNombre').on('keyup', function () {
