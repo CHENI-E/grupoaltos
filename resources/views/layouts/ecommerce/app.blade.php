@@ -10,14 +10,14 @@
   <link rel="icon" href="{{ asset('ecommerce/assets/web/logo/LOGO-EDITABLE-PNG-BLANCO.png') }}" type="image/webp" />
 
   <!-- CSS files -->
-  <link href="ecommerce/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('ecommerce/assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&amp;display=swap" rel="stylesheet">
   {{-- <link rel="stylesheet" href="../../../../cdn.jsdelivr.net/npm/bootstrap-icons%401.7.2/font/bootstrap-icons.css"> --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
   <!-- Plugins -->
-  <link rel="stylesheet" type="text/css" href="ecommerce/assets/plugins/slick/slick.css" />
-  <link rel="stylesheet" type="text/css" href="ecommerce/assets/plugins/slick/slick-theme.css" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('ecommerce/assets/plugins/slick/slick.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('ecommerce/assets/plugins/slick/slick-theme.css') }}" />
 
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
@@ -158,11 +158,11 @@
           <div class="footer-widget-9">
             <h5 class="mb-3 fw-bold">Redes Sociales</h5>
              <div class="social-link d-flex align-items-center gap-2">
-               <a href="javascript:;"><i class="bi bi-facebook"></i></a>
-               <a href="javascript:;"><i class="bi bi-twitter"></i></a>
-               <a href="javascript:;"><i class="bi bi-linkedin"></i></a>
-               <a href="javascript:;"><i class="bi bi-youtube"></i></a>
-               <a href="javascript:;"><i class="bi bi-instagram"></i></a>
+               <a href="https://www.facebook.com/andamiosaltos" target="_blank"><i class="bi bi-facebook"></i></a>
+               <a href="https://www.linkedin.com/in/andamios-altos/" target="_blank"><i class="bi bi-linkedin"></i></a>
+               <a href="https://www.youtube.com/@grupoaltos" target="_blank"><i class="bi bi-youtube"></i></a>
+               <a href="https://www.instagram.com/grupoaltos/" target="_blank"><i class="bi bi-instagram"></i></a>
+               <a href="https://www.tiktok.com/@grupoaltos" target="_blank"><i class="bi bi-tiktok"></i></a>
              </div>
              <div class="mb-3 mt-3">
               <h5 class="mb-0 fw-bold">Ayuda</h5>
@@ -199,7 +199,7 @@
         <div class="d-flex align-items-center gap-3">
           <div class="bottom-product-img">
             <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/01.webp" width="60" alt="">
+              <img src="{{ asset('ecommerce/assets/images/new-arrival/10.webp') }}" width="60" alt="">
             </a>
           </div>
           <div class="">
@@ -212,149 +212,7 @@
           </div>
         </div>
         <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/02.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/03.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/04.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/05.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/06.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/07.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/08.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/09.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="ecommerce/assets/images/new-arrival/10.webp" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="offcanvas-footer p-3 border-top">
@@ -382,31 +240,31 @@
 
                 <div class="slider-for">
                   <div>
-                    <img src="ecommerce/assets/images/product-images/01.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/01.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/02.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/02.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/03.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/03.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/04.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/04.jpg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
 
                 <div class="slider-nav mt-3">
                   <div>
-                    <img src="ecommerce/assets/images/product-images/01.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/01.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/02.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/02.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/03.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/03.jpg') }}" alt="" class="img-fluid">
                   </div>
                   <div>
-                    <img src="ecommerce/assets/images/product-images/04.jpg" alt="" class="img-fluid">
+                    <img src="{{ asset('ecommerce/assets/images/product-images/04.jpg') }}" alt="" class="img-fluid">
                   </div>
                 </div>
 
@@ -521,6 +379,7 @@
   <script src="{{ asset('ecommerce/assets/js/index.js') }}"></script>
   <script src="{{ asset('ecommerce/assets/js/loader.js') }}"></script>
 
+  @yield('scripts')
 </body>
 
 

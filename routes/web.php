@@ -20,6 +20,10 @@ Route::get('/servicio', [App\Http\Controllers\Ecommerce\ServicioController::clas
 Route::get('/blog', [App\Http\Controllers\Ecommerce\BlogController::class, 'index'])->name('ecommerce.blog');
 Route::get('/productos', [App\Http\Controllers\Ecommerce\ProductosController::class, 'index'])->name('ecommerce.productos');
 
+Route::get('/productos/lista', [App\Http\Controllers\Ecommerce\ProductosController::class, 'getProductosAjax']);
+Route::get('/producto/{slug}', [App\Http\Controllers\Ecommerce\ProductosController::class, 'detalle'])->name('producto.detalle');
+
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [App\Http\Controllers\Admin\LoginController::class, 'index'])->name('login');
     Route::post('/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('login.post');

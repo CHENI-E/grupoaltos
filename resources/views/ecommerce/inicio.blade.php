@@ -149,7 +149,7 @@
           <div class="product-thumbs">
 
             @foreach ($category as $item)
-              <a href="shop-grid-type-4.html">
+              <a href="{{ url('/productos?categoria=' . $item->id) }}">
                 <div class="card">
                   <div class="card-body">
                     <div class="overflow-hidden">
@@ -439,7 +439,7 @@
 
 
     <!--start blog-->
-    <section class="section-padding">
+    {{-- <section class="section-padding">
       <div class="container">
         <div class="text-center pb-3">
           <h3 class="mb-0 fw-bold">Último blog</h3>
@@ -506,7 +506,7 @@
           <!--end row-->
         </div>
       </div>
-    </section>
+    </section> --}}
     <!--end blog-->
 
 

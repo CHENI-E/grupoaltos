@@ -34,10 +34,6 @@
                     </li>
                 </ul>
 
-                @if(session('success'))
-                    <p class="text-success">{{ session('success') }}</p>
-                @endif
-
                 <div class="mt-4 mb-4 table-responsive">
                     <table class="table text-nowrap table-bordered">
                         <thead>
@@ -89,6 +85,20 @@
         </div>
     </div>
 </div>
+
+@if(session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: '¡Hola!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Vale'
+            });
+        });
+    </script>
+@endif
 
 @endsection
 
