@@ -21,6 +21,10 @@
 
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
+  <script>
+      const APP_URL = "{{ config('app.url') }}";
+  </script>
+
 
   <title>Grupos Altos - Fabricamos y Comercializamos Andamios</title>
 
@@ -80,6 +84,7 @@
         </div>
       </div>
       <ul class="navbar-nav secondary-menu flex-row">
+        
         <li class="nav-item">
           <a class="nav-link dark-mode-icon" href="javascript:;">
             <div class="mode-icon">
@@ -87,21 +92,18 @@
             </div>
           </a>
         </li>
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="search.html"><i class="bi bi-search"></i></a>
-        </li> --}}
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="wishlist.html"><i class="bi bi-suit-heart"></i></a>
-        </li> --}}
+
         <li class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
           <a class="nav-link position-relative" href="javascript:;">
-            <div class="cart-badge">8</div>
+            <div class="cart-badge"></div>
             <i class="bi bi-basket2"></i>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="{{ route('login') }}"><i class="bi bi-person-circle"></i></a>
         </li>
+
       </ul>
     </nav>
   </header>
@@ -190,34 +192,18 @@
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header bg-section-2">
-      <h5 class="mb-0 fw-bold" id="offcanvasRightLabel">8 items in the cart</h5>
+      <h5 class="mb-0 fw-bold title_carrito" id="offcanvasRightLabel"></h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <div class="cart-list">
 
-        <div class="d-flex align-items-center gap-3">
-          <div class="bottom-product-img">
-            <a href="product-details.html">
-              <img src="{{ asset('ecommerce/assets/images/new-arrival/10.webp') }}" width="60" alt="">
-            </a>
-          </div>
-          <div class="">
-            <h6 class="mb-0 fw-light mb-1">Product Name</h6>
-            <p class="mb-0"><strong>1 X $59.00</strong>
-            </p>
-          </div>
-          <div class="ms-auto fs-5">
-            <a href="javascript:" class="link-dark"><i class="bi bi-trash"></i></a>
-          </div>
-        </div>
-        <hr>
-
+      <div class="cart-list" id="contenedorCarrito">
       </div>
+
     </div>
     <div class="offcanvas-footer p-3 border-top">
       <div class="d-grid">
-        <button type="button" class="btn btn-lg btn-dark btn-ecomm px-5 py-3">COTIZAR AL WHATSAPP</button>
+        <button type="button" class="btn btn-lg btn-dark btn-ecomm px-5 py-3" id="btnCotizar">COTIZAR AL WHATSAPP</button>
       </div>
     </div>
 
@@ -380,6 +366,7 @@
   <script src="{{ asset('ecommerce/assets/js/loader.js') }}"></script>
 
   @yield('scripts')
+  <script src="{{ asset('ecommerce/assets/js/productos/carrito.js') }}?v={{ time() }}"></script>
 </body>
 
 

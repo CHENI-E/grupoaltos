@@ -93,7 +93,7 @@
                     <hr>
                     <div class="cart-buttons mt-0">
                         <div class="buttons d-flex flex-column flex-lg-row gap-3 mt-4">
-                            <a href="javascript:;" class="btn btn-lg btn-dark btn-ecomm px-5 py-3 col-lg-6"><i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO</a>
+                            <a href="javascript:;" class="btn btn-lg btn-dark btn-ecomm px-5 py-3 col-lg-6 btnAgregarCarrito" data-id="{{ $producto->id }}" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->descuento != 0 ? $producto->precio_oferta : $producto->precio }}" data-imagen="{{ asset($producto->imagen_portada) }}"><i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO</a>
                         </div>
                     </div>
                     <hr class="my-3">
@@ -121,12 +121,18 @@
         <div class="container">
         <div class="separator pb-3">
             <div class="line"></div>
-            <h3 class="mb-0 h3 fw-bold">Productos Similare</h3>
+            <h3 class="mb-0 h3 fw-bold">Productos Similares</h3>
             <div class="line"></div>
         </div>
         <div class="similar-products">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5 g-4">
+
+                @if ($productoSimilares->isEmpty())
+                    <div class="col-lg-12 text-center m-auto w-100 mt-5">
+                        <p class="text-center">No hay productos similares disponibles.</p>
+                    </div>
+                @endif
 
                 @foreach ($productoSimilares as $item)
                     <div class="col">
@@ -162,4 +168,7 @@
  </div>
   <!--end page content-->
 
+@endsection
+
+@section('scripts')
 @endsection

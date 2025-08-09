@@ -5,8 +5,32 @@
   <!--start page content-->
   <div class="page-content">
 
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
     <!--start carousel-->
-    <section class="slider-section">
+    <section class="slider-section" hidden>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-indicators">
@@ -19,7 +43,11 @@
 
         <div class="carousel-inner">
 
-          @foreach ($banners as $banner)
+          <div class="carousel-item active" style="background: #064199;">
+            <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" alt="">
+          </div>
+
+          {{-- @foreach ($banners as $banner)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="background: {{ $banner->fondo }};">
               <div class="row d-flex align-items-center">
                 <div class="col d-none d-lg-flex justify-content-center">
@@ -37,7 +65,7 @@
                 </div>
               </div>
             </div>
-          @endforeach
+          @endforeach --}}
 
           {{-- <div class="carousel-item active" style="background: #064199;">
             <div class="row d-flex align-items-center">

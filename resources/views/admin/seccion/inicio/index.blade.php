@@ -270,5 +270,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('admin/assets/js/seccion/inicio.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/seccion/inicio.js') }}?v={{ time() }}"></script>
 @endsection

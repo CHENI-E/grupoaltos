@@ -2,6 +2,15 @@
 
 @section('content')
 
+<style>
+  .card-title-limit {
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* máximo 2 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
+</style>
+
 <!--start page content-->
 <div class="page-content">
 
@@ -113,6 +122,11 @@
           </div>
 
           <div class="col-12 col-xl-9">
+            @if (session('error_found_producto'))
+                <div class="alert alert-danger p-2">
+                    {{ session('error_found_producto') }}
+                </div>
+            @endif
             <div class="shop-right-sidebar">
 
               <div class="card rounded-0">
@@ -129,21 +143,6 @@
                 </div>
               </div>
 
-              {{-- <div class="product-grid mt-4">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-
-                  <div id="contenedor-productos"></div>
-                  
-                </div>
-
-                <div class="row mt-5">
-                  <div class="col text-center">
-                    <button id="btn-cargar-mas" class="btn btn-dark">Cargar más</button>
-                  </div>
-                </div>
-
-              </div> --}}
-
               <div class="product-grid mt-4">
                 <!-- Spinner -->
                 <div id="spinner-carga" class="text-center my-4" style="display: none;">
@@ -158,9 +157,7 @@
                 </div>
 
                 <!-- Productos -->
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="contenedor-productos">
-                  <!-- Productos se cargarán aquí con JS -->
-                </div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="contenedor-productos"></div>
 
                 <!-- Botón cargar más -->
                 <div class="row mt-5">
@@ -187,5 +184,5 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('ecommerce/assets/js/productos/index.js') }}"></script>
+  <script src="{{ asset('ecommerce/assets/js/productos/index.js') }}?v={{ time() }}"></script>
 @endsection

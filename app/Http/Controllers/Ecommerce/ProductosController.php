@@ -28,6 +28,7 @@ class ProductosController extends Controller
         $minDescuento = $request->input('minDescuento');
 
         $query = Product::query();
+        $query->where('estado', 1);
 
         if ($nombre) {
             $query->where('nombre', 'like', "%$nombre%");
@@ -56,8 +57,12 @@ class ProductosController extends Controller
 
     public function detalle($slug)
     {
-        $producto = Product::where('slug', $slug)->with('category')->firstOrFail();
+        $producto = Product::where('slug', $slug)->where('estado', 1)->with('category')->first();
+        if (!$producto) {
+            return redirect()->route('ecommerce.productos')->with('error_found_producto', 'El producto que buscas no está disponible.');
+        }
         $productoSimilares = Product::where('category_id', $producto->category_id)
+            ->where('estado', 1)
             ->where('id', '!=', $producto->id)
             ->take(4)
             ->get();

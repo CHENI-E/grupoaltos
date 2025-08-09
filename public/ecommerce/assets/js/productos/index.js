@@ -58,27 +58,30 @@ function cargarProductos(reset = false) {
 
             data.forEach(producto => {
                 $('#contenedor-productos').append(`
-                    <div class="col">
-                        <div class="card border shadow-none">
+                    <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                        <div class="card border shadow-none flex-fill d-flex flex-column">
                             <div class="position-relative overflow-hidden">
                                 <div class="product-options d-flex align-items-center justify-content-center gap-2 mx-auto position-absolute bottom-0 start-0 end-0">
                                     <a href="javascript:;"><i class="bi bi-heart"></i></a>
-                                    <a href="javascript:;"><i class="bi bi-basket3"></i></a>
+                                    <a href="javascript:;" class="btnAgregarCarrito" data-id="${producto.id}" data-nombre="${producto.nombre}" data-precio="${ producto.descuento != 0 ? producto.precio_oferta : producto.precio}" data-imagen="${APP_URL}${producto.imagen_portada}"><i class="bi bi-basket3"></i></a>
                                     <a href="javascript:;"><i class="bi bi-zoom-in"></i></a>
                                 </div>
                                 <a href="/producto/${producto.slug}">
                                     <img src="${producto.imagen_portada}" class="card-img-top" alt="${producto.nombre}">
                                 </a>
                             </div>
-                            <div class="card-body border-top">
-                                <h5 class="mb-0 fw-bold product-short-title">${producto.nombre}</h5>
-                                <div class="product-price d-flex align-items-center gap-2 mt-2">
+                            <div class="card-body border-top d-flex flex-column justify-content-between">
+                                <!-- Nombre con máximo 2 líneas -->
+                                <h5 class="mb-2 fw-bold card-title-limit">${producto.nombre}</h5>
+
+                                <!-- Precio -->
+                                <div class="product-price d-flex align-items-center gap-2 mt-auto">
                                     ${
                                         producto.descuento != 0
-                                            ? `<div class="h6 fw-bold">s/${producto.precio_oferta}</div>
-                                               <div class="h6 fw-light text-muted text-decoration-line-through">s/${producto.precio}</div>
-                                               <div class="h6 fw-bold text-danger">(${producto.descuento}%)</div>`
-                                            : `<div class="h6 fw-bold">s/${producto.precio}</div>`
+                                            ? `<div class="h6 fw-bold mb-0">s/${producto.precio_oferta}</div>
+                                            <div class="h6 fw-light text-muted text-decoration-line-through mb-0">s/${producto.precio}</div>
+                                            <div class="h6 fw-bold text-danger mb-0">(${parseInt(producto.descuento)}% dscto)</div>`
+                                            : `<div class="h6 fw-bold mb-0">s/${producto.precio}</div>`
                                     }
                                 </div>
                             </div>
@@ -119,9 +122,9 @@ $(document).ready(function () {
     });
 
     $('#filtroNombre').on('keyup', function () {
-        clearTimeout(debounceTimer); // Limpiar si el usuario sigue escribiendo
+        clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
             cargarProductos(true);
-        }, 1000); // Espera 1000 ms (1 segundo)
+        }, 1000); 
     });
 });
