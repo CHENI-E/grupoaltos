@@ -21,6 +21,7 @@
 
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
+  @yield('styles')
   <script>
       const APP_URL = "{{ config('app.url') }}";
   </script>

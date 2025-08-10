@@ -1,5 +1,55 @@
 @extends('layouts.ecommerce.app')
 
+@section('styles')
+  <link rel="stylesheet" href="{{ asset('ecommerce/assets/css/owl.carousel.min.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('ecommerce/assets/css/owl.theme.default.min.css') }}"/>
+
+  <style>
+    @media (max-width: 576px) {
+      .product-thumbs h5 {
+        font-size: 0.9rem !important; /* más pequeño en celular */
+        height: 40px !important;      /* menos alto en móvil */
+      }
+      .product-thumbs h6 {
+        font-size: 0.8rem !important;
+      }
+      .product-thumbs img {
+        height: 180px !important; /* imágenes más compactas en móvil */
+      }
+    }
+
+    /* Efecto hover */
+    .product-thumbs .card:hover {
+      transform: translateY(-5px);
+    }
+    .product-thumbs .card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Hover sobre la card */
+    .owl-carousel .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Zoom suave a la imagen */
+    .owl-carousel .card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* Cambio de color de texto y fondo */
+    .owl-carousel .card:hover .card-body {
+      background-color: #ececec;
+    }
+    .owl-carousel .card:hover h5 {
+      color: #073769;
+    }
+    .owl-carousel .card:hover h6 {
+      color: #555;
+    }
+  </style>
+@endsection
+
 @section('content')
 
   <!--start page content-->
@@ -29,7 +79,7 @@
     </div>
 
 
-    <!--start carousel-->
+    
     <section class="slider-section" hidden>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 
@@ -164,40 +214,52 @@
         </button>
       </div>
     </section>
-    <!--end carousel-->
-
-    <!--start Featured Products slider-->
+    
     @if (count($category) > 0)
-      <section class="section-padding">
-        <div class="container">
-          <div class="text-center pb-3">
-            <h3 class="mb-0 h3 fw-bold">Productos Destacados</h3>
-            <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
-          </div>
-          <div class="product-thumbs">
+    <section class="section-padding">
+      <div class="container">
+        <div class="text-center pb-3">
+          <h3 class="mb-0 h3 fw-bold">Productos Destacados</h3>
+          <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
+        </div>
 
+        <div class="owl-carousel owl-theme">
             @foreach ($category as $item)
-              <a href="{{ url('/productos?categoria=' . $item->id) }}">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="overflow-hidden">
-                      <img src="{{ asset($item->imagen) }}" class="card-img-top rounded-0" alt="...">
+            <div class="item">
+              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm border-0"
+                    style="display:flex;flex-direction:column;border-radius:12px;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;">
+                  
+                  
+                  <div style="overflow:hidden;">
+                    <img src="{{ asset($item->imagen) }}" 
+                        class="card-img-top"
+                        alt="{{ $item->nombre }}" 
+                        style="object-fit:cover;height:220px;width:100%;transition:transform 0.4s ease;">
+                  </div>
+                  
+                  
+                  <div class="card-body text-center p-3" style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;transition:background-color 0.3s ease;">
+                    
+                    <div style="min-height:48px;display:flex;align-items:center;justify-content:center;">
+                      <h5 class="fw-bold mb-1"
+                          style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:1rem;transition:color 0.3s ease;line-height:1.2;">
+                          {{ $item->nombre }}
+                      </h5>
                     </div>
-                    <div class="text-center">
-                      <h5 class="mb-1 cartegory-name mt-3 fw-bold">{{ $item->nombre }}</h5>
-                      <h6 class="mb-0 product-number fw-bold">{{ $item->products_count }} Productos</h6>
-                    </div>
+
+                    <h6 class="fw-bold text-muted mb-0" style="font-size:0.9rem;transition:color 0.3s ease;">
+                        {{ $item->products_count }} Productos
+                    </h6>
                   </div>
                 </div>
               </a>
+            </div>
             @endforeach
-
-          </div>
-
         </div>
-      </section>
+      </div>
+    </section>
     @endif
-    <!--end Featured Products slider-->
 
     <!--start features-->
     <section class="product-thumb-slider section-padding">
@@ -260,7 +322,7 @@
         <div class="card border-0 rounded-0 p-3 depth">
           <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 text-center">
-              <video width="640" height="360" controls>
+              <video width="100%" height="360" controls>
                 <source src="{{ asset('ecommerce/assets/web/video_contactanos/Montaje-MD.mp4') }}" type="video/mp4">
               </video>
 
@@ -502,4 +564,26 @@
   </div>
   <!--end page content-->
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('ecommerce/assets/js/owl.carousel.min.js') }}"></script>
+<script>
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:15,
+        nav:true,
+        dots:false,
+        autoplay:true,
+        autoplayTimeout:3000,
+        responsive:{
+            0:{ items:1, center:true },
+            576:{ items:2, center:true },
+            768:{ items:3 },
+            992:{ items:4 }
+        }
+    });
+  });
+</script>
 @endsection
