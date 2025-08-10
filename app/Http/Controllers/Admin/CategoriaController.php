@@ -36,7 +36,16 @@ class CategoriaController extends Controller
             if ($request->hasFile('imagen')) {
                 $imagen = $request->file('imagen');
                 $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
-                $ruta = public_path('uploads/categorias');
+
+                /* $ruta = public_path('uploads/categorias'); */
+                // 📌 Detectar si estamos en producción o local
+                if (env('PRODUCTION') == 1) {
+                    // Producción: guardar en public_html
+                    $ruta = base_path('../public_html/uploads/categorias');
+                } else {
+                    // Local: guardar en el public del proyecto
+                    $ruta = public_path('uploads/categorias');
+                }
                 
                 // Crear carpeta si no existe
                 if (!file_exists($ruta)) {
@@ -103,7 +112,16 @@ class CategoriaController extends Controller
                 }
                 $imagen = $request->file('imagen');
                 $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
-                $ruta = public_path('uploads/categorias');
+
+                /* $ruta = public_path('uploads/categorias'); */
+                // 📌 Detectar si estamos en producción o local
+                if (env('PRODUCTION') == 1) {
+                    // Producción: guardar en public_html
+                    $ruta = base_path('../public_html/uploads/categorias');
+                } else {
+                    // Local: guardar en el public del proyecto
+                    $ruta = public_path('uploads/categorias');
+                }
                 
                 if (!file_exists($ruta)) {
                     mkdir($ruta, 0777, true);

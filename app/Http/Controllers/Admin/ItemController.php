@@ -53,8 +53,18 @@ class ItemController extends Controller
         }
 
         try {
-            $uploadPath = public_path('uploads/items/');
-            $pdfPath = public_path('uploads/items/pdf/');
+            /* $uploadPath = public_path('uploads/items/');
+            $pdfPath = public_path('uploads/items/pdf/'); */
+            // 📌 Detectar ruta según entorno
+            if (env('PRODUCTION') == 1) {
+                // Producción: guardar en public_html
+                $uploadPath = base_path('../public_html/uploads/items/');
+                $pdfPath = base_path('../public_html/uploads/items/pdf/');
+            } else {
+                // Local: guardar en public del proyecto
+                $uploadPath = public_path('uploads/items/');
+                $pdfPath = public_path('uploads/items/pdf/');
+            }
 
             if (!file_exists($uploadPath)) mkdir($uploadPath, 0777, true);
             if (!file_exists($pdfPath)) mkdir($pdfPath, 0777, true);
@@ -137,8 +147,18 @@ class ItemController extends Controller
         try {
             $item = Product::findOrFail($request->id_formulario);
 
-            $uploadPath = public_path('uploads/items/');
-            $pdfPath = public_path('uploads/items/pdf/');
+            /* $uploadPath = public_path('uploads/items/');
+            $pdfPath = public_path('uploads/items/pdf/'); */
+            // 📌 Detectar ruta según entorno
+            if (env('PRODUCTION') == 1) {
+                // Producción: guardar en public_html
+                $uploadPath = base_path('../public_html/uploads/items/');
+                $pdfPath = base_path('../public_html/uploads/items/pdf/');
+            } else {
+                // Local: guardar en public del proyecto
+                $uploadPath = public_path('uploads/items/');
+                $pdfPath = public_path('uploads/items/pdf/');
+            }
 
             if (!file_exists($uploadPath)) mkdir($uploadPath, 0777, true);
             if (!file_exists($pdfPath)) mkdir($pdfPath, 0777, true);

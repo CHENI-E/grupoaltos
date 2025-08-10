@@ -8,6 +8,10 @@ trait FileUploadHelper
 {
     protected function guardarArchivo($archivo, $ruta, $prefijo = '')
     {
+        // 📌 Si la ruta no existe, crearla
+        if (!file_exists($ruta)) {
+            mkdir($ruta, 0777, true);
+        }
         $nombreArchivo = $prefijo . uniqid() . '.' . $archivo->getClientOriginalExtension();
         $archivo->move($ruta, $nombreArchivo);
         return $nombreArchivo;
@@ -28,9 +32,19 @@ trait FileUploadHelper
             if ($request->hasFile($campo)) {
                 if ($item) {
                     $atributo = $info['atributo'];
-                    if ($item->$atributo && file_exists(public_path($item->$atributo))) {
-                        unlink(public_path($item->$atributo));
+                    // 📌 Determinar base real según PRODUCTION
+                    if (env('PRODUCTION') == 1) {
+                        $baseDeletePath = base_path('../public_html/');
+                    } else {
+                        $baseDeletePath = public_path();
                     }
+
+                    if ($item->$atributo && file_exists($baseDeletePath . '/' . $item->$atributo)) {
+                        unlink($baseDeletePath . '/' . $item->$atributo);
+                    }
+                    /* if ($item->$atributo && file_exists(public_path($item->$atributo))) {
+                        unlink(public_path($item->$atributo));
+                    } */
                 }
 
                 $archivo = $request->file($campo);
