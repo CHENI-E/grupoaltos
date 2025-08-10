@@ -68,6 +68,77 @@ class SeccionController extends Controller
     {
         try {
             DB::beginTransaction();
+
+            // Determinar la ruta base según entorno
+            if (env('PRODUCTION') == 1) {
+                // Producción: guardar en public_html
+                $baseUploadPath = base_path('../public_html/uploads/clientes/');
+            } else {
+                // Local: guardar en public del proyecto
+                $baseUploadPath = public_path('uploads/clientes/');
+            }
+
+            // Eliminar imágenes si se enviaron IDs
+            if ($request->has('delete_images')) {
+                foreach ($request->delete_images as $id) {
+                    $image = ClientImage::find($id);
+                    if ($image) {
+                        $filePath = $baseUploadPath . basename($image->image_path);
+                        if (File::exists($filePath)) {
+                            File::delete($filePath);
+                        }
+                        $image->delete();
+                    }
+                }
+            }
+
+            // Validación de datos
+            $request->validate([
+                'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'title_two' => 'string|max:150',
+                'subtitle_two' => 'string|max:255'
+            ]);
+
+            // Actualizar o crear el registro del cliente
+            Customer::updateOrCreate(
+                ['id' => 1],
+                [
+                    'titulo' => $request->title_two,
+                    'subtitulo' => $request->subtitle_two
+                ]
+            );
+
+            // Subir nuevas imágenes
+            if ($request->hasFile('images')) {
+                if (!File::isDirectory($baseUploadPath)) {
+                    File::makeDirectory($baseUploadPath, 0755, true);
+                }
+
+                foreach ($request->file('images') as $image) {
+                    $randomName = uniqid() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                    $image->move($baseUploadPath, $randomName);
+
+                    ClientImage::create([
+                        'customer_id' => 1,
+                        'image_path' => 'uploads/clientes/' . $randomName
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success_clients', 'Se guardaron los cambios de la Sección Clientes.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error al guardar clientes: ' . $e->getMessage());
+            return redirect()->back()->with('error_clients', 'Ocurrió un error al guardar los datos. Intenta nuevamente.');
+        }
+    }
+
+
+    public function storeClientes_backup(Request $request)
+    {
+        try {
+            DB::beginTransaction();
             if ($request->has('delete_images')) {
                 foreach ($request->delete_images as $id) {
                     $image = ClientImage::find($id);

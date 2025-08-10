@@ -285,66 +285,27 @@
     </section>
     <!--start special product-->
 
-
     <!--start Brands-->
     <section class="section-padding">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">Nuestros Clientes</h3>
-          <p class="mb-0 text-capitalize">Construimos relaciones sólidas con quienes construyen el futuro.</p>
+          <h3 class="mb-0 h3 fw-bold">{{ $customers->titulo ?? '' }}</h3>
+          <p class="mb-0 text-capitalize">{{ $customers->subtitulo ?? '' }}</p>
         </div>
         <div class="brands">
           <div class="row row-cols-2 row-cols-lg-5 g-4">
 
+            @foreach ($customers->clientImages as $item)
             <div class="col d-flex">
               <div class="p-3 border rounded brand-box w-100 h-100">
                 <div class="d-flex align-items-center justify-content-center text-center h-100">
                   <a href="javascript:;" class="w-100">
-                    <img src="{{ asset('ecommerce/assets/web/Clientes/Adp-sf.png') }}" class="img-fluid" alt="">
+                    <img src="{{ asset($item->image_path) }}" class="img-fluid" alt="">
                   </a>
                 </div>
               </div>
             </div>
-            
-            <div class="col d-flex">
-              <div class="p-3 border rounded brand-box w-100 h-100">
-                <div class="d-flex align-items-center justify-content-center text-center h-100">
-                  <a href="javascript:;" class="w-100">
-                    <img src="{{ asset('ecommerce/assets/web/Clientes/deconst-sf.png') }}" class="img-fluid" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col d-flex">
-              <div class="p-3 border rounded brand-box w-100 h-100">
-                <div class="d-flex align-items-center justify-content-center text-center h-100">
-                  <a href="javascript:;" class="w-100">
-                    <img src="{{ asset('ecommerce/assets/web/Clientes/indelat-sf.png') }}" class="img-fluid" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col d-flex">
-              <div class="p-3 border rounded brand-box w-100 h-100">
-                <div class="d-flex align-items-center justify-content-center text-center h-100">
-                  <a href="javascript:;" class="w-100">
-                    <img src="{{ asset('ecommerce/assets/web/Clientes/Miyasato-sf.png') }}" class="img-fluid" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col d-flex">
-              <div class="p-3 border rounded brand-box w-100 h-100">
-                <div class="d-flex align-items-center justify-content-center text-center h-100">
-                  <a href="javascript:;" class="w-100">
-                    <img src="{{ asset('ecommerce/assets/web/Clientes/pjdp-sf.png') }}" class="img-fluid" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
+            @endforeach
 
           </div>
           <!--end row-->

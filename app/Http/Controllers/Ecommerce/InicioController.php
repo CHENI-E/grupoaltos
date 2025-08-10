@@ -8,6 +8,8 @@ use App\Models\Banner;
 use App\Models\Identity;
 Use App\Models\AboutMe;
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\ClientImage;
 
 class InicioController extends Controller
 {
@@ -17,6 +19,7 @@ class InicioController extends Controller
         $category = Category::where('estado', 1)->withCount('products')->get();
         $identity = Identity::where('id', 1)->first();
         $banners = Banner::where('tipo', 'inicio')->get();
-        return view('ecommerce.inicio', compact('banners', 'identity', 'aboutMe', 'category'));
+        $customers = Customer::with('clientImages')->where('id', 1)->first();
+        return view('ecommerce.inicio', compact('banners', 'identity', 'aboutMe', 'category', 'customers'));
     }
 }
