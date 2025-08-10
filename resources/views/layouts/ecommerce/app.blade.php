@@ -225,7 +225,7 @@
 
               <div class="wrap-modal-slider">
 
-                <div class="slider-for">
+                {{-- <div class="slider-for">
                   <div>
                     <img src="{{ asset('ecommerce/assets/images/product-images/01.jpg') }}" alt="" class="img-fluid">
                   </div>
@@ -253,7 +253,7 @@
                   <div>
                     <img src="{{ asset('ecommerce/assets/images/product-images/04.jpg') }}" alt="" class="img-fluid">
                   </div>
-                </div>
+                </div> --}}
 
               </div>
 
