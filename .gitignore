@@ -27,3 +27,4 @@ yarn-error.log
 /public/uploads/items/*.jpeg
 /public/uploads/items/*.svg
 /public/uploads/items/pdf/*
+/public/uploads/*

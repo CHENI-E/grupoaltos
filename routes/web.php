@@ -67,6 +67,17 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('destroy'); */
     });
 
+    Route::prefix('servicio')->name('servicio.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ServicioController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\ServicioController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Admin\ServicioController::class, 'store'])->name('store');
+        Route::get('/listService', [App\Http\Controllers\Admin\ServicioController::class, 'listService'])->name('listService');
+        Route::get('/mostrar_registro', [App\Http\Controllers\Admin\ServicioController::class, 'mostrar_registro'])->name('mostrar_registro');
+        Route::post('/update', [App\Http\Controllers\Admin\ServicioController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ServicioController::class, 'destroy'])->name('destroy');
+    });
+
+
 });
 
 Route::get('/test-mail', function () {

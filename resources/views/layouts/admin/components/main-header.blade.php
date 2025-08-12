@@ -27,16 +27,6 @@
                         </div>
                         <!-- End::header-element -->
 
-                        <!-- Start::header-element -->
-                        <div class="header-element header-search d-md-block d-none my-auto auto-complete-search">
-                            <!-- Start::header-link -->
-                            <input type="text" class="header-search-bar form-control" id="header-search" placeholder="Search anything here ..." spellcheck=false autocomplete="off" autocapitalize="off">
-                            <a href="javascript:void(0);" class="header-search-icon border-0">
-                                <i class="ri-search-line"></i>
-                            </a>
-                            <!-- End::header-link -->
-                        </div>
-                        <!-- End::header-element -->
 
                     </div>
                     <!-- End::header-content-left -->
@@ -55,7 +45,7 @@
                         <!-- End::header-element -->
 
                         <!-- Start::header-element -->
-                        <li class="header-element country-selector dropdown">
+                        <li class="header-element country-selector dropdown" hidden>
                             <!-- Start::header-link|dropdown-toggle -->
                             <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 header-link-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -148,7 +138,7 @@
                                     </svg>
                                     <!-- End::header-link-icon -->
                                 </span>
-                                <span class="dark-layout">
+                                <span class="dark-layout" hidden>
                                     <!-- Start::header-link-icon -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 header-link-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
@@ -161,7 +151,7 @@
                         <!-- End::header-element -->
 
                         <!-- Start::header-element -->
-                        <li class="header-element cart-dropdown dropdown">
+                        <li class="header-element cart-dropdown dropdown" hidden>
                             <!-- Start::header-link|dropdown-toggle -->
                             <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 header-link-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -328,152 +318,7 @@
                         <!-- End::header-element -->
 
                         <!-- Start::header-element -->
-                        <li class="header-element notifications-dropdown d-xl-block d-none dropdown">
-                            <!-- Start::header-link|dropdown-toggle -->
-                            <a href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="messageDropdown" aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 header-link-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                                </svg>
-                                <span class="header-icon-pulse bg-secondary rounded pulse pulse-secondary"></span>
-                            </a>
-                            <!-- End::header-link|dropdown-toggle -->
-                            <!-- Start::main-header-dropdown -->
-                            <div class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                                <div class="p-3">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <p class="mb-0 fs-15 fw-medium">Notifications</p>
-                                        <span class="badge bg-secondary text-fixed-white" id="notifiation-data">5 Unread</span>
-                                    </div>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <ul class="list-unstyled mb-0" id="header-notification-scroll">
-                                    <li class="dropdown-item">
-                                        <div class="d-flex align-items-start">
-                                            <div class="pe-2 lh-1">
-                                                <span class="avatar avatar-md avatar-rounded bg-primary">
-                                                    <img src="{{ asset('admin/assets/images/faces/1.jpg') }}" alt="user1">
-                                                </span>
-                                            </div>
-                                            <div class="flex-grow-1 d-flex align-items-start justify-content-between">
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><a href="chat.php">New User Registered</a></p>
-                                                    <div class="text-muted fw-normal fs-12 header-notification-text text-truncate"><span class="text-primary">John Doe</span> has registered as a new user.</div>
-                                                    <div class="fw-normal fs-10 text-muted op-8">5 mins ago</div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="min-w-fit-content dropdown-item-close1">
-                                                        <i class="ri-close-line"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <div class="d-flex align-items-start">
-                                            <div class="pe-2 lh-1">
-                                                <span class="avatar avatar-md bg-primary avatar-rounded fs-20">
-                                                    <i class="ri-money-dollar-circle-line lh-1 fs-16"></i>
-                                                </span>
-                                            </div>
-                                            <div class="flex-grow-1 d-flex align-items-start justify-content-between">
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><a href="chat.php">Payment Received</a></p>
-                                                    <div class="text-muted fw-normal fs-12 header-notification-text text-truncate">You received a payment of $250 from Emily Davis.</div>
-                                                    <div class="fw-normal fs-10 text-muted op-8">15 mins ago</div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="min-w-fit-content dropdown-item-close1">
-                                                        <i class="ri-close-line"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <div class="d-flex align-items-start">
-                                            <div class="pe-2 lh-1">
-                                                <span class="avatar avatar-md bg-orange avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/faces/13.jpg') }}" alt="user1">
-                                                </span>
-                                            </div>
-                                            <div class="flex-grow-1 d-flex align-items-start justify-content-between">
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><a href="chat.php">Task Completed</a></p>
-                                                    <div class="text-muted fw-normal fs-12 header-notification-text text-truncate"><span class="text-secondary">"Design Homepage"</span> task was marked as complete.</div>
-                                                    <div class="fw-normal fs-10 text-muted op-8">30 mins ago</div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="min-w-fit-content dropdown-item-close1">
-                                                        <i class="ri-close-line"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <div class="d-flex align-items-start">
-                                            <div class="pe-2 lh-1">
-                                                <span class="avatar avatar-md bg-success avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/faces/11.jpg') }}" alt="user1">
-                                                </span>
-                                            </div>
-                                            <div class="flex-grow-1 d-flex align-items-start justify-content-between">
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><a href="chat.php">Server Alert</a></p>
-                                                    <div class="text-muted fw-normal fs-12 header-notification-text text-truncate">High CPU usage detected on Server 3.</div>
-                                                    <div class="fw-normal fs-10 text-muted op-8">1 hr ago</div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="min-w-fit-content dropdown-item-close1">
-                                                        <i class="ri-close-line"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <div class="d-flex align-items-start">
-                                            <div class="pe-2 lh-1">
-                                                <span class="avatar avatar-md bg-info avatar-rounded">
-                                                    <i class="ri-message-2-line lh-1 fs-16"></i>
-                                                </span>
-                                            </div>
-                                            <div class="flex-grow-1 d-flex align-items-start justify-content-between">
-                                                <div>
-                                                    <p class="mb-0 fw-medium"><a href="chat.php">New Message</a></p>
-                                                    <div class="text-muted fw-normal fs-12 header-notification-text text-truncate">You have a new message from Sophia Johnson.</div>
-                                                    <div class="fw-normal fs-10 text-muted op-8">2 hrs ago</div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="min-w-fit-content dropdown-item-close1">
-                                                        <i class="ri-close-line"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                        
-                                <div class="p-3 empty-header-item1 border-top">
-                                    <div class="d-grid">
-                                        <a href="javascript:void(0);" class="btn btn-primary btn-wave">View All</a>
-                                    </div>
-                                </div>
-                                <div class="p-5 empty-item1 d-none">
-                                    <div class="text-center">
-                                        <span class="avatar avatar-xl avatar-rounded bg-secondary-transparent">
-                                            <i class="ri-notification-off-line fs-2"></i>
-                                        </span>
-                                        <h6 class="fw-medium mt-3">No New Notifications</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End::main-header-dropdown -->
-                        </li>
-                        <!-- End::header-element -->
-
-                        <!-- Start::header-element -->
-                        <li class="header-element header-fullscreen">
+                        <li class="header-element header-fullscreen" hidden>
                             <!-- Start::header-link -->
                             <a onclick="openFullscreen();" href="javascript:void(0);" class="header-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 full-screen-open header-link-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

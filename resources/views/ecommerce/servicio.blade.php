@@ -21,42 +21,25 @@
 
             <div class="brands">
                 <div class="row row-cols-2 row-cols-lg-5 g-4">
-                    <div class="col-lg-4 col">
-                        <div class="p-3 border rounded brand-box">
-                        <div class="d-flex align-items-center">
-                            <a href="javascript:;">
-                            <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="img-fluid" alt="">
-                            </a>
+
+                    @if ($servicios->isEmpty())
+                        <div class="col-12 text-center m-auto mt-3">
+                            <p class="text-center">No hay servicios disponibles.</p>
                         </div>
+                    @endif
+
+                    @foreach ($servicios as $item)
+                        <div class="col-lg-4 col">
+                            <div class="p-3 border rounded brand-box">
+                                <div class="d-flex align-items-center">
+                                    <a href="javascript:;">
+                                        <img src="{{ asset($item->imagen) }}" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col">
-                        <div class="p-3 border rounded brand-box">
-                        <div class="d-flex align-items-center">
-                            <a href="javascript:;">
-                            <img src="{{ asset('ecommerce/assets/web/servicio/servicio-2.jpg') }}" class="img-fluid" alt="">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col">
-                        <div class="p-3 border rounded brand-box">
-                        <div class="d-flex align-items-center">
-                            <a href="javascript:;">
-                            <img src="{{ asset('ecommerce/assets/web/servicio/servicio-3.jpg') }}" class="img-fluid" alt="">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col">
-                        <div class="p-3 border rounded brand-box">
-                        <div class="d-flex align-items-center">
-                            <a href="javascript:;">
-                            <img src="{{ asset('ecommerce/assets/web/servicio/servicio-4.jpeg') }}" class="img-fluid" alt="">
-                            </a>
-                        </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
 

@@ -317,7 +317,7 @@
 
 
     <!--start special product-->
-    <section class="section-padding bg-section-2">
+    <section class="section-padding bg-section-2" >
       <div class="container">
         <div class="card border-0 rounded-0 p-3 depth">
           <div class="row align-items-center justify-content-center">
@@ -471,7 +471,7 @@
 
 
     <!--subscribe banner-->
-    <section class="product-thumb-slider subscribe-banner p-5">
+    <section class="product-thumb-slider subscribe-banner p-5" style="background: #3e79d2">
       <div class="row">
         <div class="col-12 col-lg-6 mx-auto">
           <div class="text-center">

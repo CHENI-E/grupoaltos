@@ -146,7 +146,7 @@ class CategoriaController extends Controller
         }
     }
 
-    public function destroy($id)
+    /* public function destroy($id)
     {
         try {
             $category = Category::findOrFail($id);
@@ -158,6 +158,32 @@ class CategoriaController extends Controller
         } catch (\Exception $e) {
             return response()->json(['errors' => 'Error al eliminar la categoría: ' . $e->getMessage()]);
         }
+    } */
+
+    public function destroy($id)
+    {
+        try {
+            $category = Category::findOrFail($id);
+            if (env('PRODUCTION') == 1) {
+                $filePath = base_path('../public_html/' . $category->imagen);
+            } else {
+                $filePath = public_path($category->imagen);
+            }
+            
+            if ($category->imagen && file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $category->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría eliminada correctamente.'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'errors' => 'Error al eliminar la categoría: ' . $e->getMessage()
+            ]);
+        }
     }
+
 
 }
