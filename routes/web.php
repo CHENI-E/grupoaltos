@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Mail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/clear-all', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+
+    return '✅ Cachés limpiadas y optimización reiniciada';
+});
 
 Route::get('/', [App\Http\Controllers\Ecommerce\InicioController::class, 'index'])->name('ecommerce.inicio');
 Route::get('/nosotros', [App\Http\Controllers\Ecommerce\NosotrosController::class, 'index'])->name('ecommerce.nosotros');
