@@ -59,12 +59,12 @@ function cargarProductos(reset = false) {
             data.forEach(producto => {
                 $('#contenedor-productos').append(`
                     <div class="col-md-4 col-sm-6 mb-4 d-flex">
-                        <div class="card border shadow-none flex-fill d-flex flex-column">
+                        <div class="card border shadow-none flex-fill d-flex flex-column" style="border-radius: 12px; overflow: hidden;">
                             <div class="position-relative overflow-hidden">
                                 <div class="product-options d-flex align-items-center justify-content-center gap-2 mx-auto position-absolute bottom-0 start-0 end-0">
-                                    <a href="javascript:;"><i class="bi bi-heart"></i></a>
+                                    
                                     <a href="javascript:;" class="btnAgregarCarrito" data-id="${producto.id}" data-nombre="${producto.nombre}" data-precio="${ producto.descuento != 0 ? producto.precio_oferta : producto.precio}" data-imagen="${APP_URL}${producto.imagen_portada}"><i class="bi bi-basket3"></i></a>
-                                    <a href="javascript:;"><i class="bi bi-zoom-in"></i></a>
+                                    
                                 </div>
                                 <a href="/producto/${producto.slug}">
                                     <img src="${producto.imagen_portada}" class="card-img-top" alt="${producto.nombre}">
@@ -72,18 +72,38 @@ function cargarProductos(reset = false) {
                             </div>
                             <div class="card-body border-top d-flex flex-column justify-content-between">
                                 <!-- Nombre con máximo 2 líneas -->
-                                <h5 class="mb-2 fw-bold card-title-limit">${producto.nombre}</h5>
+                                <h5 class="mb-2  card-title-limit" style="color: #6c757d; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 1.1rem;">${producto.nombre}</h5>
 
-                                <!-- Precio -->
-                                <div class="product-price d-flex align-items-center gap-2 mt-auto">
+
+
+                                
+                        
+                                <div style="color: #6c757d; font-size: 13px; margin-bottom: 6px;">
+                                Vendido por Grupo Altos
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center" style="font-size: 13px; color: #6c757d;">
+                                ${
+                                    producto.descuento != 0
+                                        ? `<span>Antes</span>
+                                        <span style="text-decoration: line-through;">S/ ${producto.precio}</span>`
+                                        : ''
+                                }
+                                </div>
+
+
+                                <div class="d-flex justify-content-between align-items-center mt-1">
+                                <span style="font-weight: bold;">Precio</span>
+                                <div class="d-flex align-items-center">
                                     ${
                                         producto.descuento != 0
-                                            ? `<div class="h6 fw-bold mb-0">s/${producto.precio_oferta}</div>
-                                            <div class="h6 fw-light text-muted text-decoration-line-through mb-0">s/${producto.precio}</div>
-                                            <div class="h6 fw-bold text-danger mb-0">(${parseInt(producto.descuento)}% dscto)</div>`
-                                            : `<div class="h6 fw-bold mb-0">s/${producto.precio}</div>`
+                                            ? `<span style="font-weight: bold; font-size: 1.0rem; margin-right: 6px;">S/ ${producto.precio_oferta}</span>
+                                                <span class="badge-descuento">-${parseInt(producto.descuento)}%</span>`
+                                            : `<span style="font-weight: bold; font-size: 1.0rem; margin-right: 6px;">S/ ${producto.precio}</span>`
                                     }
                                 </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,33 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
   }
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Estilo de la etiqueta de descuento con punta */
+  .badge-descuento {
+    position: relative;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px 2px 8px;
+    font-weight: bold;
+    border-radius: 4px 0 0 4px; /* Bordes redondeados solo en la izquierda */
+    display: inline-block;
+  }
+
+  .badge-descuento::after {
+    content: "";
+    position: absolute;
+    right: -5px; /* Tamaño de la punta */
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 6px solid #dc3545; /* Color igual que el fondo */
+  }
 </style>
 
 <!--start page content-->
@@ -132,7 +159,7 @@
               <div class="card rounded-0">
                 <div class="card-body p-2">
                   <div class="d-flex align-items-center justify-content-between bg-light p-2">
-                    <div class="product-count">{{ count($product) }} artúculos encontrados</div>
+                    <div class="product-count">{{ count($product) }} artículos encontrados</div>
                     <form>
                       <div class="input-group">
                         <span class="input-group-text bg-transparent rounded-0 border-0">Buscar</span>
@@ -157,7 +184,7 @@
                 </div>
 
                 <!-- Productos -->
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="contenedor-productos"></div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="contenedor-productos"></div>
 
                 <!-- Botón cargar más -->
                 <div class="row mt-5">

@@ -2,6 +2,42 @@
 
 @section('content')
 
+<style>
+  .card-title-limit {
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* máximo 2 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  }
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Estilo de la etiqueta de descuento con punta */
+  .badge-descuento {
+    position: relative;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 8px 2px 8px;
+    font-weight: bold;
+    border-radius: 4px 0 0 4px; /* Bordes redondeados solo en la izquierda */
+    display: inline-block;
+  }
+
+  .badge-descuento::after {
+    content: "";
+    position: absolute;
+    right: -5px; /* Tamaño de la punta */
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 6px solid #dc3545; /* Color igual que el fondo */
+  }
+</style>
+
 <!--start page content-->
 <div class="page-content">
 
@@ -137,22 +173,50 @@
                 @foreach ($productoSimilares as $item)
                     <div class="col">
                         <a href="/producto/{{ $item->slug }}">
-                        <div class="card rounded-0">
-                        <img src="{{ asset($item->imagen_portada) }}" alt="" class="card-img-top rounded-0">
-                        <div class="card-body border-top">
-                            <h5 class="mb-0 fw-bold product-short-title">{{ $item->nombre }}</h5>
-                            <div class="product-price d-flex align-items-center gap-3 mt-2">
-                                @if ($item->descuento != 0)
-                                    <div class="h6 fw-bold">s/{{ $item->precio_oferta }}</div>
-                                    <div class="h6 fw-light text-muted text-decoration-line-through">s/{{ $item->precio }}</div>
-                                    <div class="h6 fw-bold text-danger">({{ intval($item->descuento) }}% dscto)</div>
-                                @else
-                                    <div class="h6 fw-bold">s/{{ $item->precio }}</div>
-                                @endif
+                            <div class="card rounded-0">
+                                <img src="{{ asset($item->imagen_portada) }}" alt="" class="card-img-top rounded-0">
+                                <div class="card-body border-top">
+                                    <h5 class="mb-0 product-short-title" style="color: #6c757d; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 1rem;">{{ $item->nombre }}</h5>
 
+
+                                    <div style="color: #6c757d; font-size: 13px; margin-bottom: 6px;"> Vendido por Grupo Altos</div>
+
+                                    <div class="d-flex justify-content-between align-items-center" style="font-size: 13px; color: #6c757d;">
+                                        @if ($item->descuento != 0)
+                                            <span>Antes</span>
+                                            <span style="text-decoration: line-through;">S/ {{ $item->precio }}</span>
+                                        @endif
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                        <span style="font-weight: bold;" class="text-dark">Precio</span>
+                                        <div class="d-flex align-items-center">
+                                            @if ($item->descuento != 0)
+                                                <span style="font-weight: bold; font-size: 1.0rem; margin-right: 6px; color: #6c757d;">S/ {{ $item->precio_oferta }}</span>
+                                                <span class="badge-descuento">-{{ intval($item->descuento) }}%</span>
+                                            @else
+                                                <span style="font-weight: bold; font-size: 1.0rem; margin-right: 6px; color: #6c757d;">S/ {{ $item->precio }}</span>
+                                            @endif
+                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="product-price d-flex align-items-center gap-3 mt-2">
+                                        @if ($item->descuento != 0)
+                                            <div class="h6 fw-bold">s/{{ $item->precio_oferta }}</div>
+                                            <div class="h6 fw-light text-muted text-decoration-line-through">s/{{ $item->precio }}</div>
+                                            <div class="h6 fw-bold text-danger">({{ intval($item->descuento) }}% dscto)</div>
+                                        @else
+                                            <div class="h6 fw-bold">s/{{ $item->precio }}</div>
+                                        @endif
+
+                                    </div> --}}
+
+
+                                </div>
                             </div>
-                        </div>
-                        </div>
                         </a>
                     </div>
                 @endforeach
