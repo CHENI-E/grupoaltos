@@ -109,7 +109,7 @@ function enviarWhatsApp() {
     mensaje += `*TOTAL:* S/${total.toFixed(2)}\n\n`;
     mensaje += `Por favor, confirmar disponibilidad y formas de pago.\nGracias. 🙌`;
 
-    let telefono = "51961790583";
+    let telefono = "51994119444";
     let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }

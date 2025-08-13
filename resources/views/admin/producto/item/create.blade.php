@@ -81,7 +81,7 @@
 
                                                         <!-- INPUT IMAGEN PORTADA -->
                                                         <div class="col-xl-12 product-documents-container">
-                                                            <p class="fw-medium mb-2 fs-14">Imagen Portada:</p>
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Portada: <b class="text-danger">Recomendado (1024x1024)</b></p>
                                                             <input type="file" class="form-control imagen_portada" name="imagen_portada" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                                         </div>
 
@@ -110,7 +110,7 @@
                                                         {{-- ============================================================== --}}
 
                                                         <div class="col-xl-12 product-documents-container">
-                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 1 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 1 <b class="text-danger">Recomendado (1024x1024)( Opcional )</b> :</p>
                                                             <input type="file" class="form-control imagen_detalle_one" name="imagen_detalle_one" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                                         </div>
 
@@ -133,7 +133,7 @@
 
 
                                                         <div class="col-xl-12 product-documents-container">
-                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 2 <b class="text-danger">( Opcional )</b> :</p>
+                                                            <p class="fw-medium mb-2 fs-14">Imagen Detalle 2 <b class="text-danger">Recomendado (1024x1024)( Opcional )</b> :</p>
                                                             <input type="file" class="form-control imagen_detalle_two" name="imagen_detalle_two" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                                         </div>
 

@@ -28,18 +28,18 @@
 
     /* Hover sobre la card */
     .owl-carousel .card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      /* transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); */
     }
 
     /* Zoom suave a la imagen */
     .owl-carousel .card:hover img {
-      transform: scale(1.08);
+      transform: scale(1.03);
     }
 
     /* Cambio de color de texto y fondo */
     .owl-carousel .card:hover .card-body {
-      background-color: #ececec;
+      background: linear-gradient(174deg,rgba(11, 136, 202, 1) 43%, rgba(6, 75, 146, 1) 100%);
     }
     .owl-carousel .card:hover h5 {
       color: #073769;
@@ -219,36 +219,32 @@
     <section class="section-padding">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">Productos Destacados</h3>
+          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">Productos Destacados</h3>
           <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
         </div>
 
         <div class="owl-carousel owl-theme">
             @foreach ($category as $item)
             <div class="item">
-              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark">
-                <div class="card h-100 shadow-sm border-0"
-                    style="display:flex;flex-direction:column;border-radius:12px;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;">
+              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark" >
+                <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(174deg,rgba(11, 136, 202, 1) 43%, rgba(6, 75, 146, 1) 100%); display:flex;flex-direction:column;border-radius:10px;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;">
                   
                   
                   <div style="overflow:hidden;">
-                    <img src="{{ asset($item->imagen) }}" 
-                        class="card-img-top"
-                        alt="{{ $item->nombre }}" 
-                        style="object-fit:cover;height:220px;width:100%;transition:transform 0.4s ease;">
+                    <img src="{{ asset($item->imagen) }}" class="card-img-top p-2" alt="{{ $item->nombre }}" style="object-fit:cover;height:220px;width:100%;transition:transform 0.4s ease; border-radius:12px;">
                   </div>
                   
                   
                   <div class="card-body text-center p-3" style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;transition:background-color 0.3s ease;">
                     
                     <div style="min-height:48px;display:flex;align-items:center;justify-content:center;">
-                      <h5 class="fw-bold mb-1"
+                      <h5 class="fw-bold mb-1 text-light"
                           style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:1rem;transition:color 0.3s ease;line-height:1.2;">
                           {{ $item->nombre }}
                       </h5>
                     </div>
 
-                    <h6 class="fw-bold text-muted mb-0" style="font-size:0.9rem;transition:color 0.3s ease;">
+                    <h6 class="fw-bold text-muted mb-0 text-light" style="font-size:0.9rem;transition:color 0.3s ease; color:#ececec !important;">
                         {{ $item->products_count }} Productos
                     </h6>
                   </div>
@@ -262,15 +258,16 @@
     @endif
 
     <!--start features-->
-    <section class="product-thumb-slider section-padding">
+    <section class="product-thumb-slider section-padding" style="padding-top: 0px !important;">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">{{ $identity->title ?? '' }}</h3>
+          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">{{ $identity->title ?? '' }}</h3>
           <p class="mb-0 text-capitalize">{{ $identity->subtitle ?? '' }}</p>
         </div>
         <div class="row row-cols-1 row-cols-lg-4 g-4 justify-content-center">
+
           <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100">
+            <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-primary">
                   {{-- <i class="bi bi-truck"></i> --}}
@@ -283,8 +280,9 @@
               </div>
             </div>
           </div>
+
           <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100">
+            <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-danger">
                   <i class="bi bi-eye"></i>
@@ -298,7 +296,7 @@
             </div>
           </div>
           <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100">
+            <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-success">
                   {{-- <i class="bi bi-minecart-loaded"></i> --}}
@@ -330,7 +328,7 @@
             </div>
             <div class="col-lg-6">
               <div class="card-body">
-                <h3 class="fw-bold">{{ $aboutMe->title ?? '' }}</h3>
+                <h3 class="fw-bold" style="color: #0761ac">{{ $aboutMe->title ?? '' }}</h3>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item bg-transparent px-0">{{ $aboutMe->content ?? '' }}</li>
                 </ul>
@@ -351,7 +349,7 @@
     <section class="section-padding">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">{{ $customers->titulo ?? '' }}</h3>
+          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">{{ $customers->titulo ?? '' }}</h3>
           <p class="mb-0 text-capitalize">{{ $customers->subtitulo ?? '' }}</p>
         </div>
         <div class="brands">
@@ -471,7 +469,7 @@
 
 
     <!--subscribe banner-->
-    <section class="product-thumb-slider subscribe-banner p-5" style="background: #3e79d2">
+    <section class="product-thumb-slider subscribe-banner p-5" style="background: #097EC4">
       <div class="row">
         <div class="col-12 col-lg-6 mx-auto">
           <div class="text-center">
