@@ -15,4 +15,15 @@ class ServicioController extends Controller
         return view('ecommerce.servicio', compact('servicios'));
     }
     
+    public function viewdetalle($slug)
+    {
+        $servicio = Service::where('slug', $slug)->where('estado', 1)->firstOrFail();
+        $serviciosSimilares = Service::select('id', 'nombre', 'slug')
+            ->where('estado', 1)
+            ->where('id', '!=', $servicio->id)
+            ->get();
+
+        return view('ecommerce.servicioDetalle', compact('servicio', 'serviciosSimilares'));
+    }
+
 }

@@ -21,6 +21,7 @@
 
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   @yield('styles')
   <script>
       const APP_URL = "{{ config('app.url') }}";
@@ -362,10 +363,13 @@
   <script src="{{ asset('ecommerce/assets/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('ecommerce/assets/js/jquery.min.js') }}"></script>
   <script src="{{ asset('ecommerce/assets/plugins/slick/slick.min.js') }}"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="{{ asset('ecommerce/assets/js/main.js') }}"></script>
   <script src="{{ asset('ecommerce/assets/js/index.js') }}"></script>
   <script src="{{ asset('ecommerce/assets/js/loader.js') }}"></script>
-
+  <script>
+    AOS.init();
+  </script>
   @yield('scripts')
   <script src="{{ asset('ecommerce/assets/js/productos/carrito.js') }}?v={{ time() }}"></script>
 </body>

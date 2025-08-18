@@ -19,7 +19,7 @@
    <section class="section-padding">
     <div class="container">
        <div class="row g-4">
-          <div class="col-12 col-xl-6">
+          <div class="col-12 col-xl-6" data-aos="fade-up-right">
             <h3 class="fw-bold">¿QUIÉNES SOMOS?</h3>
             <p style="text-align: justify;">
                 En Grupo Altos, somos una empresa peruana especializada en la fabricación y comercialización de sistemas de andamiaje de alta calidad, 
@@ -37,7 +37,7 @@
                 la mejora continua y el cumplimiento estricto de los estándares de seguridad.
             </p>
           </div>
-          <div class="col-12 col-xl-6 justify-content-center d-flex">
+          <div class="col-12 col-xl-6 justify-content-center d-flex" data-aos="fade-up-left">
              <img src="{{ asset('ecommerce/assets/web/nosotros/nosotros.jpg') }}" class="img-fluid" style="max-height: 480px;" alt="">
           </div>
        </div><!--end row-->
@@ -49,7 +49,8 @@
         </div>
 
         <div class="row row-cols-1 row-cols-lg-4 g-4 justify-content-center">
-          <div class="col d-flex">
+
+          <div class="col d-flex" data-aos="fade-up-right">
             <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-primary">
@@ -63,7 +64,8 @@
               </div>
             </div>
           </div>
-          <div class="col d-flex">
+
+          <div class="col d-flex" data-aos="fade-up">
             <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-danger">
@@ -78,7 +80,8 @@
               </div>
             </div>
           </div>
-          <div class="col d-flex">
+
+          <div class="col d-flex" data-aos="fade-up-left">
             <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-success">
@@ -92,13 +95,13 @@
           </div>
         </div>
 
-        <div class="separator section-padding">
+        <div class="separator section-padding" data-aos="fade-up">
             <div class="line"></div>
             <h3 class="mb-0 h3 fw-bold">Nuestros Clientes</h3>
             <div class="line"></div>
         </div>
 
-        <div class="brands">
+        <div class="brands" data-aos="fade-left">
           <div class="row row-cols-2 row-cols-lg-5 g-4">
 
             <div class="col d-flex">

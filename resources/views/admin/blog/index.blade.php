@@ -1,14 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('styles')
-    <!-- quill css -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.snow.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.bubble.css') }}">
 
-    <!-- Filepond CSS -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond/filepond.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css') }}">
 @endsection
 
 @section('content')
@@ -18,10 +11,10 @@
             <nav>
                 <ol class="breadcrumb mb-1">
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Inicio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Servicio</li>
+                    <li class="breadcrumb-item active" aria-current="page">Blog</li>
                 </ol>
             </nav>
-            <h1 class="page-title fw-medium fs-18 mb-0">Seccion de Servicios</h1>
+            <h1 class="page-title fw-medium fs-18 mb-0">Seccion de Blog</h1>
         </div>
     </div>
 
@@ -34,15 +27,15 @@
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('admin.servicio.index') }}">Lista de Servicios</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.blog.index') }}">Lista de Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.servicio.create') }}">Nuevo Servicio</a>
+                            <a class="nav-link" href="{{ route('admin.blog.create') }}">Nuevo Blog</a>
                         </li>
                     </ul>
 
                     <div class="row justify-content-center mt-4 mb-4">
-                        <table class="table" id="tabla_servicio"></table>
+                        <table class="table" id="tabla_blog"></table>
                     </div>
 
                 </div>
@@ -52,7 +45,7 @@
 
 
     <!-- Modal Actualizar categoria -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,7 +114,6 @@
                                             <div class="col-xl-12">
                                                 <label for="input-description" class="form-label">Descripción</label>
                                                 <div id="input-description"></div>
-                                                {{-- <textarea class="form-control form-control-sm" id="input-description" rows="6" name="descripcion"></textarea> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -135,25 +127,10 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
+    </div> --}}
+    
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('admin/assets/libs/quill/quill.js') }}"></script>
-    <!-- Filepond JS -->
-    <script src="{{ asset('admin/assets/libs/filepond/filepond.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js') }}"></script>
-
-    <script src="{{ asset('admin/assets/js/servicio/index.js') }}?v={{ time() }}"></script>
+    <script src="{{ asset('admin/assets/js/blog/index.js') }}"></script>
 @endsection

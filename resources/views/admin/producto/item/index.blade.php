@@ -62,7 +62,7 @@
                 <div class="modal-body">
                     <div class="row col-lg-12">
                         <form class="card custom-card" method="post" id="formulario_update_item" enctype="multipart/form-data">
-                            <input type="text" id="id_formulario" name="id_formulario">
+                            <input type="text" id="id_formulario" name="id_formulario" hidden>
                             <div class="card-body add-products">
                                 <div class="row gx-4 gy-3">
                                     <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-6">

@@ -1,5 +1,16 @@
 @extends('layouts.admin.app')
 
+@section('styles')
+    <!-- quill css -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.snow.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.bubble.css') }}">
+
+    <!-- Filepond CSS -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond/filepond.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css') }}">
+@endsection
+
 @section('content')
 
     <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
@@ -33,10 +44,11 @@
                     
                     <div class="row">
                         <div class="col-xxl-12">
-                            <form class="card custom-card" method="POST" action="{{ route('admin.servicio.store') }}" enctype="multipart/form-data">
+                            <form class="card custom-card" method="POST" action="{{ route('admin.servicio.store') }}" id="formulario_create_servicio" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row gy-3 justify-content-between">
+
                                         <div class="col-xxl-6 col-xl-12">
                                             <div class="card shadow-sm">
                                                 <div class="card-body text-center">
@@ -53,7 +65,32 @@
                                                     @enderror
                                                 </div>
                                             </div>
+
+                                            <div class="col-xl-12 product-documents-container">
+                                                <p class="fw-medium mb-2 fs-14">Imagen Detalle  <b class="text-danger">( Opcional )</b> :</p>
+                                                <input type="file" class="form-control imagen_detalle" name="imagen_detalle" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                            </div>
+
+                                            <div id="preview-card-container" class="col-xl-12">
+                                                <div class="card shadow-sm border rounded">
+                                                    <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                        <img id="preview_imagen_detalle"
+                                                            src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                            class="card-img-top"
+                                                            alt="Vista previa"
+                                                            style="width: 50%; height: 100%; object-fit: cover;">
+                                                    </div>
+                                                    <div class="card-body text-center">
+                                                        <button type="button" id="btn_remove_imagen_detalle" class="btn btn-outline-danger btn-sm">
+                                                            Quitar Imagen
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
+
+
 
                                         <div class="col-xxl-6 col-xl-12">
                                             <div class="row gy-3">
@@ -61,13 +98,6 @@
                                                     <label for="input-nombre" class="form-label">Nombre del Servicio</label>
                                                     <input type="text" class="form-control form-control-sm" id="input-nombre" name="nombre" value="{{ old('nombre') }}">
                                                     @error('nombre')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-xl-12">
-                                                    <label for="input-description" class="form-label">Descripción</label>
-                                                    <textarea class="form-control form-control-sm" id="input-description" rows="6" name="descripcion">{{ old('descripcion') }}</textarea>
-                                                    @error('descripcion')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -81,8 +111,20 @@
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
+                                                <div class="col-xl-12">
+                                                    <label for="input-description" class="form-label">Descripción</label>
+                                                    <div id="input-description"></div>
+                                                    {{-- <textarea class="form-control form-control-sm" id="input-description" rows="6" name="descripcion">{{ old('descripcion') }}</textarea> --}}
+                                                    @error('descripcion')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <br><br><br><br><br><br>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="card-footer text-end">
@@ -114,6 +156,19 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('admin/assets/libs/quill/quill.js') }}"></script>
+    <!-- Filepond JS -->
+    <script src="{{ asset('admin/assets/libs/filepond/filepond.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-crop/filepond-plugin-image-crop.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/filepond-plugin-image-transform/filepond-plugin-image-transform.min.js') }}"></script>
     <!-- Create Service JS -->
     <script src="{{ asset('admin/assets/js/servicio/create.js') }}?v={{ time() }}"></script>
 @endsection

@@ -219,14 +219,17 @@
     <section class="section-padding">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">Productos Destacados</h3>
-          <p class="mb-0 text-capitalize">Calidad, seguridad y disponibilidad inmediata</p>
+          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac" data-aos="fade-up">Productos Destacados</h3>
+          <p class="mb-0 text-capitalize" data-aos="fade-up">Calidad, seguridad y disponibilidad inmediata</p>
         </div>
 
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme" >
+            {{-- @php
+              $duration = 1000;
+            @endphp --}}
             @foreach ($category as $item)
-            <div class="item">
-              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark" >
+            <div class="item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
+              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark">
                 <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(174deg,rgba(11, 136, 202, 1) 43%, rgba(6, 75, 146, 1) 100%); display:flex;flex-direction:column;border-radius:10px;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;">
                   
                   
@@ -247,10 +250,17 @@
                     <h6 class="fw-bold text-muted mb-0 text-light" style="font-size:0.9rem;transition:color 0.3s ease; color:#ececec !important;">
                         {{ $item->products_count }} Productos
                     </h6>
+
+                    <div class=" text-center">
+                      <a href="{{ url('/productos?categoria=' . $item->id) }}" class="btn btn-ecomm mt-3" style="background: #033c7e !important; color: rgba(255, 255, 255, 0.894);">Ver Productos</a>
+                    </div>
                   </div>
                 </div>
               </a>
             </div>
+            {{-- @php
+              $duration += 700;
+            @endphp --}}
             @endforeach
         </div>
       </div>
@@ -261,12 +271,12 @@
     <section class="product-thumb-slider section-padding" style="padding-top: 0px !important;">
       <div class="container">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">{{ $identity->title ?? '' }}</h3>
-          <p class="mb-0 text-capitalize">{{ $identity->subtitle ?? '' }}</p>
+          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">{{ $identity->title ?? '' }}</h3>
+          <p class="mb-0 text-capitalize" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">{{ $identity->subtitle ?? '' }}</p>
         </div>
         <div class="row row-cols-1 row-cols-lg-4 g-4 justify-content-center">
 
-          <div class="col d-flex">
+          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">
             <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-primary">
@@ -281,7 +291,7 @@
             </div>
           </div>
 
-          <div class="col d-flex">
+          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1400">
             <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-danger">
@@ -295,7 +305,8 @@
               </div>
             </div>
           </div>
-          <div class="col d-flex">
+
+          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1800">
             <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-success">
@@ -315,7 +326,7 @@
 
 
     <!--start special product-->
-    <section class="section-padding bg-section-2" >
+    <section class="section-padding bg-section-2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
       <div class="container">
         <div class="card border-0 rounded-0 p-3 depth">
           <div class="row align-items-center justify-content-center">
@@ -346,7 +357,7 @@
     <!--start special product-->
 
     <!--start Brands-->
-    <section class="section-padding">
+    <section class="section-padding" data-aos="fade-up">
       <div class="container">
         <div class="text-center pb-3">
           <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">{{ $customers->titulo ?? '' }}</h3>
@@ -469,18 +480,27 @@
 
 
     <!--subscribe banner-->
-    <section class="product-thumb-slider subscribe-banner p-5" style="background: #097EC4">
+    <section class="product-thumb-slider subscribe-banner p-5" style="background: #097EC4" data-aos="fade-up">
       <div class="row">
         <div class="col-12 col-lg-6 mx-auto">
-          <div class="text-center">
+          <form method="post" class="text-center" action="{{ route('ecommerce.emailempleabilidad') }}">
+            @csrf
             <h3 class="mb-0 fw-bold text-white">Trabaja con Nosotros <br> Únete al equipo de Grupo Altos</h3>
             <div class="mt-3">
-              <input type="text" class="form-control form-control-lg bubscribe-control rounded-0 px-5 py-3" placeholder="Ingresa tu Correo Electrónico">
+              <input type="text" class="form-control form-control-lg bubscribe-control rounded-0 px-5 py-3" name="email" placeholder="Ingresa tu Correo Electrónico">
             </div>
+            @error('email')
+                <div class="mt-2 alert alert-danger">{{ $message }}</div>
+            @enderror
+            @if (session('success'))
+                <div class="alert alert-success mt-2">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="mt-3 d-grid">
-              <button type="button" class="btn btn-lg btn-ecomm bubscribe-button px-5 py-3">Enviar Email</button>
+              <button type="submit" class="btn btn-lg btn-ecomm bubscribe-button px-5 py-3">Enviar Email</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>

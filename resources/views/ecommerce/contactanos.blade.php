@@ -41,30 +41,46 @@
             <div class="row g-4">
                 <div class="col-xl-8">
                 <div class="p-4 border">
-                    <form>
-                    <div class="form-body">
-                        <h4 class="mb-0 fw-bold">Envíenos un mensaje</h4>
-                        <div class="my-3 border-bottom"></div>
-                        <div class="mb-3">
-                        <label class="form-label">Ingrese su nombre</label>
-                        <input type="text" class="form-control rounded-0">
+                    <form method="post" action="{{ route('ecommerce.emailcontactanos') }}">
+                        @csrf
+                        <div class="form-body">
+                            <h4 class="mb-0 fw-bold">Envíenos un mensaje</h4>
+                            <div class="my-3 border-bottom"></div>
+                            <div class="mb-3">
+                                <label class="form-label">Ingrese su nombre</label>
+                                <input type="text" class="form-control rounded-0" name="name">
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Introducir correo electrónico</label>
+                                <input type="text" class="form-control rounded-0" name="email">
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Número de teléfono</label>
+                                <input type="text" class="form-control rounded-0" name="phone">
+                                @error('phone')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-control rounded-0" rows="4" cols="4" name="message"></textarea>
+                                @error('message')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            @session('success')
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endsession
+                            <div class="mb-0">
+                                <button type="submit" class="btn btn-dark btn-ecomm">Enviar mensaje</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                        <label class="form-label">Introducir correo electrónico</label>
-                        <input type="text" class="form-control rounded-0">
-                        </div>
-                        <div class="mb-3">
-                        <label class="form-label">Número de teléfono</label>
-                        <input type="text" class="form-control rounded-0">
-                        </div>
-                        <div class="mb-3">
-                        <label class="form-label">Mensaje</label>
-                        <textarea class="form-control rounded-0" rows="4" cols="4"></textarea>
-                        </div>
-                        <div class="mb-0">
-                        <a href="thank-you.html" class="btn btn-dark btn-ecomm">Enviar mensaje</a>
-                        </div>
-                    </div>
                     </form>
                 </div>
                 </div>

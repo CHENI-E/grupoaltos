@@ -23,16 +23,22 @@ Route::get('/clear-all', function () {
 
     return '✅ Cachés limpiadas y optimización reiniciada';
 });
+Route::post('/emailempleabilidad', [App\Http\Controllers\Ecommerce\InicioController::class, 'emailPostula'])->name('ecommerce.emailempleabilidad')->middleware('throttle:5,1');
+Route::post('/emailcontactanos', [App\Http\Controllers\Ecommerce\ContactanosController::class, 'emailContactanos'])->name('ecommerce.emailcontactanos')->middleware('throttle:5,1');
 
 Route::get('/', [App\Http\Controllers\Ecommerce\InicioController::class, 'index'])->name('ecommerce.inicio');
 Route::get('/nosotros', [App\Http\Controllers\Ecommerce\NosotrosController::class, 'index'])->name('ecommerce.nosotros');
 Route::get('/contactanos', [App\Http\Controllers\Ecommerce\ContactanosController::class, 'index'])->name('ecommerce.contactanos');
-Route::get('/servicio', [App\Http\Controllers\Ecommerce\ServicioController::class, 'index'])->name('ecommerce.servicio');
-Route::get('/blog', [App\Http\Controllers\Ecommerce\BlogController::class, 'index'])->name('ecommerce.blog');
 Route::get('/productos', [App\Http\Controllers\Ecommerce\ProductosController::class, 'index'])->name('ecommerce.productos');
 
 Route::get('/productos/lista', [App\Http\Controllers\Ecommerce\ProductosController::class, 'getProductosAjax']);
 Route::get('/producto/{slug}', [App\Http\Controllers\Ecommerce\ProductosController::class, 'detalle'])->name('producto.detalle');
+
+Route::get('/servicio', [App\Http\Controllers\Ecommerce\ServicioController::class, 'index'])->name('ecommerce.servicio');
+Route::get('/servicio/{slug}', [App\Http\Controllers\Ecommerce\ServicioController::class, 'viewdetalle'])->name('ecommerce.servicio.viewdetalle');
+
+Route::get('/blog', [App\Http\Controllers\Ecommerce\BlogController::class, 'index'])->name('ecommerce.blog');
+Route::get('/blog/{slug}', [App\Http\Controllers\Ecommerce\BlogController::class, 'detalle'])->name('ecommerce.blog.detalle');
 
 
 Route::middleware('guest')->group(function () {
@@ -88,14 +94,18 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ServicioController::class, 'destroy'])->name('destroy');
     });
 
-
-});
-
-Route::get('/test-mail', function () {
-    Mail::raw('Este es un correo de prueba desde Laravel', function ($message) {
-        $message->to('ignieve16@gmail.com')
-                ->subject('Correo de prueba');
+    Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('store');
+        Route::get('/listBlog', [App\Http\Controllers\Admin\BlogController::class, 'listBlog'])->name('listBlog');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('destroy');
+        /* Route::get('/listService', [App\Http\Controllers\Admin\BlogController::class, 'listService'])->name('listService');
+        Route::get('/mostrar_registro', [App\Http\Controllers\Admin\BlogController::class, 'mostrar_registro'])->name('mostrar_registro');
+        Route::post('/update', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('destroy'); */
     });
 
-    return 'Correo enviado!';
+
 });
+
