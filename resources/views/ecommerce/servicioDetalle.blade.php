@@ -138,7 +138,8 @@
 <section class="hero-banner">
     <!-- Video de fondo -->
     <video autoplay muted loop playsinline>
-      <source src="https://www.andamiosperu.pe/wp-content/uploads/2025/02/portada_presentacion_ap-1.mp4" type="video/mp4">
+      <source src="{{ asset('ecommerce/assets/Video_web_m4.mp4') }}" type="video/mp4">
+      {{-- <source src="https://www.andamiosperu.pe/wp-content/uploads/2025/02/portada_presentacion_ap-1.mp4" type="video/mp4"> --}}
       Tu navegador no soporta video HTML5.
     </video>
 
