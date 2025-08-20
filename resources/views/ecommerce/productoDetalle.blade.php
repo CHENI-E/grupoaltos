@@ -15,7 +15,7 @@
         transition: all 0.3s ease;
     }
     .product-thumbnails img.active {
-        border-color: red; /* Como tu ejemplo */
+        border-color: #002daa; /* Como tu ejemplo */
     }
 
      /* Contenedor principal de la imagen */
