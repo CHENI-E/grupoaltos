@@ -31,7 +31,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:30|unique:products,nombre',
+            'nombre' => 'required|string|max:100|unique:products,nombre',
             'categoria' => 'required|exists:categories,id',
             'precio' => 'required|numeric',
             'descuento' => 'nullable|numeric',
@@ -123,7 +123,7 @@ class ItemController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id_formulario' => 'required|exists:products,id',
-            'nombre' => 'required|string|max:30|unique:products,nombre,' . $request->id_formulario,
+            'nombre' => 'required|string|max:100|unique:products,nombre,' . $request->id_formulario,
             'categoria' => 'required|exists:categories,id',
             'precio' => 'required|numeric',
             'descuento' => 'nullable|numeric',
