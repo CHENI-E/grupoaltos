@@ -3,6 +3,52 @@
 @section('content')
 
 <style>
+
+    /* Miniaturas */
+    .product-thumbnails img {
+        width: 70px;
+        height: 90px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    .product-thumbnails img.active {
+        border-color: red; /* Como tu ejemplo */
+    }
+
+     /* Contenedor principal de la imagen */
+    .product-main {
+        position: relative;
+        width: 100%;
+        overflow: hidden; /* Evita que la imagen se salga del cuadro */
+        border-radius: 8px; /* opcional */
+    }
+
+    /* Imagen principal */
+    .product-main img {
+        width: 100%;     /* siempre ocupa todo el ancho */
+        height: auto;    /* mantiene la proporción */
+        transition: transform 0.2s ease, transform-origin 0.2s ease;
+        cursor: zoom-in;
+        display: block;
+    }
+
+    /* En móvil: miniaturas en fila centrada debajo */
+    @media (max-width: 768px) {
+        .product-thumbnails {
+            flex-direction: row !important;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .product-thumbnails img {
+            width: 60px;
+            height: 70px;
+        }
+    }
+
+
   .card-title-limit {
       display: -webkit-box;
       -webkit-line-clamp: 2; /* máximo 2 líneas */
@@ -36,6 +82,38 @@
     border-bottom: 12px solid transparent;
     border-left: 6px solid #dc3545; /* Color igual que el fondo */
   }
+    .btn-outline-primary {
+        --bs-btn-color: #002daa;
+        --bs-btn-border-color: #002daa;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #002daa;
+        --bs-btn-hover-border-color: #002daa;
+        --bs-btn-focus-shadow-rgb: 13, 110, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #002daa;
+        --bs-btn-active-border-color: #002daa;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #002daa;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #002daa;
+        --bs-gradient: none;
+    }
+    .btn-primary {
+        --bs-btn-color: #fff;
+        --bs-btn-bg: #002daa;
+        --bs-btn-border-color: #002daa;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #0b5ed7;
+        --bs-btn-hover-border-color: #0a58ca;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #0a58ca;
+        --bs-btn-active-border-color: #0a53be;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #fff;
+        --bs-btn-disabled-bg: #002daa;
+        --bs-btn-disabled-border-color: #002daa;
+    }
 </style>
 
 <!--start page content-->
@@ -58,39 +136,77 @@
     <section class="py-4">
         <div class="container">
         <div class="row g-4">
-            <div class="col-12 col-xl-7">
+            {{-- <div class="col-12 col-xl-7">
                 <div class="product-images">
                     <div class="product-zoom-images">
-                    <div class="row row-cols-2 g-3">
-                        <div class="col">
-                            <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_portada) }}">
-                                <img src="{{ asset($producto->imagen_portada) }}" class="img-fluid" alt="">
+                        <div class="row row-cols-2 g-3">
+                            <div class="col">
+                                <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_portada) }}">
+                                    <img src="{{ asset($producto->imagen_portada) }}" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_one) }}">
+                                    <img src="{{ asset($producto->imagen_one) }}" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_two) }}">
+                                    <img src="{{ asset($producto->imagen_two) }}" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_three) }}">
+                                    <img src="{{ asset($producto->imagen_three) }}" class="img-fluid" alt="">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_four) }}">
+                                    <img src="{{ asset($producto->imagen_four) }}" class="img-fluid" alt="">
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_one) }}">
-                                <img src="{{ asset($producto->imagen_one) }}" class="img-fluid" alt="">
-                            </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <div class="col-12 col-xl-7">
+                <div class="product-gallery row g-3 align-items-start">
+                    
+                    <!-- Miniaturas (lado izquierdo en desktop, debajo en mobile) -->
+                    <div class="col-12 col-md-2 order-2 order-md-1 text-center">
+                        <div class="product-thumbnails d-flex d-md-block justify-content-center gap-2">
+                            @php
+                                $imagenes = [
+                                    $producto->imagen_portada,
+                                    $producto->imagen_one,
+                                    $producto->imagen_two,
+                                    $producto->imagen_three,
+                                    $producto->imagen_four,
+                                ];
+                            @endphp
+
+                            @foreach($imagenes as $index => $img)
+                                @if(!empty($img))
+                                    <img src="{{ asset($img) }}" class="thumbnail-img {{ $loop->first ? 'active' : '' }}" data-index="{{ $index }}">
+                                @endif
+                            @endforeach
                         </div>
-                        <div class="col">
-                            <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_two) }}">
-                                <img src="{{ asset($producto->imagen_two) }}" class="img-fluid" alt="">
-                            </div>
+                    </div>
+
+                    <!-- Imagen principal -->
+                    <div class="col-12 col-md-10 order-1 order-md-2">
+                        <div class="product-main">
+                            <img id="mainImage" 
+                                src="{{ asset($producto->imagen_portada) }}" 
+                                alt="{{ $producto->nombre }}">
                         </div>
-                        <div class="col">
-                            <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_three) }}">
-                                <img src="{{ asset($producto->imagen_three) }}" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="img-thumb-container overflow-hidden position-relative" data-fancybox="gallery" data-src="{{ asset($producto->imagen_four) }}">
-                                <img src="{{ asset($producto->imagen_four) }}" class="img-fluid" alt="">
-                            </div>
-                        </div>
-                    </div><!--end row-->
                     </div>
                 </div>
             </div>
+
+
+
             <div class="col-12 col-xl-5">
                 <div class="product-info">
                     <h4 class="product-title fw-bold mb-1">{{ $producto->nombre }}</h4>
@@ -119,7 +235,7 @@
                         <h6 class="fw-bold mb-3">Información Adicional</h6>
                         <div class="d-flex align-items-center gap-2 flex-wrap">
                             @if ($producto->pdf_ficha_tecnica)
-                                <a href="{{ asset($producto->pdf_ficha_tecnica) }}" target="_blank" class="btn btn-lg btn-outline-dark btn-ecomm px-5 py-3"><i class="bi bi-journal-text"></i> Ficha Técnica</a>
+                                <a href="{{ asset($producto->pdf_ficha_tecnica) }}" target="_blank" class="btn btn-lg btn-outline-primary btn-ecomm px-5 py-3"><i class="bi bi-journal-text"></i> Ficha Técnica</a>
                             @endif
                             @if ($producto->catalogo)
                                 <a href="{{ asset($producto->catalogo) }}" class="btn btn-lg btn-outline-dark btn-ecomm px-5 py-3"><i class="bi bi-journal-text"></i> Catálogo</a>
@@ -129,7 +245,7 @@
                     <hr>
                     <div class="cart-buttons mt-0">
                         <div class="buttons d-flex flex-column flex-lg-row gap-3 mt-4">
-                            <a href="javascript:;" class="btn btn-lg btn-dark btn-ecomm px-5 py-3 col-lg-6 btnAgregarCarrito" data-id="{{ $producto->id }}" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->descuento != 0 ? $producto->precio_oferta : $producto->precio }}" data-imagen="{{ asset($producto->imagen_portada) }}"><i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO</a>
+                            <a href="javascript:;" class="btn btn-lg btn-primary btn-ecomm px-5 py-3 col-lg-6 btnAgregarCarrito" data-id="{{ $producto->id }}" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->descuento != 0 ? $producto->precio_oferta : $producto->precio }}" data-imagen="{{ asset($producto->imagen_portada) }}"><i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO</a>
                         </div>
                     </div>
                     <hr class="my-3">
@@ -235,4 +351,43 @@
 @endsection
 
 @section('scripts')
+
+<script>
+
+    $(document).ready(function () {
+        const $mainImage = $("#mainImage");
+        const $thumbnails = $(".thumbnail-img");
+
+        // Cambiar imagen al hacer clic en miniatura
+        $thumbnails.on("click", function () {
+            const newSrc = $(this).attr("src");
+            $mainImage.attr("src", newSrc);
+            $thumbnails.removeClass("active");
+            $(this).addClass("active");
+        });
+
+        // Zoom dinámico solo en desktop
+        const $productMain = $(".product-main");
+        $productMain.on("mousemove", function (e) {
+            if (window.innerWidth < 768) return; // desactivar en mobile
+            const offset = $(this).offset();
+            const x = ((e.pageX - offset.left) / $(this).width()) * 100;
+            const y = ((e.pageY - offset.top) / $(this).height()) * 100;
+
+            $mainImage.css({
+                "transform-origin": `${x}% ${y}%`,
+                "transform": "scale(2)"
+            });
+        });
+
+        $productMain.on("mouseleave", function () {
+            $mainImage.css({
+                "transform-origin": "center center",
+                "transform": "scale(1)"
+            });
+        });
+    });
+
+</script>
+
 @endsection
