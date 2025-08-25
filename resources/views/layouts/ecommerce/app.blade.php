@@ -27,6 +27,7 @@
       const APP_URL = "{{ config('app.url') }}";
   </script>
   <style>
+
     .btn-outline-primary {
         --bs-btn-color: #002daa;
         --bs-btn-border-color: #002daa;
@@ -44,22 +45,99 @@
         --bs-gradient: none;
     }
     .btn-primary {
-        --bs-btn-color: #fff;
-        --bs-btn-bg: #002daa;
-        --bs-btn-border-color: #002daa;
-        --bs-btn-hover-color: #fff;
-        --bs-btn-hover-bg: #0b5ed7;
-        --bs-btn-hover-border-color: #0a58ca;
-        --bs-btn-focus-shadow-rgb: 49, 132, 253;
-        --bs-btn-active-color: #fff;
-        --bs-btn-active-bg: #0a58ca;
-        --bs-btn-active-border-color: #0a53be;
-        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-        --bs-btn-disabled-color: #fff;
-        --bs-btn-disabled-bg: #002daa;
-        --bs-btn-disabled-border-color: #002daa;
+        --bs-btn-color: #fff !important;
+        --bs-btn-bg: #002daa !important;
+        --bs-btn-border-color: #002daa !important;
+        --bs-btn-hover-color: #fff !important;
+        --bs-btn-hover-bg: #0b5ed7 !important;
+        --bs-btn-hover-border-color: #0a58ca !important;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253 !important;
+        --bs-btn-active-color: #fff !important;
+        --bs-btn-active-bg: #0a58ca !important;
+        --bs-btn-active-border-color: #0a53be !important;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+        --bs-btn-disabled-color: #fff !important;
+        --bs-btn-disabled-bg: #002daa !important;
+        --bs-btn-disabled-border-color: #002daa !important;
     }
-  </style>
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 64px;
+      height: 64px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      text-decoration: none;
+      z-index: 9999;
+      isolation: isolate; /* para que el ::after no salga del stacking context */
+      animation: wf-bob 3s ease-in-out infinite;
+      transition: transform .2s ease, box-shadow .2s ease;
+      /* fondo degrade para resaltar */
+      background: radial-gradient(circle at 30% 30%, #2fe06e, #25d366 60%, #1ebe57);
+    }
+
+    .whatsapp-float svg {
+      width: 34px;
+      height: 34px;
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,.15));
+    }
+
+    /* Aro de pulso */
+    .whatsapp-float::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, .55);
+      animation: wf-pulse 2.2s ease-out infinite;
+      z-index: -1;
+    }
+
+    /* Efecto hover */
+    .whatsapp-float:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 28px rgba(0,0,0,.3);
+    }
+
+    /* Animaciones */
+    @keyframes wf-bob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    @keyframes wf-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, .55); }
+      70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* Accesibilidad: respeta reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .whatsapp-float,
+      .whatsapp-float::after {
+        animation: none !important;
+      }
+    }
+
+    /* Ajuste móvil: separa del borde y reduce tamaño si el viewport es pequeño */
+    @media (max-width: 420px) {
+      .whatsapp-float {
+        right: 14px;
+        bottom: 14px;
+        width: 56px;
+        height: 56px;
+      }
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+</style>
 
 
   <title>Grupos Altos - Fabricamos y Comercializamos Andamios</title>
@@ -389,8 +467,23 @@
 
 
   <!--Start Back To Top Button-->
-  <a href="javaScript:;" class="back-to-top"><i class="bi bi-arrow-up"></i></a>
+ {{--  <a href="javaScript:;" class="back-to-top" hidden><i class="bi bi-arrow-up"></i></a> --}}
   <!--End Back To Top Button-->
+
+  <!-- Botón flotante de WhatsApp -->
+  <a
+    href="https://wa.me/51994119444?text=Hola%20quiero%20más%20información"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chatear por WhatsApp"
+  >
+    <!-- Ícono SVG de WhatsApp (sin dependencias) -->
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="#25D366" d="M16 3C9.37 3 4 8.37 4 15c0 2.54.77 4.9 2.09 6.84L5 29l7.33-1.93C13.96 27.66 14.97 28 16 28c6.63 0 12-5.37 12-12S22.63 3 16 3z"/>
+      <path fill="#fff" d="M23.19 19.38c-.34-.17-2.02-.99-2.33-1.1-.31-.11-.54-.17-.77.17-.23.34-.89 1.1-1.09 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.77-1.69-1.02-.91-1.71-2.04-1.91-2.38-.2-.34-.02-.52.15-.69.16-.16.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.06-2.53-.28-.68-.56-.59-.77-.6l-.66-.01c-.23 0-.6.09-.91.43-.31.34-1.2 1.17-1.2 2.86 0 1.69 1.23 3.33 1.4 3.56.17.23 2.42 3.7 5.86 5.18.82.35 1.46.56 1.96.72.82.26 1.56.22 2.15.13.66-.1 2.02-.83 2.31-1.63.28-.8.28-1.49.2-1.63-.09-.14-.31-.23-.65-.4z"/>
+    </svg>
+  </a>
 
 
   <!-- JavaScript files -->

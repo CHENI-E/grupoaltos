@@ -51,7 +51,7 @@ class SeccionController extends Controller
         $validatedData = $request->validate([
             'title' => 'string|max:180',
             'content' => 'string',
-            'image' => 'image|nullable',
+            'image' => 'string|nullable',
             'boton_text' => 'string|max:100|nullable',
             'boton_link' => 'string|max:255|nullable',
         ]);

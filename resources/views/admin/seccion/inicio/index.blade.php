@@ -120,12 +120,12 @@
                         @csrf
                         <div class="col-lg-12 d-flex align-items-center">
                             <div class="col-lg-6">
-                                <input type="file" class="form-control form-control-sm mb-3 w-75" id="sect1_imagen" name="image">
-                                <div class="w-75 card">
-                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="Imagen de la seccion" class="img-fluid" id="sect1_imagen_preview">
-                                    <div class="card-body">
-                                        <p class="card-text">Vista previa de la imagen</p>
-                                    </div>
+                                <div class="form-group mb-3 col-lg-10">
+                                    <label for="sect1_imagen" class="form-label">Video</label>
+                                    <input type="text" class="form-control form-control-sm" id="sect1_imagen" name="image" value="{{ $aboutMe->image ?? '' }}" placeholder="Ingrese la url del Video">
+                                    @error('image')
+                                        <div style="color:red;">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 

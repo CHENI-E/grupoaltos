@@ -47,7 +47,40 @@
     .owl-carousel .card:hover h6 {
       color: #555;
     }
+    .btn-outline-primary {
+        --bs-btn-color: #002daa;
+        --bs-btn-border-color: #002daa;
+        --bs-btn-hover-color: #fff;
+        --bs-btn-hover-bg: #002daa;
+        --bs-btn-hover-border-color: #002daa;
+        --bs-btn-focus-shadow-rgb: 13, 110, 253;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: #002daa;
+        --bs-btn-active-border-color: #002daa;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #002daa;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #002daa;
+        --bs-gradient: none;
+    }
+    .btn-primary {
+        --bs-btn-color: #fff !important;
+        --bs-btn-bg: #002daa !important;
+        --bs-btn-border-color: #002daa !important;
+        --bs-btn-hover-color: #fff !important;
+        --bs-btn-hover-bg: #0b5ed7 !important;
+        --bs-btn-hover-border-color: #0a58ca !important;
+        --bs-btn-focus-shadow-rgb: 49, 132, 253 !important;
+        --bs-btn-active-color: #fff !important;
+        --bs-btn-active-bg: #0a58ca !important;
+        --bs-btn-active-border-color: #0a53be !important;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+        --bs-btn-disabled-color: #fff !important;
+        --bs-btn-disabled-bg: #002daa !important;
+        --bs-btn-disabled-border-color: #002daa !important;
+    }
   </style>
+
 @endsection
 
 @section('content')
@@ -224,9 +257,7 @@
         </div>
 
         <div class="owl-carousel owl-theme" >
-            {{-- @php
-              $duration = 1000;
-            @endphp --}}
+
             @foreach ($category as $item)
             <div class="item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
               <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark">
@@ -258,17 +289,15 @@
                 </div>
               </a>
             </div>
-            {{-- @php
-              $duration += 700;
-            @endphp --}}
+
             @endforeach
         </div>
       </div>
     </section>
     @endif
 
-    <!--start features-->
-    <section class="product-thumb-slider section-padding" style="padding-top: 0px !important;">
+    
+    {{-- <section class="product-thumb-slider section-padding" style="padding-top: 0px !important;">
       <div class="container">
         <div class="text-center pb-3">
           <h3 class="mb-0 h3 fw-bold" style="color: #0761ac" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">{{ $identity->title ?? '' }}</h3>
@@ -280,7 +309,7 @@
             <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-primary">
-                  {{-- <i class="bi bi-truck"></i> --}}
+                  
                   <i class="bi bi-bullseye"></i>
                 </div>
                 <h5 class="fw-bold">{{ $identity->title_card_one ?? '' }}</h5>
@@ -296,7 +325,7 @@
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-danger">
                   <i class="bi bi-eye"></i>
-                  {{-- <i class="bi bi-credit-card"></i> --}}
+
                 </div>
                 <h5 class="fw-bold">{{ $identity->title_card_two ?? '' }}</h5>
                 <p class="mb-0" style="font-size: 13px;">
@@ -310,7 +339,7 @@
             <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100" style="border: 5px solid #0b93d2 !important;">
               <div class="card-body text-center">
                 <div class="h1 fw-bold my-2 text-success">
-                  {{-- <i class="bi bi-minecart-loaded"></i> --}}
+
                   <i class="bi bi-stars"></i>
                 </div>
                 <h5 class="fw-bold">{{ $identity->title_card_three ?? '' }}</h5>
@@ -319,10 +348,10 @@
             </div>
           </div>
         </div>
-        <!--end row-->
+
       </div>
-    </section>
-    <!--end features-->
+    </section> --}}
+    
 
 
     <!--start special product-->
@@ -330,13 +359,26 @@
       <div class="container">
         <div class="card border-0 rounded-0 p-3 depth">
           <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 text-center">
-              <video width="100%" height="360" controls>
-                <source src="{{ asset('ecommerce/assets/web/video_contactanos/Montaje-MD.mp4') }}" type="video/mp4">
-              </video>
 
-              {{-- <img src="" class="img-fluid rounded-0" alt="..."> --}}
+            {{-- <div class="col-lg-6 text-center">
+              <iframe width="560" height="315" 
+                  src="https://youtu.be/_p-W0icDaSY?list=RD_p-W0icDaSY" 
+                  title="YouTube video player" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+              </iframe>
+            </div> --}}
+
+            <div class="col-lg-6 text-center">
+              <iframe width="100%" height="350"
+                src="{{ $aboutMe->image ?? '' }}" 
+                title="Vicente Fernández - Un Millón de Primaveras (Letra / Lyrics)" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              </iframe>
             </div>
+
             <div class="col-lg-6">
               <div class="card-body">
                 <h3 class="fw-bold" style="color: #0761ac">{{ $aboutMe->title ?? '' }}</h3>
@@ -344,12 +386,13 @@
                   <li class="list-group-item bg-transparent px-0">{{ $aboutMe->content ?? '' }}</li>
                 </ul>
                 @if ($aboutMe->boton_text && $aboutMe->boton_link)
-                  <div class="buttons mt-4 d-flex flex-column flex-lg-row gap-3">
-                    <a href="{{ $aboutMe->boton_link }}" class="btn btn-lg btn-outline-dark btn-ecomm px-5 py-3">{{ $aboutMe->boton_text }}</a>
+                  <div class="buttons mt-4 d-flex flex-column flex-lg-row justify-content-center text-center">
+                    <a href="{{ $aboutMe->boton_link }}" class="btn btn-lg btn-primary btn-ecomm px-5 py-3" style="background: #09509d; color: #fff;">{{ $aboutMe->boton_text }}</a>
                   </div>
                 @endif
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -480,7 +523,7 @@
 
 
     <!--subscribe banner-->
-    <section class="product-thumb-slider subscribe-banner p-5" style="background: #097EC4" data-aos="fade-up">
+    <section class="product-thumb-slider subscribe-banner p-5" style="background: #51b0e8" data-aos="fade-up">
       <div class="row">
         <div class="col-12 col-lg-6 mx-auto">
           <form method="post" class="text-center" action="{{ route('ecommerce.emailempleabilidad') }}">
@@ -498,7 +541,7 @@
                 </div>
             @endif
             <div class="mt-3 d-grid">
-              <button type="submit" class="btn btn-lg btn-ecomm bubscribe-button px-5 py-3">Enviar Email</button>
+              <button type="submit" class="btn btn-lg btn-primary bubscribe-button px-5 py-3" style="background: #1558a2; color: #fff;">Enviar Email</button>
             </div>
           </form>
         </div>
