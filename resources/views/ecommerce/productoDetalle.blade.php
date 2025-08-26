@@ -83,6 +83,55 @@
     border-left: 6px solid #dc3545; /* Color igual que el fondo */
   }
 
+    .quantity-container {
+        /* margin: 0 auto; */
+        display: inline-flex;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 18px;
+    }
+
+    .btn-qty {
+        width: 40px;
+        height: 53px;
+        border: none;
+        background: #f8f9fa;
+        cursor: pointer;
+        font-weight: bold;
+        color: #444;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-qty:hover {
+        background: #002daa;
+        color: #fff;
+    }
+
+    .qty-input {
+        width: 60px;
+        text-align: center;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 995px) {
+        .quantity-container {
+            margin: 0 auto;
+        }
+    }
+
+    .btnAgregarCarrito {
+    transition: all 0.4s ease; /* animación suave */
+    }
+
+    .btn-success-cart {
+        background-color: #28a745 !important; /* verde tienda */
+        border-color: #28a745 !important;
+        color: #fff !important;
+    }
 </style>
 
 <!--start page content-->
@@ -213,9 +262,30 @@
                     </div>
                     <hr>
                     <div class="cart-buttons mt-0">
-                        <div class="buttons d-flex flex-column flex-lg-row gap-3 mt-4">
+                        {{-- <div class="buttons d-flex flex-column flex-lg-row gap-1 mt-4">
+                            <div class="quantity-container d-flex align-items-center">
+                                <button class="btn-qty btn-minus">−</button>
+                                <input type="text" class="qty-input" value="1" readonly>
+                                <button class="btn-qty btn-plus">+</button>
+                            </div>
                             <a href="javascript:;" class="btn btn-lg btn-primary btn-ecomm px-5 py-3 col-lg-6 btnAgregarCarrito" data-id="{{ $producto->id }}" data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->descuento != 0 ? $producto->precio_oferta : $producto->precio }}" data-imagen="{{ asset($producto->imagen_portada) }}"><i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO</a>
+                        </div> --}}
+                        <div class="buttons d-flex flex-column flex-lg-row gap-1 mt-4">
+                            <div class="quantity-container d-flex align-items-center">
+                                <button class="btn-qty btn-minus">−</button>
+                                <input type="text" class="qty-input" value="1" readonly>
+                                <button class="btn-qty btn-plus">+</button>
+                            </div>
+                            <a href="javascript:;" 
+                            class="btn btn-lg btn-primary btn-ecomm px-5 py-3 col-lg-6 btnAgregarCarrito" 
+                            data-id="{{ $producto->id }}" 
+                            data-nombre="{{ $producto->nombre }}" 
+                            data-precio="{{ $producto->descuento != 0 ? $producto->precio_oferta : $producto->precio }}" 
+                            data-imagen="{{ asset($producto->imagen_portada) }}">
+                            <i class="bi bi-basket2 me-2"></i>AÑADIR A CARRITO
+                            </a>
                         </div>
+
                     </div>
                     <hr class="my-3">
                     <div class="product-info">
@@ -357,6 +427,26 @@
         });
     });
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const minusBtn = document.querySelector(".btn-minus");
+    const plusBtn = document.querySelector(".btn-plus");
+    const qtyInput = document.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", () => {
+        let value = parseInt(qtyInput.value);
+        if (value > 1) {
+        qtyInput.value = value - 1;
+        }
+    });
+
+    plusBtn.addEventListener("click", () => {
+        let value = parseInt(qtyInput.value);
+        qtyInput.value = value + 1;
+    });
+    });
 </script>
 
 @endsection

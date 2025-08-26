@@ -14,7 +14,7 @@ function agregarAlCarrito(producto) {
     let index = carrito.findIndex(item => item.id === producto.id);
 
     if (index >= 0) {
-        carrito[index].cantidad += producto.cantidad;
+        carrito[index].cantidad += producto.cantidad; // sumamos la cantidad elegida
     } else {
         carrito.push(producto);
     }
@@ -39,13 +39,12 @@ function actualizarVistaCarrito() {
             <div class="d-flex align-items-center gap-3">
                 <div class="bottom-product-img">
                     <a href="product-details.html">
-                    <img src="${item.imagen}" width="60" alt="">
+                        <img src="${item.imagen}" width="60" alt="">
                     </a>
                 </div>
                 <div class="">
                     <h6 class="mb-0 fw-light mb-1">${item.nombre}</h6>
-                    <p class="mb-0"><strong>${item.cantidad} X S/${item.precio}</strong>
-                    </p>
+                    <p class="mb-0"><strong>${item.cantidad} X S/${item.precio}</strong></p>
                 </div>
                 <div class="ms-auto fs-5">
                     <a href="javascript:" class="link-dark" onclick="eliminarDelCarrito(${item.id})"><i class="bi bi-trash"></i></a>
@@ -57,33 +56,71 @@ function actualizarVistaCarrito() {
 
     $('#contenedorCarrito').html(html);
 
-    let totalProductos = carrito.length;
+    // 🔹 Aquí contamos productos distintos (no cantidades)
+    let productosDistintos = carrito.length;
 
-    $('.title_carrito').text(`${totalProductos} artículo${totalProductos !== 1 ? 's' : ''} en el carrito`);
+    $('.title_carrito').text(`${productosDistintos} producto${productosDistintos !== 1 ? 's' : ''} en el carrito`);
 
-    if (totalProductos > 0) {
-        $('.cart-badge').text(totalProductos).show(); // Muestra la cantidad
+    if (productosDistintos > 0) {
+        $('.cart-badge').text(productosDistintos).show(); // solo productos distintos
     } else {
-        $('.cart-badge').hide(); // Oculta si no hay productos
+        $('.cart-badge').hide();
     }
 }
+
 
 $(document).ready(() => {
     actualizarVistaCarrito();
 });
 
+// Capturar producto con cantidad seleccionada
+/* $(document).on('click', '.btnAgregarCarrito', function() {
+    let cantidad = parseInt($('.qty-input').val()) || 1; // lee la cantidad del input
 
-$(document).on('click', '.btnAgregarCarrito', function() {
     let producto = {
         id: $(this).data('id'),
         nombre: $(this).data('nombre'),
         precio: $(this).data('precio'),
         imagen: $(this).data('imagen'),
-        cantidad: 1
+        cantidad: cantidad
     };
+
     agregarAlCarrito(producto);
 });
+ */
+$(document).on('click', '.btnAgregarCarrito', function() {
+    let cantidad = parseInt($('.qty-input').val()) || 1; 
 
+    let producto = {
+        id: $(this).data('id'),
+        nombre: $(this).data('nombre'),
+        precio: $(this).data('precio'),
+        imagen: $(this).data('imagen'),
+        cantidad: cantidad
+    };
+
+    agregarAlCarrito(producto);
+
+    // 🔹 Resetear cantidad a 1
+    $('.qty-input').val(1);
+
+    // 🔹 Cambiar botón a "Añadido" en verde
+    let $btn = $(this);
+    let originalText = $btn.html(); // guardamos el texto original
+
+    $btn.removeClass('btn-primary').addClass('btn-success-cart')
+        .html('<i class="bi bi-check2-circle me-2"></i>AÑADIDO');
+
+    // 🔹 Después de 2 segundos, regresar al estado original
+    setTimeout(() => {
+        $btn.removeClass('btn-success-cart').addClass('btn-primary')
+            .html(originalText);
+    }, 2000);
+});
+
+
+
+// Enviar WhatsApp
 function enviarWhatsApp() {
     let carrito = obtenerCarrito();
     if (carrito.length === 0) return alert('Tu carrito está vacío');
@@ -113,6 +150,5 @@ function enviarWhatsApp() {
     let url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
 }
-
 
 $('#btnCotizar').on('click', enviarWhatsApp);
