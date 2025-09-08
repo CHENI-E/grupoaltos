@@ -471,20 +471,18 @@
   <!--End Back To Top Button-->
 
   <!-- Botón flotante de WhatsApp -->
-  <a
-    href="https://wa.me/51994119444?text=Hola%20quiero%20más%20información"
+  <a href="https://wa.me/51994119444?text=Hola%20quiero%20más%20información"
     class="whatsapp-float"
     target="_blank"
     rel="noopener"
-    aria-label="Chatear por WhatsApp"
-  >
+    aria-label="Chatear por WhatsApp">
     <!-- Ícono SVG de WhatsApp (sin dependencias) -->
-    <svg viewBox="0 0 32 32" aria-hidden="true">
+    {{-- <svg viewBox="0 0 32 32" aria-hidden="true">
       <path fill="#25D366" d="M16 3C9.37 3 4 8.37 4 15c0 2.54.77 4.9 2.09 6.84L5 29l7.33-1.93C13.96 27.66 14.97 28 16 28c6.63 0 12-5.37 12-12S22.63 3 16 3z"/>
       <path fill="#fff" d="M23.19 19.38c-.34-.17-2.02-.99-2.33-1.1-.31-.11-.54-.17-.77.17-.23.34-.89 1.1-1.09 1.33-.2.23-.4.26-.74.09-.34-.17-1.45-.53-2.77-1.69-1.02-.91-1.71-2.04-1.91-2.38-.2-.34-.02-.52.15-.69.16-.16.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.06-2.53-.28-.68-.56-.59-.77-.6l-.66-.01c-.23 0-.6.09-.91.43-.31.34-1.2 1.17-1.2 2.86 0 1.69 1.23 3.33 1.4 3.56.17.23 2.42 3.7 5.86 5.18.82.35 1.46.56 1.96.72.82.26 1.56.22 2.15.13.66-.1 2.02-.83 2.31-1.63.28-.8.28-1.49.2-1.63-.09-.14-.31-.23-.65-.4z"/>
-    </svg>
+    </svg> --}}
+    <img src="{{ asset('uploads/WhatsApp.png') }}" width="80%" alt="">
   </a>
-
 
   <!-- JavaScript files -->
   <script src="{{ asset('ecommerce/assets/js/bootstrap.bundle.min.js') }}"></script>

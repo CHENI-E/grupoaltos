@@ -36,6 +36,10 @@
     border-bottom: 12px solid transparent;
     border-left: 6px solid #dc3545; /* Color igual que el fondo */
   }
+  .bg-light{
+    background: #0c529e !important;
+    color: white  !important;
+  }
 </style>
 
 <!--start page content-->
@@ -158,11 +162,11 @@
 
               <div class="card rounded-0">
                 <div class="card-body p-2">
-                  <div class="d-flex align-items-center justify-content-between bg-light p-2">
-                    <div class="product-count">{{ count($product) }} artículos encontrados</div>
-                    <form>
+                  <div class="d-flex align-items-center justify-content-between bg-light p-2 w-100">
+                    {{-- <div class="product-count">{{ count($product) }} artículos encontrados</div> --}}
+                    <form class="w-100">
                       <div class="input-group">
-                        <span class="input-group-text bg-transparent rounded-0 border-0">Buscar</span>
+                        {{-- <span class="input-group-text bg-transparent rounded-0 border-0">Buscar</span> --}}
                         <input type="input" class="form-control rounded-0" placeholder="Ingrese el nombre del Producto" id="filtroNombre">
                       </div>
                     </form> 
@@ -189,7 +193,7 @@
                 <!-- Botón cargar más -->
                 <div class="row mt-5">
                   <div class="col text-center">
-                    <button id="btn-cargar-mas" class="btn btn-dark">Cargar más</button>
+                    <button id="btn-cargar-mas" class="btn btn-dark" style="background: #0c529e;">Cargar más</button>
                   </div>
                 </div>
               </div>
