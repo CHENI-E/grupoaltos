@@ -390,7 +390,8 @@
     <!--start special product-->
 
     <section class="mt-5">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1N8k3CJRxgW3Mtr9nf2-cWyOhw-xl4pc&ehbc=2E312F&noprof=1" width="100%" height="480"></iframe>
+      {{-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1N8k3CJRxgW3Mtr9nf2-cWyOhw-xl4pc&ehbc=2E312F&noprof=1" width="100%" height="480"></iframe> --}}
+      <iframe src="https://www.google.com/maps/d/embed?mid=1N8k3CJRxgW3Mtr9nf2-cWyOhw-xl4pc&ehbc=2E312F" width="100%" height="480"></iframe>
       {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d1949.8609170433426!2d-76.99967775524395!3d-12.199320946823878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x9105b9e4f36df983%3A0xda7e0f448ae09c7!2sAv.%20Prol.%20Huaylas%20600%2C%20Chorrillos%2015067!3m2!1d-12.1985!2d-76.9984812!5e0!3m2!1ses-419!2spe!4v1757276052455!5m2!1ses-419!2spe" 
         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe> --}}
@@ -408,8 +409,8 @@
           <div class="row row-cols-2 row-cols-lg-5 g-4">
             <div class="owl-carousel owl-theme">
               @foreach ($customers->clientImages as $item)
-                <div class="col d-flex align-items-center justify-content-center">
-                  <div class="d-flex align-items-center p-3 rounded brand-box w-100 h-100">
+                <div class="col d-flex align-items-center justify-content-center m-auto">
+                  <div class="d-flex align-items-center p-3 rounded brand-box w-100 h-100 justify-content-center m-auto">
                     <div class="d-flex align-items-center justify-content-center text-center h-100">
                       <a href="javascript:;" class="w-100">
                         <img src="{{ asset($item->image_path) }}" class="img-fluid" alt="">

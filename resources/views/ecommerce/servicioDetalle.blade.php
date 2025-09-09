@@ -138,7 +138,7 @@
 <section class="hero-banner">
     <!-- Video de fondo -->
     <video autoplay muted loop playsinline>
-      <source src="{{ asset('ecommerce/assets/Video_web_m4.mp4') }}" type="video/mp4">
+      <source src="{{ asset('ecommerce/assets/webvideomontaje.mp4') }}" type="video/mp4">
       {{-- <source src="https://www.andamiosperu.pe/wp-content/uploads/2025/02/portada_presentacion_ap-1.mp4" type="video/mp4"> --}}
       Tu navegador no soporta video HTML5.
     </video>
@@ -146,10 +146,10 @@
     <!-- Contenido -->
     <div class="hero-content">
       <h1 class="text-light" style="text-transform: uppercase !important;">{{ $servicio->nombre }}</h1>
-      <p>
+      {{-- <p>
         Cada uno de nuestros servicios está respaldado por ingeniería especializada, pruebas técnicas certificadas y una filosofía de mejora continua, 
         para brindar soluciones confiables, seguras y adaptadas a las necesidades del mercado actual.
-      </p>
+      </p> --}}
       <a href="https://wa.me/51994119444?text=Hola,%20quiero%20más%20información%20sobre%20su%20servicio%20de%20{{ $servicio->nombre }}." class="btn btn-danger" target="_blank">Contactar a un asesor</a>
     </div>
   </section>
@@ -224,57 +224,6 @@
           </div> --}}
        </div><!--end row-->
 
-        <div class="separator section-padding">
-            <div class="line"></div>
-            <h3 class="mb-0 h3 fw-bold">Nuestro Propósito</h3>
-            <div class="line"></div>
-        </div>
-
-        <div class="row row-cols-1 row-cols-lg-4 g-4 justify-content-center">
-          <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-primary">
-                  {{-- <i class="bi bi-truck"></i> --}}
-                  <i class="bi bi-bullseye"></i>
-                </div>
-                <h5 class="fw-bold">MISIÓN</h5>
-                <p class="mb-0" style="font-size: 13px;">
-                  Servir y añadir más valor y seguridad a la vida de las personas que trabajan en altura
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-danger">
-                  <i class="bi bi-eye"></i>
-                  {{-- <i class="bi bi-credit-card"></i> --}}
-                </div>
-                <h5 class="fw-bold">VISIÓN</h5>
-                <p class="mb-0" style="font-size: 13px;">
-                  Convertirnos en la compañía más grande y moderna en la fabricación y comercialización de sistemas de andamiajes, encofrados y equipos de seguridad. 
-                  Generando puestos de trabajo a miles de familias.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col d-flex">
-            <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-success">
-                  {{-- <i class="bi bi-minecart-loaded"></i> --}}
-                  <i class="bi bi-stars"></i>
-                </div>
-                <h5 class="fw-bold">VALORES</h5>
-                <p class="mb-0" style="font-size: 13px;">Trabajamos con altos estándares en materiales, diseño y servicio para ofrecer soluciones confiables y duraderas.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        
 
     </div>
    </section>
