@@ -79,6 +79,116 @@
         --bs-btn-disabled-bg: #002daa !important;
         --bs-btn-disabled-border-color: #002daa !important;
     }
+
+
+
+
+    /* ESTILOS DE PRODUCTOS DESTACADOS */
+
+    .body-pd-destacados {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif !important;
+      background-color: #ffffff;
+      color: #000;
+    }
+
+    /* Sección principal */
+    .pd-destacados {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* Título principal */
+    .pd-titulo {
+      font-family: 'Orbitron', sans-serif !important;
+      font-size: 40px !important;
+      color: #002366 !important;
+      margin-bottom: 5px !important;
+      text-transform: uppercase !important;
+    }
+
+    /* Subtítulo */
+    .pd-subtitulo {
+      font-style: italic;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    /* Contenedor de productos */
+    .pd-productos {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Tarjeta de producto */
+    .pd-card {
+      max-width: 100%;
+      margin: 0 auto;
+      background: #f2f2f2;
+      border-radius: 25px;
+      padding: 20px;
+      /* width: 280px; */
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pd-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Imagen del producto */
+    .pd-img {
+      width: 100%;
+      border-radius: 10px;
+      background-color: #002366;
+      padding: 10px;
+      height: 180px;
+      object-fit: contain;
+    }
+
+    /* Título de la tarjeta */
+    .pd-card-titulo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      color: #002366;
+      margin: 15px 0 10px;
+    }
+
+    /* Botón personalizado */
+    .pd-btn {
+      display: inline-block;
+      background-color: #f15a29;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .pd-btn:hover {
+      background-color: #d94e22;
+    }
+
+    @media (max-width: 444px) {
+      .pd-titulo {
+        font-size: 30px !important;
+      }
+      
+      .pd-titulo_mapa{
+        font-size: 30px !important;
+      }
+
+      .pd-title_clientes{
+        font-size: 25px !important;
+      }
+
+    }
+
   </style>
 
 @endsection
@@ -130,110 +240,6 @@
             <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" alt="">
           </div>
 
-          {{-- @foreach ($banners as $banner)
-            <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="background: {{ $banner->fondo }};">
-              <div class="row d-flex align-items-center">
-                <div class="col d-none d-lg-flex justify-content-center">
-                  <div class="">
-                    @php echo $banner->contenido; @endphp
-                    <div class="">
-                      @if ($banner->texto_boton)
-                        <a class="btn btn-dark btn-ecomm" href="{{ $banner->url_boton }}">{{ $banner->texto_boton }}</a>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <img src="{{ asset($banner->imagen) }}" class="img-fluid" alt="...">
-                </div>
-              </div>
-            </div>
-          @endforeach --}}
-
-          {{-- <div class="carousel-item active" style="background: #064199;">
-            <div class="row d-flex align-items-center">
-              <div class="col d-none d-lg-flex justify-content-center">
-                <div class="">
-                  <h3 class="h3 fw-light text-white fw-bold">Calidad para tu Obra</h3>
-                  <h1 class="h1 text-white fw-bold">Usa puntuales pro <br> de tubo Galvanizado</h1>
-                  <ul class="text-white fw-bold">
-                    <li>Graduales en Altura</li>
-                    <li>Resistentes a la Corrosión</li>
-                    <li>Gran cap. de carga</li>
-                  </ul>
-                  <div class=""><a class="btn btn-dark btn-ecomm" href="shop-grid.html">Más Información</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <img src="{{ asset('ecommerce/assets/web/banner_inicio/img1_banner.png') }}" class="img-fluid" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg-red">
-            <div class="row d-flex align-items-center">
-              <div class="col d-none d-lg-flex justify-content-center">
-                <div class="">
-                  <h3 class="h3 fw-light text-white fw-bold">Latest Trending</h3>
-                  <h1 class="h1 text-white fw-bold">Fashion Wear</h1>
-                  <p class="text-white fw-bold"><i>Last call for upto 35%</i></p>
-                  <div class=""> <a class="btn btn-dark btn-ecomm" href="shop-grid.html">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <img src="ecommerce/assets/images/sliders/s_2.webp" class="img-fluid" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg-purple">
-            <div class="row d-flex align-items-center">
-              <div class="col d-none d-lg-flex justify-content-center">
-                <div class="">
-                  <h3 class="h3 fw-light text-white fw-bold">New Trending</h3>
-                  <h1 class="h1 text-white fw-bold">Kids Fashion</h1>
-                  <p class="text-white fw-bold"><i>Last call for upto 15%</i></p>
-                  <div class=""><a class="btn btn-dark btn-ecomm" href="shop-grid.html">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <img src="ecommerce/assets/images/sliders/s_3.webp" class="img-fluid" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg-yellow">
-            <div class="row d-flex align-items-center">
-              <div class="col d-none d-lg-flex justify-content-center">
-                <div class="">
-                  <h3 class="h3 fw-light text-dark fw-bold">Latest Trending</h3>
-                  <h1 class="h1 text-dark fw-bold">Electronics Items</h1>
-                  <p class="text-dark fw-bold"><i>Last call for upto 45%</i></p>
-                  <div class=""><a class="btn btn-dark btn-ecomm" href="shop-grid.html">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <img src="ecommerce/assets/images/sliders/s_4.webp" class="img-fluid" alt="...">
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item bg-green">
-            <div class="row d-flex align-items-center">
-              <div class="col d-none d-lg-flex justify-content-center">
-                <div class="">
-                  <h3 class="h3 fw-light text-white fw-bold">Super Deals</h3>
-                  <h1 class="h1 text-white fw-bold">Home Furniture</h1>
-                  <p class="text-white fw-bold"><i>Last call for upto 24%</i></p>
-                  <div class=""><a class="btn btn-dark btn-ecomm" href="shop-grid.html">Shop Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <img src="ecommerce/assets/images/sliders/s_5.webp" class="img-fluid" alt="...">
-              </div>
-            </div>
-          </div> --}}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
           data-bs-slide="prev">
@@ -247,120 +253,71 @@
         </button>
       </div>
     </section>
-    
+
+
     @if (count($category) > 0)
-    <section class="section-padding">
-      <div class="container">
-        <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac" data-aos="fade-up">Productos Destacados</h3>
-          <p class="mb-0 text-capitalize" data-aos="fade-up">Calidad, seguridad y disponibilidad inmediata</p>
-        </div>
 
-        <div class="owl-carousel owl-theme" >
+    <section class="container mt-5">
 
-            @foreach ($category as $item)
-            <div class="item" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
-              <a href="{{ url('/productos?categoria=' . $item->id) }}" class="text-decoration-none text-dark">
-                <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(174deg,rgba(11, 136, 202, 1) 43%, rgba(6, 75, 146, 1) 100%); display:flex;flex-direction:column;border-radius:10px;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;">
-                  
-                  
-                  <div style="overflow:hidden;">
-                    <img src="{{ asset($item->imagen) }}" class="card-img-top p-2" alt="{{ $item->nombre }}" style="object-fit:cover;height:220px;width:100%;transition:transform 0.4s ease; border-radius:12px;">
-                  </div>
-                  
-                  
-                  <div class="card-body text-center p-3" style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;transition:background-color 0.3s ease;">
-                    
-                    <div style="min-height:48px;display:flex;align-items:center;justify-content:center;">
-                      <h5 class="fw-bold mb-1 text-light"
-                          style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:1rem;transition:color 0.3s ease;line-height:1.2;">
-                          {{ $item->nombre }}
-                      </h5>
+      <section class="body-pd-destacados">
+
+        <section class="pd-destacados">
+          <h1 class="pd-titulo">PRODUCTOS DESTACADOS</h1>
+          <p class="pd-subtitulo">Calidad, Seguridad y Disponibilidad Inmediata</p>
+          
+          <div id="splide" class="splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                @foreach ($category as $item)
+                  <li class="splide__slide">
+                    <div class="pd-card">
+                      <img src="{{ asset($item->imagen) }}" alt="{{ $item->nombre }}" class="pd-img" />
+                      <h2 class="pd-card-titulo">{{ $item->nombre }}</h2>
+                      <a href="{{ url('/productos?categoria=' . $item->id) }}" class="pd-btn">Ver productos</a>
                     </div>
-
-                    {{-- <h6 class="fw-bold text-muted mb-0 text-light" style="font-size:0.9rem;transition:color 0.3s ease; color:#ececec !important;">
-                        {{ $item->products_count }} Productos
-                    </h6> --}}
-
-                    <div class=" text-center">
-                      <a href="{{ url('/productos?categoria=' . $item->id) }}" class="btn btn-ecomm mt-3" style="background: #033c7e !important; color: rgba(255, 255, 255, 0.894);">Ver Productos</a>
-                    </div>
-                  </div>
-                </div>
-              </a>
+                  </li>
+                @endforeach
+              </ul>
             </div>
+          </div>
 
-            @endforeach
-        </div>
-      </div>
+        </section>
+
+      </section>
+
     </section>
+
     @endif
-
     
-    {{-- <section class="product-thumb-slider section-padding" style="padding-top: 0px !important;">
-      <div class="container">
-        <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">{{ $identity->title ?? '' }}</h3>
-          <p class="mb-0 text-capitalize" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">{{ $identity->subtitle ?? '' }}</p>
-        </div>
-        <div class="row row-cols-1 row-cols-lg-4 g-4 justify-content-center">
-
-          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1100">
-            <div class="card depth border-0 rounded-0 border-bottom border-primary border-3 w-100" style="border: 5px solid #0b93d2 !important;">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-primary">
-                  
-                  <i class="bi bi-bullseye"></i>
-                </div>
-                <h5 class="fw-bold">{{ $identity->title_card_one ?? '' }}</h5>
-                <p class="mb-0" style="font-size: 13px;">
-                  {{ $identity->content_card_one ?? '' }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1400">
-            <div class="card depth border-0 rounded-0 border-bottom border-danger border-3 w-100" style="border: 5px solid #0b93d2 !important;">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-danger">
-                  <i class="bi bi-eye"></i>
-
-                </div>
-                <h5 class="fw-bold">{{ $identity->title_card_two ?? '' }}</h5>
-                <p class="mb-0" style="font-size: 13px;">
-                  {{ $identity->content_card_two ?? '' }}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col d-flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1800">
-            <div class="card depth border-0 rounded-0 border-bottom border-success border-3 w-100" style="border: 5px solid #0b93d2 !important;">
-              <div class="card-body text-center">
-                <div class="h1 fw-bold my-2 text-success">
-
-                  <i class="bi bi-stars"></i>
-                </div>
-                <h5 class="fw-bold">{{ $identity->title_card_three ?? '' }}</h5>
-                <p class="mb-0" style="font-size: 13px;">{{ $identity->content_card_three ?? '' }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section> --}}
-    
-
-
     <!--start special product-->
-    <section class="section-padding bg-section-2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
-      <div class="container">
-        <div class="card border-0 rounded-0 p-3 depth">
-          <div class="row align-items-center justify-content-center">
+    <section class="section-padding bg-section-2 mt-5" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500"
+      style="background-image: linear-gradient(rgba(4, 40, 117, 0.858), rgba(4, 39, 117, 0.858)), url('https://i.ytimg.com/vi/k3mXTx09fmE/maxresdefault.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%;">
+      <div class="container py-5">
+        
+          <div class="row align-items-center justify-content-between">
 
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-6">
+              <div class="card-body">
+                <div class="" style="background: white; padding: 10px 30px; border-radius: 15px; width: fit-content; margin: auto;">
+                  <h3 class="mb-0" style="color: #042775; font-family: 'Orbitron', sans-serif !important; text-transform: uppercase; font-weight: 900 !important;">{{ $aboutMe->title ?? '' }}</h3>
+                </div>
+                <div class="text-center w-100">
+                  <img src="{{ asset('ecommerce/assets/images/20-años-altos.png') }}" class="w-100" alt="">
+                </div>
+
+                <div class="text-center mt-2">
+                  <p class="px-0 tex-center" style="color: white;">{{ $aboutMe->content ?? '' }}</p>
+                </div>
+                
+                @if ($aboutMe->boton_text && $aboutMe->boton_link)
+                  <div class="buttons mt-2 d-flex flex-column flex-lg-row justify-content-center text-center">
+                    <a href="{{ $aboutMe->boton_link }}" class="btn btn-lg btn-primary btn-ecomm px-5 py-3" style="background: #09509d; color: #fff;">{{ $aboutMe->boton_text }}</a>
+                  </div>
+                @endif
+              </div>
+            </div>
+
+            <div class="col-lg-5 text-center">
               <iframe width="100%" height="350"
                 src="{{ $aboutMe->image ?? '' }}" 
                 title="Vicente Fernández - Un Millón de Primaveras (Letra / Lyrics)" 
@@ -369,40 +326,77 @@
               </iframe>
             </div>
 
-            <div class="col-lg-6">
-              <div class="card-body">
-                <h3 class="fw-bold" style="color: #0761ac">{{ $aboutMe->title ?? '' }}</h3>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item bg-transparent px-0">{{ $aboutMe->content ?? '' }}</li>
-                </ul>
-                @if ($aboutMe->boton_text && $aboutMe->boton_link)
-                  <div class="buttons mt-4 d-flex flex-column flex-lg-row justify-content-center text-center">
-                    <a href="{{ $aboutMe->boton_link }}" class="btn btn-lg btn-primary btn-ecomm px-5 py-3" style="background: #09509d; color: #fff;">{{ $aboutMe->boton_text }}</a>
-                  </div>
-                @endif
-              </div>
-            </div>
-
           </div>
-        </div>
+        
       </div>
     </section>
     <!--start special product-->
 
-    <section class="mt-5">
-      {{-- <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1N8k3CJRxgW3Mtr9nf2-cWyOhw-xl4pc&ehbc=2E312F&noprof=1" width="100%" height="480"></iframe> --}}
-      <iframe src="https://www.google.com/maps/d/embed?mid=1N8k3CJRxgW3Mtr9nf2-cWyOhw-xl4pc&ehbc=2E312F" width="100%" height="480"></iframe>
-      {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d1949.8609170433426!2d-76.99967775524395!3d-12.199320946823878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x9105b9e4f36df983%3A0xda7e0f448ae09c7!2sAv.%20Prol.%20Huaylas%20600%2C%20Chorrillos%2015067!3m2!1d-12.1985!2d-76.9984812!5e0!3m2!1ses-419!2spe!4v1757276052455!5m2!1ses-419!2spe" 
-        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe> --}}
+    {{-- section mapa --}}
+    <section class="pt-5 pb-5" style="background: #f2f2f2;">
+      <div class="container py-5">
+        <div class="row align-items-center justify-content-between">
+
+          <div class="col-lg-6">
+            <img src="{{ asset('ecommerce/assets/images/MAPA.png') }}" class="w-100" alt="">
+          </div>
+
+          <div class="col-lg-6">
+
+            <span style="background: #002366; padding: 10px 20px; border-radius: 10px; color: white; text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 900 !important; ">REALIZAMOS</span>
+            <div class="mt-3">
+              <p class="pd-titulo_mapa" style="color: #103cad; font-size:55px; font-family: 'Orbitron', sans-serif; font-weight: 900 !important;">ENVIOS A TODO EL PERÚ</p>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mb-3 justify-content-start">
+              <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-02.png') }}" style="width: 30px;" alt="">
+              <span style="color: #888888ad; font-family: 'Orbitron', sans-serif;">Llevamos nuestros productos a cada región</span>
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-12 d-flex align-items-center justify-content-start" 
+                style="background: white; padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-03.png') }}" class="mx-1" style="width: 60px;" alt="">
+                <div class="content_texto_caja mx-1">
+                  <span style="color: #103cad; font-family: 'Arial'; font-weight: 700 !important;">Cantidad de ciudades o regiones a las que llegan <b style="font-weight: 950 !important;">(+24 regiones del Perú)</b></span>
+                </div>
+              </div>
+
+              <div class="col-lg-12 d-flex align-items-center justify-content-start" 
+                style="background: white; padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-06.png') }}" class="mx-1" style="width: 60px;" alt="">
+                <div class="content_texto_caja mx-1">
+                  <span style="color: #103cad; font-family: 'Arial'; font-weight: 700 !important;">Tiempo de Entrega <b style="font-weight: 950 !important;">(Despachos en 48/72 horas)</b></span>
+                </div>
+              </div>
+
+              <div class="col-lg-12 d-flex align-items-center justify-content-start" 
+                style="background: white; padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-07.png') }}" class="mx-1" style="width: 60px;" alt="">
+                <div class="content_texto_caja mx-1">
+                  <span style="color: #103cad; font-family: 'Arial'; font-weight: 700 !important;">Aliados logísticos <b style="font-weight: 950 !important;">(Con los principales operadores logísticos del país)</b></span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <!--start Brands-->
-    <section class="section-padding" data-aos="fade-up">
-      <div class="container">
+    <section class="section-padding" data-aos="fade-up" style="background: #042775">
+      <div class="container pt-5 pb-5">
         <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold" style="color: #0761ac">{{ $customers->titulo ?? '' }}</h3>
-          <p class="mb-0 text-capitalize">{{ $customers->subtitulo ?? '' }}</p>
+          <div class="text-center d-flex align-items-center justify-content-center mb-2">
+            <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-02.png') }}" style="width: 60px;" alt="">
+            <h3 class="mb-0 h3 text-uppercase text-center pd-title_clientes" style="color: white; font-size:45px; font-family: 'Orbitron', sans-serif; font-weight: 900 !important;">{{ $customers->titulo ?? '' }}</h3>
+            <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-01.png') }}" style="width: 60px;" alt="">
+          </div>
+          <p class="mb-0 text-capitalize" style="color: white">{{ $customers->subtitulo ?? '' }}</p>
         </div>
 
         <div class="brands">
@@ -427,122 +421,66 @@
     <!--end Brands-->
 
 
-    <!--start cartegory slider-->
-    {{-- <section class="cartegory-slider section-padding bg-section-2">
-      <div class="container">
-        <div class="text-center pb-3">
-          <h3 class="mb-0 h3 fw-bold">Nuestros Servicios</h3>
-          <p class="mb-0 text-capitalize">Desde el suministro hasta el soporte: todo lo que necesitas en sistemas de trabajo en altura.</p>
-        </div>
-        <div class="cartegory-box">
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 1</h5>
-                  <h6 class="mb-0 product-number fw-bold">856 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 2</h5>
-                  <h6 class="mb-0 product-number fw-bold">169 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 3</h5>
-                  <h6 class="mb-0 product-number fw-bold">589 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 4</h5>
-                  <h6 class="mb-0 product-number fw-bold">278 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 5</h5>
-                  <h6 class="mb-0 product-number fw-bold">985 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="shop-grid-type-4.html">
-            <div class="card">
-              <div class="card-body">
-                <div class="overflow-hidden">
-                  <img src="{{ asset('ecommerce/assets/web/servicio/servicio-1.jpg') }}" class="card-img-top rounded-0" alt="...">
-                </div>
-                <div class="text-center">
-                  <h5 class="mb-1 cartegory-name mt-3 fw-bold">Servicio 6</h5>
-                  <h6 class="mb-0 product-number fw-bold">489 Productos</h6>
-                </div>
-              </div>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section> --}}
-    <!--end cartegory slider-->
-
-
     <!--subscribe banner-->
-    <section class="product-thumb-slider subscribe-banner p-5" style="background: #51b0e8" data-aos="fade-up">
-      <div class="row">
-        <div class="col-12 col-lg-6 mx-auto">
-          <form method="post" class="text-center" action="{{ route('ecommerce.emailempleabilidad') }}">
-            @csrf
-            <h3 class="mb-0 fw-bold text-white">Trabaja con Nosotros <br> Únete al equipo de Grupo Altos</h3>
+    <section class="product-thumb-slider subscribe-banner py-5" style="background: #ffffff" data-aos="fade-up">
+      <div class="container">
+
+        <div class="row align-items-center justify-content-between">
+
+          <div class="col-lg-6">
+            <span style="background: #002366; padding: 10px 20px; border-radius: 10px; color: white; text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 900 !important; ">
+              TRABAJA CON NOSOTROS</span>
             <div class="mt-3">
-              <input type="text" class="form-control form-control-lg bubscribe-control rounded-0 px-5 py-3" name="email" placeholder="Ingresa tu Correo Electrónico">
+              <p class="pd-titulo_mapa" style="color: #103cad; font-size:55px; font-family: 'Orbitron', sans-serif; font-weight: 900 !important;">ÚNETE A NUESTRO EQUIPO</p>
             </div>
-            @error('email')
-                <div class="mt-2 alert alert-danger">{{ $message }}</div>
-            @enderror
-            @if (session('success'))
-                <div class="alert alert-success mt-2">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <div class="mt-3 d-grid">
-              <button type="submit" class="btn btn-lg btn-primary bubscribe-button px-5 py-3" style="background: #1558a2; color: #fff;">Enviar Email</button>
-            </div>
-          </form>
+            <form method="post" action="{{ route('ecommerce.emailempleabilidad') }}" class="d-flex flex-column">
+              @csrf
+              <label class="mb-2" style="font-size: 22px; color: #b1b1b1; font-weight: 900 !important; font-style: italic;">Envíanos un Correo</label>
+              <input type="text" name="email" placeholder="Escribe tu email..." class="form-control form-control-lg rounded-0 px-3 py-3 mb-2"/>
+              @error('email')
+                  <div class="mt-2 alert alert-danger">{{ $message }}</div>
+              @enderror
+              @if (session('success'))
+                  <div class="alert alert-success mt-2">
+                      {{ session('success') }}
+                  </div>
+              @endif
+              <button
+                class="mt-3"
+                type="submit"
+                style="color: white; background: #e75322; padding: 10px 20px; border-radius: 12px; border: none; font-weight: 900; transition: all 0.3s ease; cursor: pointer;"
+                onmouseover="this.style.background='#f06b45'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.2)';"
+                onmouseout="this.style.background='#e75322'; this.style.boxShadow='none';">
+                Enviar
+              </button>
+
+
+            </form>
+          </div>
+
+          <div class="col-lg-6 mx-auto">
+            <img src="{{ asset('ecommerce/assets/images/ingeniero-altos.png') }}" class="w-100" alt="">
+            {{-- <form method="post" class="text-center" action="{{ route('ecommerce.emailempleabilidad') }}">
+              @csrf
+              <h3 class="mb-0 fw-bold text-white">Trabaja con Nosotros <br> Únete al equipo de Grupo Altos</h3>
+              <div class="mt-3">
+                <input type="text" class="form-control form-control-lg bubscribe-control rounded-0 px-5 py-3" name="email" placeholder="Ingresa tu Correo Electrónico">
+              </div>
+              @error('email')
+                  <div class="mt-2 alert alert-danger">{{ $message }}</div>
+              @enderror
+              @if (session('success'))
+                  <div class="alert alert-success mt-2">
+                      {{ session('success') }}
+                  </div>
+              @endif
+              <div class="mt-3 d-grid">
+                <button type="submit" class="btn btn-lg btn-primary bubscribe-button px-5 py-3" style="background: #1558a2; color: #fff;">Enviar Email</button>
+              </div>
+            </form> --}}
+          </div>
         </div>
+
       </div>
     </section>
     <!--subscribe banner-->
@@ -645,4 +583,25 @@
     });
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#splide', {
+      type   : 'loop',
+      perPage: 4,
+      gap    : '1rem',
+      breakpoints: {
+        1200: {
+          perPage: 3,
+        },
+        1024: {
+          perPage: 2,
+        },
+        701: {
+          perPage: 1,
+        },
+      }
+    }).mount();
+  });
+</script>
+
 @endsection

@@ -6,6 +6,31 @@
 <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.snow.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/assets/libs/quill/quill.bubble.css') }}">
 
+<style>
+    .image-preview-card {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    }
+
+    .image-preview-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    }
+
+    .image-preview-card .card-body {
+    padding: 0.75rem;
+    text-align: center;
+    }
+
+    .remove-btn {
+    margin-top: 0.5rem;
+    }
+</style>
+
+
 @endsection
 
 @section('content')
@@ -42,57 +67,51 @@
                     <form action="{{ route('admin.bannerinicio.store') }}" method="post" class="col-lg-8 row g-3 mt-0" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="tipo" value="inicio" hidden>
-                        <div class="col-md-6">
-                            <label class="form-label">Titulo del Banner</label>
-                            <input type="text" class="form-control form-control-sm" aria-label="First name" name="titulo" value="{{ old('titulo') }}">
-                            @error('titulo')
-                                <div style="color:red;">{{ $message }}</div>
-                            @enderror
+
+                        <div class="form-group col-md-6">
+                            <label for="primer_banner">PRIMER BANNER</label>
+                            <input type="file" id="primer_banner" accept="image/*" class="form-control-file">
+                            <div id="preview-primer_banner" class="image-preview-container mt-3"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="inputPassword4" class="form-label">Imagen del Banner <b class="text-danger">(Recomendado: 601 x 540)</b></label>
-                            <input type="file" class="form-control form-control-sm" id="inputPassword4" name="imagen" value="{{ old('imagen') }}">
-                            @error('imagen')
-                                <div style="color:red;">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group col-md-6">
+                            <label for="primer_banner_movil">PRIMER BANNER (VERSION MOVIL)</label>
+                            <input type="file" id="primer_banner_movil" accept="image/*" class="form-control-file">
+                            <div id="preview-primer_banner_movil" class="image-preview-container mt-3"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="inputState" class="form-label">Estado</label>
-                            <select id="inputState" class="form-select form-select-sm" name="estado" value="{{ old('estado') }}">
-                                <option selected hidden>Elegir...</option>
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
-                            </select>
-                            @error('estado')
-                                <div style="color:red;">{{ $message }}</div>
-                            @enderror
+
+                        <div class="form-group col-md-6">
+                            <label for="segundo_banner">SEGUNDO BANNER</label>
+                            <input type="file" id="segundo_banner" accept="image/*" class="form-control-file">
+                            <div id="preview-segundo_banner" class="image-preview-container mt-3"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Fondo de Banner</label>
-                            <input type="color" class="form-control form-control-color border-0" id="exampleColorInput" value="#136ad0" title="Choose your color" name="fondo">
-                            @error('fondo')
-                                <div style="color:red;">{{ $message }}</div>
-                            @enderror
+                        <div class="form-group col-md-6">
+                            <label for="segundo_banner_movil">SEGUNDO BANNER (VERSION MOVIL)</label>
+                            <input type="file" id="segundo_banner_movil" accept="image/*" class="form-control-file">
+                            <div id="preview-segundo_banner_movil" class="image-preview-container mt-3"></div>
                         </div>
-                        <p class="alert alert-warning mb-0">Si no desea agregar un boton no complete los siguientes campos:</p>
-                        <div class="col-md-6">
-                            <label for="texto_boton" class="form-label">Texto de Boton</label>
-                            <input type="text" class="form-control form-control-sm border border-warning" id="texto_boton" name="texto_boton" value="{{ old('texto_boton') }}">
+
+                        <div class="form-group col-md-6">
+                            <label for="tercer_banner">TERCER BANNER</label>
+                            <input type="file" id="tercer_banner" accept="image/*" class="form-control-file">
+                            <div id="preview-tercer_banner" class="image-preview-container mt-3"></div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="url_boton" class="form-label">URL de Boton</label>
-                            <input type="text" class="form-control form-control-sm border border-warning" id="url_boton" name="url_boton" value="{{ old('url_boton') }}">
+                        <div class="form-group col-md-6">
+                            <label for="tercer_banner_movil">TERCER BANNER (VERSION MOVIL)</label>
+                            <input type="file" id="tercer_banner_movil" accept="image/*" class="form-control-file">
+                            <div id="preview-tercer_banner_movil" class="image-preview-container mt-3"></div>
                         </div>
-                        <div class="col-md-12">
-                            <label class="form-label">Texto - Contenido del Banner</label>
-                            <div class="card mb-0">
-                                <textarea name="contenido" id="contenido" hidden></textarea>
-                                <div id="editor"></div>
-                            </div>
-                            @error('contenido')
-                                <div style="color:red;">{{ $message }}</div>
-                            @enderror
+
+                        <div class="form-group col-md-6">
+                            <label for="cuarto_banner">CUARTO BANNER</label>
+                            <input type="file" id="cuarto_banner" accept="image/*" class="form-control-file">
+                            <div id="preview-cuarto_banner" class="image-preview-container mt-3"></div>
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="cuarto_banner_movil">CUARTO BANNER (VERSION MOVIL)</label>
+                            <input type="file" id="cuarto_banner_movil" accept="image/*" class="form-control-file">
+                            <div id="preview-cuarto_banner_movil" class="image-preview-container mt-3"></div>
+                        </div>
+
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary w-100">Guardar Banner</button>
                         </div>

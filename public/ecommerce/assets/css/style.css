@@ -243,7 +243,8 @@ h6 {
   .top-header .primary-menu .navbar-nav a.nav-link:focus,
   .top-header .primary-menu .nav-link.active,
   .top-header .primary-menu .show>.nav-link {
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
+    /* border-bottom: 1px solid #e75322; */
   }
 
   .primary-menu {

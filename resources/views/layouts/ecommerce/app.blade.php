@@ -22,12 +22,39 @@
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+ {{--  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet"> --}}
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
   @yield('styles')
   <script>
       const APP_URL = "{{ config('app.url') }}";
   </script>
   <style>
 
+    .color-blue1 {
+        color: #103cad !important;
+    }
+    .color-blue2 {
+        color: #042775 !important;
+    }
+
+    .color-orange1{
+        color: #e75322 !important;
+    }
+
+    .top-header .primary-menu .navbar-nav a.nav-link{
+      height: 0px !important;
+    }
+
+    .border-orange-button{
+      border-bottom: 2px solid #e75322 !important;
+    }
     .btn-outline-primary {
         --bs-btn-color: #002daa;
         --bs-btn-border-color: #002daa;
@@ -174,43 +201,43 @@
         <div class="offcanvas-body primary-menu">
           <ul class="navbar-nav justify-content-start flex-grow-1 gap-1">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.inicio') }}">Inicio</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.inicio') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.inicio') }}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.nosotros') }}">Nosotros</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.nosotros') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.nosotros') }}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.productos') }}">Productos</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.productos') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.productos') }}">Productos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.servicio') }}">Servicios</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.servicio') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.servicio') }}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact-us.html">Proyectos</a>
+              <a class="nav-link color-blue2 " href="">Proyectos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.blog') }}">Blog</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.blog') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.blog') }}">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('ecommerce.contactanos') }}">Contáctanos</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.contactanos') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.contactanos') }}">Contáctanos</a>
             </li>
           </ul>
         </div>
       </div>
       <ul class="navbar-nav secondary-menu flex-row">
         
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link dark-mode-icon" href="javascript:;">
             <div class="mode-icon">
               <i class="bi bi-moon"></i>
             </div>
           </a>
-        </li>
+        </li> --}}
 
-        <li class="nav-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+        <li class="nav-item p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" style="background: #e75322; border-radius: 49%; margin-right: 10px;">
           <a class="nav-link position-relative" href="javascript:;">
             <div class="cart-badge"></div>
-            <i class="bi bi-basket2"></i>
+            <i class="bi bi-basket2" style="color: white;"></i>
           </a>
         </li>
 

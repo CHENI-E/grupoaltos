@@ -66,7 +66,7 @@
                                         <div class="hstack gap-2 flex-wrap">
                                             <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
                                                     class="ri-edit-line"></i></a>
-                                            <a href="javascript:void(0);" class="text-danger fs-14 lh-1"><i
+                                            <a href="javascript:void(0);" class="text-danger fs-14 lh-1 btn_delete_usuario" data-id="{{ $usuario->id }}"><i
                                                     class="ri-delete-bin-5-line"></i></a>
                                         </div>
                                         {{-- <a href="{{ route('admin.usuario.edit', $usuario) }}">Editar</a>
@@ -103,4 +103,5 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('admin/assets/js/usuario/index.js') }}?v={{ time() }}"></script>
 @endsection
