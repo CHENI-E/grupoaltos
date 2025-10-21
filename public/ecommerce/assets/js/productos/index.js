@@ -132,9 +132,8 @@ $(document).ready(function () {
         cargarProductos();
     });
 
-    // Cuando cambias un filtro
-    $('.categoria-checkbox, input[name="exampleRadios"]').on('change keyup', function () {
-        cargarProductos(true); // Reinicia
+    /* $('.categoria-checkbox, input[name="exampleRadios"]').on('change keyup', function () {
+        cargarProductos(true);
     });
 
     $('#filter_precio').on('click', function () {
@@ -146,5 +145,5 @@ $(document).ready(function () {
         debounceTimer = setTimeout(function () {
             cargarProductos(true);
         }, 1000); 
-    });
+    }); */
 });

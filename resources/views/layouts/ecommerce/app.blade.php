@@ -56,36 +56,36 @@
       border-bottom: 2px solid #e75322 !important;
     }
     .btn-outline-primary {
-        --bs-btn-color: #002daa;
-        --bs-btn-border-color: #002daa;
+        --bs-btn-color: #042775;
+        --bs-btn-border-color: #042775;
         --bs-btn-hover-color: #fff;
-        --bs-btn-hover-bg: #002daa;
-        --bs-btn-hover-border-color: #002daa;
+        --bs-btn-hover-bg: #042775;
+        --bs-btn-hover-border-color: #042775;
         --bs-btn-focus-shadow-rgb: 13, 110, 253;
         --bs-btn-active-color: #fff;
-        --bs-btn-active-bg: #002daa;
-        --bs-btn-active-border-color: #002daa;
+        --bs-btn-active-bg: #042775;
+        --bs-btn-active-border-color: #042775;
         --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-        --bs-btn-disabled-color: #002daa;
+        --bs-btn-disabled-color: #042775;
         --bs-btn-disabled-bg: transparent;
-        --bs-btn-disabled-border-color: #002daa;
+        --bs-btn-disabled-border-color: #042775;
         --bs-gradient: none;
     }
     .btn-primary {
         --bs-btn-color: #fff !important;
-        --bs-btn-bg: #002daa !important;
-        --bs-btn-border-color: #002daa !important;
+        --bs-btn-bg: #042775 !important;
+        --bs-btn-border-color: #042775 !important;
         --bs-btn-hover-color: #fff !important;
-        --bs-btn-hover-bg: #0b5ed7 !important;
-        --bs-btn-hover-border-color: #0a58ca !important;
+        --bs-btn-hover-bg: #103cad !important;
+        --bs-btn-hover-border-color: #103cad !important;
         --bs-btn-focus-shadow-rgb: 49, 132, 253 !important;
         --bs-btn-active-color: #fff !important;
-        --bs-btn-active-bg: #0a58ca !important;
-        --bs-btn-active-border-color: #0a53be !important;
+        --bs-btn-active-bg: #103cad !important;
+        --bs-btn-active-border-color: #103cad !important;
         --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
         --bs-btn-disabled-color: #fff !important;
-        --bs-btn-disabled-bg: #002daa !important;
-        --bs-btn-disabled-border-color: #002daa !important;
+        --bs-btn-disabled-bg: #042775 !important;
+        --bs-btn-disabled-border-color: #042775 !important;
     }
 
     .whatsapp-float {

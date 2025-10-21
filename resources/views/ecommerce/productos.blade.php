@@ -36,10 +36,10 @@
     border-bottom: 12px solid transparent;
     border-left: 6px solid #dc3545; /* Color igual que el fondo */
   }
-  .bg-light{
+  /* .bg-light{
     background: #0c529e !important;
     color: white  !important;
-  }
+  } */
 </style>
 
 <!--start page content-->
@@ -58,11 +58,113 @@
     </div>
 
 
+    
+
+    <section class="container my-3">
+
+
+      <div style="margin: 0; font-family: 'Arial', sans-serif; display: flex; justify-content: flex-end; align-items: center;">
+
+        <div style="width: 100%; max-width: 500px; display: flex; align-items: center; background-color: #ffffff; border-radius: 25px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden; transition: all 0.3s ease; border: 2px solid transparent;" 
+            onmouseover="this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.15)'; this.style.borderColor='#1E5A9E';" 
+            onmouseout="this.style.boxShadow='0 2px 10px rgba(0, 0, 0, 0.1)'; this.style.borderColor='transparent';">
+            
+            <!-- Ícono de búsqueda -->
+            <div style="padding-left: 20px; display: flex; align-items: center; color: #999999;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+
+            <!-- Input de búsqueda -->
+            <input 
+                type="text" 
+                placeholder="¿Qué estás buscando hoy?" 
+                id="filtroNombre"
+                style="flex: 1; border: none; outline: none; padding: 14px 15px; font-size: 14px; color: #333333; background-color: transparent; font-family: 'Arial', sans-serif;"
+                onfocus="this.parentElement.style.borderColor='#1E5A9E'; this.parentElement.style.boxShadow='0 4px 20px rgba(30, 90, 158, 0.2)';"
+                onblur="this.parentElement.style.borderColor='transparent'; this.parentElement.style.boxShadow='0 2px 10px rgba(0, 0, 0, 0.1)';"
+            >
+
+            <!-- Botón de búsqueda -->
+            <button 
+                onclick="cargarProductos(true)"
+                style="background-color: #042775; color: #ffffff; border: none; padding: 12px 25px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; border-radius: 0; margin: 0; font-family: 'Arial', sans-serif; letter-spacing: 0.5px;"
+                onmouseover="this.style.backgroundColor='#164a85'; this.style.transform='scale(1.05)';"
+                onmouseout="this.style.backgroundColor='#1E5A9E'; this.style.transform='scale(1)';"
+                onmousedown="this.style.transform='scale(0.95)';"
+                onmouseup="this.style.transform='scale(1.05)';"
+            >
+                Buscar
+            </button>
+        </div>
+
+        <script>
+
+            // Permitir buscar con Enter
+            document.getElementById('filtroNombre').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    cargarProductos(true);
+                }
+            });
+
+            // Animación de shake
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                    body {
+                        justify-content: center !important;
+                        padding: 15px !important;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    div[style*="max-width: 500px"] {
+                        max-width: 100% !important;
+                    }
+                    
+                    button {
+                        padding: 12px 20px !important;
+                        font-size: 13px !important;
+                    }
+                    
+                    input {
+                        font-size: 13px !important;
+                        padding: 12px 10px !important;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+
+    </div>
+
+
+
+
+
+      {{-- <div class="d-flex align-items-center justify-content-between bg-light p-2 w-100">
+        <form class="w-100">
+          <div class="input-group">
+            <input type="input" class="form-control rounded-0" placeholder="Ingrese el nombre del Producto" id="filtroNombre">
+          </div>
+        </form> 
+      </div> --}}
+    </section>
+
    <!--start product grid-->
-   <section class="py-4">
+   <section class="pb-4">
     <h5 class="mb-0 fw-bold d-none">Product Grid</h5>
     <div class="container">
-      <div class="btn btn-dark btn-ecomm d-xl-none position-fixed top-50 start-0 translate-middle-y"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarFilter"><span><i class="bi bi-funnel me-1"></i> Filtros</span></div>
+      <div class="btn btn-primary btn-ecomm d-xl-none position-fixed top-50 start-0 translate-middle-y"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarFilter"><span><i class="bi bi-funnel me-1"></i> Filtros</span></div>
        <div class="row">
           <div class="col-12 col-xl-3 filter-column">
               <nav class="navbar navbar-expand-xl flex-wrap p-0">
@@ -78,16 +180,15 @@
                             <h5 class="mb-0 fw-bold">Filtros</h5>
                         </div>
                         <div class="card-body">
-                            <h6 class="p-1 fw-bold bg-light">Categorías</h6>
+                            <div class="d-flex align-items-center" style="background: rgba(216, 216, 216, 0.705); border-radius: 5px; padding: 5px 10px; margin-bottom: 10px;">
+                              <img src="{{ asset('ecommerce/assets/images/ICONOS-TIENDA/ICONOS-06.png') }}" width="30px" alt="">
+                              <span style="color: #0c529e; font-weight: 950;">Categorías</span>
+                            </div>
+                            {{-- <h6 class="p-1 fw-bold bg-light">Categorías</h6> --}}
                             <div class="categories">
                               <div class="categories-wrapper height-1 p-1">
-                                {{-- <input type="text" id="categoriaSeleccionada" value="{{ request('categoria') ?? '' }}"> --}}
                                 @php
                                     $categoriaSeleccionada = request('categoria'); 
-                                    /* $categoriasSeleccionadas = request('categoria', []);
-                                    if (!is_array($categoriasSeleccionadas)) {
-                                        $categoriasSeleccionadas = [$categoriasSeleccionadas];
-                                    } */
                                 @endphp
 
                                 @foreach ($category as $item)
@@ -110,19 +211,27 @@
                             </div>
                             <hr>
                             <div class="Price">
-                              <h6 class="p-1 fw-bold bg-light">Precio</h6>
+                              <div class="d-flex align-items-center" style="background: rgba(216, 216, 216, 0.705); border-radius: 5px; padding: 5px 10px; margin-bottom: 10px;">
+                                <img src="{{ asset('ecommerce/assets/images/ICONOS-TIENDA/ICONOS-07.png') }}" width="30px" alt="">
+                                <span style="color: #0c529e; font-weight: 950;">Precio</span>
+                              </div>
+                              {{-- <h6 class="p-1 fw-bold bg-light">Precio</h6> --}}
                               <div class="Price-wrapper p-1">
                                 <div class="input-group">
                                   <input type="text" class="form-control rounded-0" placeholder="s/10" id="minPrecio">
                                   <span class="input-group-text bg-section-1 border-0">-</span>
                                   <input type="text" class="form-control rounded-0" placeholder="s/10000" id="maxPrecio">
-                                  <button type="button" class="btn btn-outline-dark rounded-0 ms-2" id="filter_precio"><i class="bi bi-chevron-right"></i></button>
+                                  <button type="button" class="btn btn-outline-primary rounded-0 ms-2" id="filter_precio"><i class="bi bi-chevron-right"></i></button>
                                 </div>
                               </div>
                             </div>
                             <hr>
                             <div class="discount">
-                              <h6 class="p-1 fw-bold bg-light">Rango de Descuento</h6>
+                              <div class="d-flex align-items-center" style="background: rgba(216, 216, 216, 0.705); border-radius: 5px; padding: 5px 10px; margin-bottom: 10px;">
+                                <img src="{{ asset('ecommerce/assets/images/ICONOS-TIENDA/ICONOS-05.png') }}" width="30px" alt="">
+                                <span style="color: #0c529e; font-weight: 950;">Rango de Descuento</span>
+                              </div>
+                              {{-- <h6 class="p-1 fw-bold bg-light">Rango de Descuento</h6> --}}
                               <div class="discount-wrapper p-1">
                                 <div class="form-check">
                                   <input class="form-check-input" name="exampleRadios" type="radio" value="option1" id="chekDisc1">
@@ -160,20 +269,6 @@
             @endif
             <div class="shop-right-sidebar">
 
-              <div class="card rounded-0">
-                <div class="card-body p-2">
-                  <div class="d-flex align-items-center justify-content-between bg-light p-2 w-100">
-                    {{-- <div class="product-count">{{ count($product) }} artículos encontrados</div> --}}
-                    <form class="w-100">
-                      <div class="input-group">
-                        {{-- <span class="input-group-text bg-transparent rounded-0 border-0">Buscar</span> --}}
-                        <input type="input" class="form-control rounded-0" placeholder="Ingrese el nombre del Producto" id="filtroNombre">
-                      </div>
-                    </form> 
-                  </div>
-                </div>
-              </div>
-
               <div class="product-grid mt-4">
                 <!-- Spinner -->
                 <div id="spinner-carga" class="text-center my-4" style="display: none;">
@@ -193,7 +288,7 @@
                 <!-- Botón cargar más -->
                 <div class="row mt-5">
                   <div class="col text-center">
-                    <button id="btn-cargar-mas" class="btn btn-dark" style="background: #0c529e;">Cargar más</button>
+                    <button id="btn-cargar-mas" class="btn btn-dark" style="background: #042775;">Cargar más</button>
                   </div>
                 </div>
               </div>
