@@ -185,7 +185,7 @@
    <!--end loader-->
 
   <!--start top header-->
-  <header class="top-header">
+  <header class="top-header" style="border-radius: 0 0 30px 30px !important; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.608);">
     <nav class="navbar navbar-expand-xl w-100 navbar-dark container gap-3">
       <a class="navbar-brand d-none d-xl-inline" href="{{ route('ecommerce.inicio') }}"><img src="{{ asset('ecommerce/assets/web/logo/LOGO-ALTOS-COLOR.png') }}" class="logo-img" alt=""></a>
       <a class="mobile-menu-btn d-inline d-xl-none" href="javascript:;" data-bs-toggle="offcanvas"
@@ -257,63 +257,51 @@
 
 
   <!--start footer-->
-  <section class="footer-section bg-section-2 section-padding">
+  <section class="footer-section bg-section-2 section-padding pb-0" style="background: #042775">
     <div class="container">
        <div class="row row-cols-1 row-cols-lg-4 g-4">
         <div class="col">
           <div class="footer-widget-6">
-            <img src="{{ asset('ecommerce/assets/web/logo/LOGO-ALTOS-COLOR.png') }}" class="logo-img mb-3" alt="">
-            <h5 class="mb-3 fw-bold">Sobre Nosotros</h5>
+            <img src="{{ asset('ecommerce/assets/web/logo/LOGO-EDITABLE-PNG-BLANCO.png') }}" class="logo-img mb-3" style="width: 200px" alt="">
+            {{-- <h5 class="mb-3 fw-bold">Sobre Nosotros</h5>
               <p class="mb-2">
                 Fabricamos y comercializamos andamios multifuncionales y multidireccionales, estos han sido adaptados bajos las normativas peruanas y cumpliendo con todas 
                 las exigencias y seguridad en obra para trabajos en altura. También contamos con andamios de fachadas y torres móviles.
-              </p>
+              </p> --}}
           </div>
         </div>
         <div class="col">
-          {{-- <div class="footer-widget-7">
-            <h5 class="mb-3 fw-bold">Explore</h5>
-             <ul class="widget-link list-unstyled">
-               <li><a href="javascript:;">Fashion</a></li>
-               <li><a href="javascript:;">Women</a></li>
-               <li><a href="javascript:;">Furniture</a></li>
-               <li><a href="javascript:;">Shoes</a></li>
-               <li><a href="javascript:;">Topwear</a></li>
-               <li><a href="javascript:;">Brands</a></li>
-               <li><a href="javascript:;">Kids</a></li>
-             </ul>
-          </div> --}}
         </div>
         <div class="col">
           <div class="footer-widget-8">
-            <h5 class="mb-3 fw-bold">Compañia</h5>
+            <h6 class="mb-3 fw-bold" style="color: #e75322; font-family: 'Orbitron', sans-serif !important;">Buscar</h6>
              <ul class="widget-link list-unstyled">
-               <li><a href="{{ route('ecommerce.inicio') }}">Inicio</a></li>
-               <li><a href="{{ route('ecommerce.nosotros') }}">Nosotros</a></li>
-               <li><a href="{{ route('ecommerce.servicio') }}">Servicios</a></li>
-               <li><a href="javascript:;">Proyectos</a></li>
-               <li><a href="{{ route('ecommerce.blog') }}">Blog</a></li>
-               <li><a href="{{ route('ecommerce.contactanos') }}">Contáctanos</a></li>
+               <li><a href="{{ route('ecommerce.inicio') }}" style="color: white">Inicio</a></li>
+               <li><a href="{{ route('ecommerce.nosotros') }}" style="color: white">Nosotros</a></li>
+               <li><a href="{{ route('ecommerce.servicio') }}" style="color: white">Servicios</a></li>
+               <li><a href="javascript:;" style="color: white">Proyectos</a></li>
+               <li><a href="{{ route('ecommerce.blog') }}" style="color: white">Blog</a></li>
+               <li><a href="{{ route('ecommerce.contactanos') }}" style="color: white">Contáctanos</a></li>
              </ul>
           </div>
         </div>
         <div class="col">
           <div class="footer-widget-9">
-            <h5 class="mb-3 fw-bold">Redes Sociales</h5>
+            <h6 class="mb-3 fw-bold" style="color: #e75322; font-family: 'Orbitron', sans-serif !important;">Redes Sociales</h6>
              <div class="social-link d-flex align-items-center gap-2">
-               <a href="https://www.facebook.com/andamiosaltos" target="_blank"><i class="bi bi-facebook"></i></a>
-               <a href="https://www.linkedin.com/in/andamios-altos/" target="_blank"><i class="bi bi-linkedin"></i></a>
-               <a href="https://www.youtube.com/@grupoaltos" target="_blank"><i class="bi bi-youtube"></i></a>
-               <a href="https://www.instagram.com/grupoaltos/" target="_blank"><i class="bi bi-instagram"></i></a>
-               <a href="https://www.tiktok.com/@grupoaltos" target="_blank"><i class="bi bi-tiktok"></i></a>
+               <a href="https://www.facebook.com/andamiosaltos" target="_blank" style="background: white;"><i class="bi bi-facebook" style="color: #042775;"></i></a>
+               <a href="https://www.linkedin.com/in/andamios-altos/" target="_blank" style="background: white;"><i class="bi bi-linkedin" style="color: #042775;"></i></a>
+               <a href="https://www.youtube.com/@grupoaltos" target="_blank" style="background: white;"><i class="bi bi-youtube" style="color: #042775;"></i></a>
+               <a href="https://www.instagram.com/grupoaltos/" target="_blank" style="background: white;"><i class="bi bi-instagram" style="color: #042775;"></i></a>
+               <a href="https://www.tiktok.com/@grupoaltos" target="_blank" style="background: white;"><i class="bi bi-tiktok" style="color: #042775;"></i></a>
              </div>
              <div class="mb-3 mt-3">
-              <h5 class="mb-0 fw-bold">Ayuda</h5>
-              <p class="mb-0 text-muted">ventas@grupoaltos.com.pe</p>
+              <h6 class="mb-0 fw-bold" style="color: #e75322; font-family: 'Orbitron', sans-serif !important;">Ayuda</h6>
+              <p class="mb-0 text-muted" style="color: white !important;">ventas@grupoaltos.com.pe</p>
              </div>
              <div class="">
-              <h5 class="mb-0 fw-bold">Télefono</h5>
-              <p class="mb-0 text-muted">994 119 444</p>
+              <h6 class="mb-0 fw-bold" style="color: #e75322; font-family: 'Orbitron', sans-serif !important;">Télefono</h6>
+              <p class="mb-0 text-muted" style="color: white !important;">994 119 444</p>
              </div>
           </div>
         </div>
@@ -324,8 +312,8 @@
   </section>
   <!--end footer-->
 
-  <footer class="footer-strip text-center py-3 bg-section-2 border-top positon-absolute bottom-0">
-    <p class="mb-0 text-muted">©{{ date('Y') }} Grupo Altos | Todos los derechos reservados.</p>
+  <footer class="footer-strip text-center py-3 bg-section-2 border-top positon-absolute bottom-0" style="background: #042775">
+    <p class="mb-0 text-muted" style="color: white !important;">©{{ date('Y') }} Grupo Altos | Todos los derechos reservados.</p>
   </footer>
 
 

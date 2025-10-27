@@ -448,9 +448,7 @@
         <p style="color: #e75322; font-weight: 800;">Nuestro compromiso, calidad y seguridad en cada obra</p>
       </div>
       <div class="conten_banner_nosotros">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, nulla minima aperiam, modi ea quas odit et accusamus eum placeat consequatur unde t
-          empore velit. Illum obcaecati sunt similique dicta velit culpa et iure rerum, nisi quia perferendis deserunt quam exercitationem quis tempore, aperi
-          am facilis, voluptatum repudiandae repellendus corporis sed suscipit! Beatae veritatis tenetur nesciunt aspernatur? Vero, architecto vitae! Ut deser.</p>
+        <p>Grupo Altos, empresa peruana líder en andamiaje seguro y versátil. Ofrecemos soluciones que optimizan procesos, impulsan la productividad y protegen a los trabajadores.</p>
       </div>
       <img src="{{ asset('ecommerce/assets/images/nosotros.png') }}" width="100%" alt="">
     </div>
