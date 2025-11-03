@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use App\Mail\ContactanosEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Banner;
 
 class ContactanosController extends Controller
 {
     public function index()
     {
-        return view('ecommerce.contactanos');
+        $banners = Banner::where('tipo', 'contactanos')->get();
+        return view('ecommerce.contactanos', compact('banners'));
     }
 
     public function emailContactanos(Request $request)

@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Banners</li>
             </ol>
         </nav>
-        <h1 class="page-title fw-medium fs-18 mb-0">Banners de Inicio</h1>
+        <h1 class="page-title fw-medium fs-18 mb-0">Banners Cabezeras de Pagínas</h1>
     </div>
 </div>
 <!-- Page Header Close -->

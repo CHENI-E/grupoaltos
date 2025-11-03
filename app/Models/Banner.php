@@ -12,7 +12,6 @@ class Banner extends Model
         'tipo',
         'titulo',
         'imagen',
-        'contenido',
         'fondo',
         'texto_boton',
         'url_boton',

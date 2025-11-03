@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\Banner;
 
 class BlogController extends Controller
 {
@@ -12,10 +13,11 @@ class BlogController extends Controller
     public function index()
     {
         $blog = Blog::where('estado', 1)->get();
+        $banners = Banner::where('tipo', 'blog')->get();
         $blogRecientes = Blog::where('estado', 1)
             ->take(4)
             ->get();
-        return view('ecommerce.blog', compact('blog', 'blogRecientes'));
+        return view('ecommerce.blog', compact('blog', 'blogRecientes', 'banners'));
     }
 
     public function detalle($slug)

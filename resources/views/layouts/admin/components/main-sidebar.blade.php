@@ -60,9 +60,6 @@
                                     <li class="slide">
                                         <a href="{{ route('admin.bannerinicio.index') }}" class="side-menu__item">Banners Inicio</a>
                                     </li>
-                                    <li class="slide">
-                                        <a href="form-select2.php" class="side-menu__item">Banners Nosotros</a>
-                                    </li>
                                 </ul>
                             </li>
                             <!-- End::slide -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Banner;
 
 class ServicioController extends Controller
 {
@@ -12,7 +13,8 @@ class ServicioController extends Controller
     public function index()
     {
         $servicios = Service::where('estado', 1)->get();
-        return view('ecommerce.servicio', compact('servicios'));
+        $banners = Banner::where('tipo', 'servicios')->get();
+        return view('ecommerce.servicio', compact('servicios', 'banners'));
     }
     
     public function viewdetalle($slug)

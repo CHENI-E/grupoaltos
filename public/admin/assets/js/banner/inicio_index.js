@@ -7,8 +7,8 @@ $(document).ready(function() {
         dataSrc: ''
       },
       columns: [
-        { data: 'id', title: 'ID' },
-        { data: 'titulo', title: 'Título' },
+        /* { data: 'id', title: 'ID', defaultContent: '' }, */
+        { data: 'titulo', title: 'Título', defaultContent: '' },
         { data: 'imagen', title: 'Imagen', render: function(data, type, row) {
             return `<img src="${APP_URL}${data}" alt="${row.titulo}" style="width: 100px; height: auto;">`;
           }
@@ -23,7 +23,7 @@ $(document).ready(function() {
         },
         {
           data: null, title: 'Acciones', render: function(data, type, row) {
-            return `<a class="text-primary mx-3" href="javascript:void(0)" onclick="window.location.href='bannerinicio/edit/${row.id}'">
+            return `<a hidden class="text-primary mx-3" href="javascript:void(0)" onclick="window.location.href='bannerinicio/edit/${row.id}'">
                         <i class="bi bi-pencil-square"></i>
                     </a>
                     <a class="text-danger mx-3" href="javascript:void(0)" onclick="deleteBanner(${row.id})">

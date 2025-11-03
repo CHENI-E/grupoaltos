@@ -14,13 +14,56 @@
     <!--start page content-->
 <div class="page-content">
 
-    <div class="">
+    {{-- <div class="">
         <img src="{{ asset('ecommerce/assets/images/NUESTRO SERVICIOS.png') }}" class="w-100" alt="">
+    </div> --}}
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @forelse ($banners as $index => $banner)
+                {{-- {{ dd($banner->imagen) }} --}}
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    @if ($banner->url_boton)
+                        <a href="{{ $banner->url_boton }}" target="_blank">
+                            <img 
+                                data-desktop="{{ asset($banner->imagen) }}" 
+                                data-mobile="{{ asset($banner->imagen_movil) }}" 
+                                class="d-block w-100" 
+                                alt="{{ $banner->titulo ?? 'Banner' }}" 
+                                loading="lazy"
+                            >
+                        </a>
+                    @else
+                        <img 
+                            data-desktop="{{ asset($banner->imagen) }}" 
+                            data-mobile="{{ asset($banner->imagen_movil) }}" 
+                            class="d-block w-100" 
+                            alt="{{ $banner->titulo ?? 'Banner' }}"
+                        >
+                    @endif
+                </div>
+            @empty
+                <div class="carousel-item active">
+                    {{-- <img src="{{ asset('ecommerce/assets/images/NUESTRO SERVICIOS.png') }}" class="d-block w-100" alt="Banner predeterminado"> --}}
+                </div>
+            @endforelse
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
     <div class="container m-auto">
         {{-- <img src="{{ asset('ecommerce/assets/web/banner_inicio/banner_servcios.png') }}" class="w-100" alt=""> --}}
         <img src="{{ asset('ecommerce/assets/images/servicios-20-años.png') }}" class="w-100" alt="">
     </div>
+
+    {{-- {{ dd($banners) }} --}}
 
    <!--start product details-->
     <section class="section-padding">
@@ -75,5 +118,31 @@
 
 </div>
   <!--end page content-->
+
+@endsection
+
+@section('scripts')
+
+<script>
+  $(document).ready(function() {
+      function updateBannerImages() {
+          const isMobile = $(window).width() <= 768;
+
+          $('#carouselExampleControls .carousel-item img').each(function() {
+              const desktop = $(this).data('desktop');
+              const mobile = $(this).data('mobile');
+              $(this).attr('src', isMobile ? mobile : desktop);
+          });
+      }
+
+      // Ejecutar al cargar
+      updateBannerImages();
+
+      // Ejecutar cada vez que redimensionas la ventana
+      $(window).on('resize', function() {
+          updateBannerImages();
+      });
+  });
+</script>
 
 @endsection

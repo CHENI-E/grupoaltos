@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 
 class BannerInicioController extends Controller
 {
     
     public function index()
     {
-        return view('admin.banner.inicio.index');
+        $banners = Banner::where('tipo', 'inicio')->get();
+        return view('admin.banner.inicio.index', compact('banners'));
     }
 
     public function getData()
     {
-        $data = Banner::where('tipo', 'inicio')->get();
+        $data = Banner::all();
         return response()->json($data);
     }
 
@@ -27,36 +31,81 @@ class BannerInicioController extends Controller
 
     public function store(Request $request)
     {
-
-        $validate = $request->validate([
+        $validated = $request->validate([
             'tipo' => 'required|string|max:255',
-            'titulo' => 'required|string|max:255',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'contenido' => 'required|string',
-            'fondo' => 'required|string|max:7',
-            'texto_boton' => 'nullable|string|max:50',
-            'url_boton' => 'nullable|url|max:255',
-            'estado' => 'required|boolean',
+            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'banner_movil' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url' => 'nullable|url|max:255',
         ]);
 
-        if ($request->hasFile('imagen')) {
-            $file = $request->file('imagen');
-            $nombreImagen = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $ruta = 'ecommerce/assets/web/banner_inicio';
-            $file->move(public_path($ruta), $nombreImagen);
-            $validate['imagen'] = $ruta . '/' . $nombreImagen;
+        if (env('PRODUCTION') == 1) {
+            $ruta = '../public_html/ecommerce/assets/web/banner_cabezeras';
+        } else {
+            $ruta = 'ecommerce/assets/web/banner_cabezeras';
         }
 
-        Banner::create($validate);
-        return redirect()->route('admin.bannerinicio.index')->with('success', 'Banner creado exitosamente.');
-    }
+        try {
+            DB::beginTransaction();
 
+            $bannerPath = null;
+            if ($request->hasFile('banner')) {
+                $file = $request->file('banner');
+                $nombreImagen = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($ruta), $nombreImagen);
+                $bannerPath = $ruta . '/' . $nombreImagen;
+            }
+
+            $bannerMovilPath = null;
+            if ($request->hasFile('banner_movil')) {
+                $file = $request->file('banner_movil');
+                $nombreImagen = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($ruta), $nombreImagen);
+                $bannerMovilPath = $ruta . '/' . $nombreImagen;
+            }
+
+            $banner = new Banner();
+            $banner->tipo = $validated['tipo'];
+            $banner->titulo = 'Banner de '.$validated['tipo'];
+            $banner->imagen = $bannerPath;
+            $banner->imagen_movil = $bannerMovilPath;
+            $banner->url_boton = $validated['url'] ?? null;
+            $banner->save();
+
+            DB::commit();
+
+            return redirect()
+                ->route('admin.bannerinicio.index')
+                ->with('success', 'Banner creado exitosamente.');
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::error('Error al crear banner: ' . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+            ]);
+            return back()
+                ->withInput()
+                ->withErrors(['error' => 'Ocurrió un error al crear el banner. Inténtelo nuevamente.']);
+        }
+    }
 
     public function delete($id)
     {
         $banner = Banner::findOrFail($id);
-        if ($banner->imagen && file_exists(public_path($banner->imagen))) {
-            unlink(public_path($banner->imagen));
+
+        if (env('PRODUCTION') == 1) {
+            $filePath = base_path('../public_html/' . $banner->imagen);
+            $filePathMovil = base_path('../public_html/' . $banner->imagen_movil);
+        } else {
+            $filePath = public_path($banner->imagen);
+            $filePathMovil = public_path($banner->imagen_movil);
+        }
+
+        if ($banner->imagen && $filePath) {
+            unlink($filePath);
+        }
+        if ($banner->imagen_movil && $filePathMovil) {
+            unlink($filePathMovil);
         }
         $banner->delete();
         return response()->json(['success' => 'Banner eliminado exitosamente.']);
