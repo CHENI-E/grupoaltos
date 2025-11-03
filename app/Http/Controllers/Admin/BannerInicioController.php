@@ -39,9 +39,10 @@ class BannerInicioController extends Controller
         ]);
 
         if (env('PRODUCTION') == 1) {
-            $ruta = '../public_html/ecommerce/assets/web/banner_cabezeras';
+            /* $ruta = base_path('../public_html/uploads/categorias'); */
+            $ruta = base_path('../public_html/ecommerce/assets/web/banner_cabezeras');
         } else {
-            $ruta = 'ecommerce/assets/web/banner_cabezeras';
+            $ruta = public_path('ecommerce/assets/web/banner_cabezeras');
         }
 
         try {
@@ -51,16 +52,16 @@ class BannerInicioController extends Controller
             if ($request->hasFile('banner')) {
                 $file = $request->file('banner');
                 $nombreImagen = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path($ruta), $nombreImagen);
-                $bannerPath = $ruta . '/' . $nombreImagen;
+                $file->move($ruta, $nombreImagen);
+                $bannerPath = 'ecommerce/assets/web/banner_cabezeras' . '/' . $nombreImagen;
             }
 
             $bannerMovilPath = null;
             if ($request->hasFile('banner_movil')) {
                 $file = $request->file('banner_movil');
                 $nombreImagen = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path($ruta), $nombreImagen);
-                $bannerMovilPath = $ruta . '/' . $nombreImagen;
+                $file->move($ruta, $nombreImagen);
+                $bannerMovilPath = 'ecommerce/assets/web/banner_cabezeras' . '/' . $nombreImagen;
             }
 
             $banner = new Banner();
