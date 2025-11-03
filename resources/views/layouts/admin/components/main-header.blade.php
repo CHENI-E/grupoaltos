@@ -7,7 +7,7 @@
                     <div class="header-content-left">
 
                         <!-- Start::header-element -->
-                        <div class="header-element">
+                        {{-- <div class="header-element">
                             <div class="horizontal-logo">
                                 <a href="index.php" class="header-logo">
                                     <img src="{{ asset('admin/assets/images/brand-logos/desktop-logo.png') }}" alt="logo" class="desktop-logo">
@@ -18,7 +18,7 @@
                                     <img src="{{ asset('admin/assets/images/brand-logos/desktop-white.png') }}" alt="logo" class="desktop-white">
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End::header-element -->
 
                         <!-- Start::header-element -->
@@ -338,7 +338,7 @@
                             <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <img src="{{ asset('admin/assets/images/faces/15.jpg') }}" alt="img" class="avatar custom-header-avatar avatar-rounded">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="img" class="avatar custom-header-avatar avatar-rounded">
                                     </div>
                                 </div>
                             </a>
