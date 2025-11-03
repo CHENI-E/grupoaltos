@@ -66,7 +66,7 @@
                         </a>
                         <!-- End::header-link|dropdown-toggle -->
                         <ul class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                            <li>
+                            <!-- <li>
                                 <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="d-flex align-items-center">
@@ -133,7 +133,7 @@
                                     </span>
                                     Русский
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <!-- End::header-element -->

@@ -36,7 +36,7 @@
 
         <!-- Loader -->
         <div id="loader" >
-            <img src="{{ asset('admin/assets/images/media/loader.svg') }}" alt="">
+            {{-- <img src="{{ asset('admin/assets/images/media/loader.svg') }}" alt=""> --}}
         </div>
         <!-- Loader -->
 

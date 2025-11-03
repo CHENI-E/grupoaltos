@@ -55,7 +55,7 @@
                             </a>
                             <!-- End::header-link|dropdown-toggle -->
                             <ul class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
-                                <li>
+                                {{-- <li>
                                     <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
@@ -122,7 +122,7 @@
                                         </span>
                                         Русский
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <!-- End::header-element -->
@@ -176,9 +176,9 @@
                                     <li class="dropdown-item">
                                         <div class="d-flex align-items-center cart-dropdown-item gap-3">
                                             <div class="lh-1">
-                                                <span class="avatar avatar-md avatar-rounded">
+                                                {{-- <span class="avatar avatar-md avatar-rounded">
                                                     <img src="{{ asset('admin/assets/images/ecommerce/jpg/1.jpg') }}" alt="Elegance Wall Clock">
-                                                </span>
+                                                </span> --}}
                                             </div>
                                             <div class="flex-fill">
                                                 <div class="d-flex align-items-center justify-content-between mb-0">
@@ -202,7 +202,7 @@
                                         <div class="d-flex align-items-center cart-dropdown-item gap-3">
                                             <div class="lh-1">
                                                 <span class="avatar avatar-md avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/ecommerce/jpg/2.jpg') }}" alt="Sports Shoe">
+                                                    {{-- <img src="{{ asset('admin/assets/images/ecommerce/jpg/2.jpg') }}" alt="Sports Shoe"> --}}
                                                 </span>
                                             </div>
                                             <div class="flex-fill">
@@ -227,7 +227,7 @@
                                         <div class="d-flex align-items-center cart-dropdown-item gap-3">
                                             <div class="lh-1">
                                                 <span class="avatar avatar-md avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/ecommerce/jpg/3.jpg') }}" alt="Medium Back Pack">
+                                                    {{-- <img src="{{ asset('admin/assets/images/ecommerce/jpg/3.jpg') }}" alt="Medium Back Pack"> --}}
                                                 </span>
                                             </div>
                                             <div class="flex-fill">
@@ -252,7 +252,7 @@
                                         <div class="d-flex align-items-center cart-dropdown-item gap-3">
                                             <div class="lh-1">
                                                 <span class="avatar avatar-md avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/ecommerce/jpg/4.jpg') }}" alt="BloomCraft Pot">
+                                                    {{-- <img src="{{ asset('admin/assets/images/ecommerce/jpg/4.jpg') }}" alt="BloomCraft Pot"> --}}
                                                 </span>
                                             </div>
                                             <div class="flex-fill">
@@ -277,7 +277,7 @@
                                         <div class="d-flex align-items-center cart-dropdown-item gap-3">
                                             <div class="lh-1">
                                                 <span class="avatar avatar-md avatar-rounded">
-                                                    <img src="{{ asset('admin/assets/images/ecommerce/jpg/5.jpg') }}" alt="Ceramic Cup">
+                                                    {{-- <img src="{{ asset('admin/assets/images/ecommerce/jpg/5.jpg') }}" alt="Ceramic Cup"> --}}
                                                 </span>
                                             </div>
                                             <div class="flex-fill">
