@@ -84,6 +84,9 @@
                                         <a href="{{ route('admin.servicio.index') }}" class="side-menu__item">Servicios</a>
                                     </li>
                                     <li class="slide">
+                                        <a href="{{ route('admin.proyecto.index') }}" class="side-menu__item">Proyectos</a>
+                                    </li>
+                                    <li class="slide">
                                         <a href="{{ route('admin.blog.index') }}" class="side-menu__item">Blog</a>
                                     </li>
                                 </ul>

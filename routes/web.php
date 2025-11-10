@@ -37,6 +37,9 @@ Route::get('/producto/{slug}', [App\Http\Controllers\Ecommerce\ProductosControll
 Route::get('/servicio', [App\Http\Controllers\Ecommerce\ServicioController::class, 'index'])->name('ecommerce.servicio');
 Route::get('/servicio/{slug}', [App\Http\Controllers\Ecommerce\ServicioController::class, 'viewdetalle'])->name('ecommerce.servicio.viewdetalle');
 
+Route::get('/proyectos', [App\Http\Controllers\Ecommerce\ProyectosController::class, 'index'])->name('ecommerce.proyectos');
+Route::get('/proyectos/{slug}', [App\Http\Controllers\Ecommerce\ProyectosController::class, 'viewdetalle'])->name('ecommerce.proyectos.viewdetalle');
+
 Route::get('/blog', [App\Http\Controllers\Ecommerce\BlogController::class, 'index'])->name('ecommerce.blog');
 Route::get('/blog/{slug}', [App\Http\Controllers\Ecommerce\BlogController::class, 'detalle'])->name('ecommerce.blog.detalle');
 
@@ -92,6 +95,16 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::get('/mostrar_registro', [App\Http\Controllers\Admin\ServicioController::class, 'mostrar_registro'])->name('mostrar_registro');
         Route::post('/update', [App\Http\Controllers\Admin\ServicioController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ServicioController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('proyecto')->name('proyecto.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ProjectController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Admin\ProjectController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Admin\ProjectController::class, 'store'])->name('store');
+        Route::get('/listProyectos', [App\Http\Controllers\Admin\ProjectController::class, 'listProyectos'])->name('listProyectos');
+        Route::get('/mostrar_proyecto', [App\Http\Controllers\Admin\ProjectController::class, 'mostrar_proyecto'])->name('mostrar_proyecto');
+        Route::post('/update', [App\Http\Controllers\Admin\ProjectController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [App\Http\Controllers\Admin\ProjectController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('blog')->name('blog.')->group(function () {

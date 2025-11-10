@@ -213,7 +213,7 @@
               <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.servicio') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.servicio') }}">Servicios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link color-blue2 " href="">Proyectos</a>
+              <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.proyectos') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.proyectos') }}">Proyectos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link color-blue2 {{ request()->routeIs('ecommerce.blog') ? 'border-orange-button' : '' }}" href="{{ route('ecommerce.blog') }}">Blog</a>

@@ -98,6 +98,7 @@
                                 <option value="inicio">Inicio</option>
                                 <option value="servicios">Servicios</option>
                                 <option value="contactanos">Contactanos</option>
+                                <option value="proyectos">Proyectos</option>
                                 <option value="blog">Blog</option>
                             </select>
                         </div>
