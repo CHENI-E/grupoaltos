@@ -21,14 +21,29 @@ class LoginController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        if (auth()->attempt($credentials)) {
-            return redirect()->route('admin.usuario.index')->with('success', 'Bienvenido al panel de administración');
+        // Solo autentica si el usuario tiene estado = 1
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'estado' => 1])) {
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // Si el perfil es diferente de 1, redirige a otra ruta
+            if ($user->perfil != 1) {
+                return redirect()->route('admin.bannerinicio.index')
+                    ->with('success', 'Bienvenido al panel de administración');
+            }
+
+            // Si el perfil es 1, redirige a la ruta de usuario
+            return redirect()->route('admin.usuario.index')
+                ->with('success', 'Bienvenido al panel de administración');
         }
 
+        // Si no pasa el attempt
         return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas son incorrectas.',
+            'email' => 'Las credenciales proporcionadas son incorrectas o el usuario está inactivo.',
         ]);
     }
+
 
     public function logout(Request $request)
     {

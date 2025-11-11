@@ -24,11 +24,13 @@
                         </div>
                         <ul class="main-menu">
 
+
+
+
+                            @if (Auth::user()->perfil == 1)
                             <!-- Start::slide__category -->
                             <li class="slide__category"><span class="category-name">General</span></li>
                             <!-- End::slide__category -->
-
-                            <!-- Start::slide -->
                             <li class="slide">
                                 <a href="{{ route('admin.usuario.index') }}" class="side-menu__item">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6 side-menu__icon bi bi-people" viewBox="0 0 16 16">
@@ -37,7 +39,7 @@
                                     <span class="side-menu__label">Usuario</span>
                                 </a>
                             </li>
-                            <!-- End::slide -->
+                            @endif
 
                             <!-- Start::slide__category -->
                             <li class="slide__category"><span class="category-name">Web</span></li>

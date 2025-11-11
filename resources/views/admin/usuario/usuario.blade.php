@@ -64,7 +64,7 @@
                                     <td>{{ $usuario->perfil }}</td>
                                     <td>
                                         <div class="hstack gap-2 flex-wrap">
-                                            <a href="javascript:void(0);" class="text-info fs-14 lh-1"><i
+                                            <a href="javascript:void(0);" class="text-info fs-14 lh-1 btn_modificar_usuario" data-id="{{ $usuario->id }}" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i
                                                     class="ri-edit-line"></i></a>
                                             <a href="javascript:void(0);" class="text-danger fs-14 lh-1 btn_delete_usuario" data-id="{{ $usuario->id }}"><i
                                                     class="ri-delete-bin-5-line"></i></a>
@@ -81,6 +81,57 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="form_modificar_usuario" action="{{ route('admin.usuario.update', 0) }}">
+                    @csrf
+                    @method('PUT') {{-- Laravel necesita este método para Update --}}
+                    
+                    <input type="hidden" id="input_id" name="input_id" value="{{ $usuario->id }}">
+
+                    <div class="mb-3">
+                        <label for="input_nombre" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="input_nombre" name="input_nombre" value="{{ $usuario->nombre }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="input_email" class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" id="input_email" name="input_email" value="{{ $usuario->email }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="input_estado" class="col-form-label">Estado</label>
+                        <select name="input_estado" id="input_estado" class="form-select">
+                            <option value="1" {{ $usuario->estado == 1 ? 'selected' : '' }}>Activo</option>
+                            <option value="0" {{ $usuario->estado == 0 ? 'selected' : '' }}>Inactivo</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="input_perfil" class="col-form-label">Perfil:</label>
+                        <select name="input_perfil" id="input_perfil" class="form-select">
+                            <option value="1" {{ $usuario->perfil == 1 ? 'selected' : '' }}>Administrador</option>
+                            <option value="2" {{ $usuario->perfil == 2 ? 'selected' : '' }}>Usuario</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

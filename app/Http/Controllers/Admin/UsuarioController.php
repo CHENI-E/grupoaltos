@@ -43,5 +43,41 @@ class UsuarioController extends Controller
         return response()->json(['success' => true, 'message' => 'Usuario eliminado correctamente.']);
     }
 
+    public function findUser($id)
+    {
+        /* $id = $request->input('id'); */
+        $usuario = User::find($id);
+
+        if ($usuario) {
+            return response()->json($usuario);
+        } else {
+            return response()->json('Usuario no encontrado.');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'input_nombre' => 'required',
+            'input_email' => 'required|email|unique:users,email,'.$id,
+            'input_perfil' => 'required',
+            'input_estado' => 'required',
+        ]);
+
+        $usuario = User::findOrFail($id);
+
+        $usuario->nombre = $request->input('input_nombre');
+        $usuario->email = $request->input('input_email');
+        $usuario->perfil = $request->input('input_perfil');
+        $usuario->estado = $request->input('input_estado');
+        $usuario->save();
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'message' => 'Usuario actualizado correctamente.']);
+        }
+
+        return redirect()->route('admin.usuario.index')->with('success', 'Usuario actualizado correctamente.');
+    }
+
 
 }

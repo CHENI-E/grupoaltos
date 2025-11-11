@@ -54,6 +54,8 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::post('/logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('logout');
     /* Route::get('/usuario', [App\Http\Controllers\Admin\UsuarioController::class, 'index'])->name('admin.usuario.index'); */
     Route::resource('/usuario', App\Http\Controllers\Admin\UsuarioController::class);
+    Route::get('/usuario/findUser/{id}', [App\Http\Controllers\Admin\UsuarioController::class, 'findUser'])->name('usuario.findUser');
+
     Route::resource('/bannerinicio', App\Http\Controllers\Admin\BannerInicioController::class)->except(['show']);
     Route::get('/bannerinicio/getdata', [App\Http\Controllers\Admin\BannerInicioController::class, 'getData']);
     Route::delete('/bannerinicio/delete/{id}', [App\Http\Controllers\Admin\BannerInicioController::class, 'delete']);
