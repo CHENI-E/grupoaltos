@@ -324,10 +324,11 @@
 
             <div class="articulos-header">
                 <h1 class="articulos-titulo">Artículos</h1>
-                <div class="buscador-contenedor">
-                    <input type="text" class="input-buscar" placeholder="¿Qué estás buscando...?">
-                    <button class="boton-buscar">Buscar</button>
-                </div>
+                <form action="{{ route('ecommerce.blog') }}" method="GET" class="buscador-contenedor">
+                    <input type="text" name="buscar" value="{{ request('buscar') }}" class="input-buscar" placeholder="¿Qué estás buscando...?">
+                    <button type="submit" class="boton-buscar">Buscar</button>
+                </form>
+
             </div>
 
             <div class="articulos-grid">
@@ -340,7 +341,7 @@
                     <div></div>
                 @else
                     @foreach ($blog as $item)
-
+                    
                     <a href="{{ route('ecommerce.blog.detalle', $item->slug) }}" class="tarjeta-articulo">
                         <div class="contenedor-imagen">
                             <img src="{{ asset($item->imagen_portada) }}" alt="Capacitación" class="imagen-articulo">
@@ -354,9 +355,10 @@
                             </div>
                             <h3 class="titulo-articulo">{{ $item->nombre }}</h3>
                             <p class="descripcion-articulo">
-                                @php
+                                {{ \Illuminate\Support\Str::limit(strip_tags($item->contenido), 100, '...') }}
+                                {{-- @php
                                     echo \Illuminate\Support\Str::limit($item->contenido, 100, '...');
-                                @endphp
+                                @endphp --}}
                             </p>
                             <div class="footer-tarjeta">
                                 <div class="icono-autor">GA</div>

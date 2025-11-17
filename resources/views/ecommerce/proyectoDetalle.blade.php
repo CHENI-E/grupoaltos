@@ -148,7 +148,7 @@
                     @if ($proyectosSimilares->count())
                         <div class="list-group list-group-flush">
                             @foreach ($proyectosSimilares as $proyectoSimilar)
-                                <a href="{{ route('ecommerce.proyecto.viewdetalle', $proyectoSimilar->slug) }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 py-3 rounded mb-2 shadow-sm">
+                                <a href="{{ route('ecommerce.proyectos.viewdetalle', $proyectoSimilar->slug) }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 py-3 rounded mb-2 shadow-sm">
                                     <i class="bi bi-bricks text-danger me-2 fs-5"></i>
                                     <span>{{ $proyectoSimilar->nombre }}</span>
                                 </a>
