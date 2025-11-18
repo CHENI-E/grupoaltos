@@ -41,7 +41,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3 col-lg-6 col-12">
+                        <div class="form-group mb-3 col-lg-6 col-12" hidden>
                             <label for="" class="form-label">SubTitulo</label>
                             <input type="text" class="form-control form-control-sm" id="" name="subtitle" value="{{ $identity->subtitle ?? '' }}">
                             @error('subtitle')
@@ -82,7 +82,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-3 card pt-1">
+                            <div class="col-lg-3 card pt-1" hidden>
                                 <div class="form-group mb-3 col-lg-12">
                                     <label for="" class="form-label">Titulo</label>
                                     <input type="text" class="form-control form-control-sm" id="" name="title_card_three" value="{{ $identity->title_card_three ?? '' }}">

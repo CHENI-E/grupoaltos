@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Banner;
 
 class ProductosController extends Controller
 {
@@ -13,7 +14,8 @@ class ProductosController extends Controller
     {
         $category = Category::where('estado', 1)->withCount('products')->get();
         $product = Product::where('estado', 1)->get();
-        return view('ecommerce.productos', compact('category', 'product'));
+        $banners = Banner::where('tipo', 'productos')->get();
+        return view('ecommerce.productos', compact('category', 'product', 'banners'));
     }
 
     public function getProductosAjax(Request $request)

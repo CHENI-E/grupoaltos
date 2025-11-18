@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Identity;
 use App\Models\Customer;
+use App\Models\Banner;
 
 class NosotrosController extends Controller
 {
@@ -13,6 +14,7 @@ class NosotrosController extends Controller
     {
         $identities = Identity::first();
         $customers = Customer::with('clientImages')->where('id', 1)->first();
-        return view('ecommerce.nosotros', compact('identities', 'customers'));
+        $banners = Banner::where('tipo', 'nosotros')->get();
+        return view('ecommerce.nosotros', compact('identities', 'customers', 'banners'));
     }   
 }

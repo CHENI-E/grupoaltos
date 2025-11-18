@@ -24,7 +24,6 @@ class BlogController extends Controller
     {
         $query = Blog::where('estado', 1);
 
-        // Si viene búsqueda
         if ($request->filled('buscar')) {
             $buscar = $request->buscar;
 
@@ -35,18 +34,19 @@ class BlogController extends Controller
             });
         }
 
+        $query->orderBy('fecha', 'desc');
+
         $blog = $query->get();
 
         $banners = Banner::where('tipo', 'blog')->get();
 
         $blogRecientes = Blog::where('estado', 1)
-            ->latest()
+            ->orderBy('fecha', 'desc')
             ->take(4)
             ->get();
 
         return view('ecommerce.blog', compact('blog', 'blogRecientes', 'banners'));
     }
-
 
     public function detalle($slug)
     {

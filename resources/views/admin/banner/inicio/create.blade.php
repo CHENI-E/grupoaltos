@@ -68,9 +68,12 @@
                         <div class="alert alert-info">
                             <strong>Medidas recomendadas:</strong>
                             <ul class="mb-0">
+                                <li>Dimensiones para <b class="text-danger">Banner de Móvil</b>: 720x1280 px</li>
                                 <li>Dimensiones para <b>Banner de Inicio</b>: 1920x1080 px</li>
-                                <li>Dimensiones para <b>Banner de Móvil</b>: 720x1280 px</li>
                                 <li>Dimensiones para <b>Banner de Servicios</b>: 1920x600 px</li>
+                                <li>Dimensiones para <b>Banner de Nosotros</b>: 1920x600 px</li>
+                                <li>Dimensiones para <b>Banner de Proyectos</b>: 1920x500 px</li>
+                                <li>Dimensiones para <b>Banner de Productos</b>: 1920x500 px</li>
                                 <li>Dimensiones para <b>Banner de Contactanos</b>: 1920x500 px</li>
                                 <li>Dimensiones para <b>Banner de Blog</b>: 1920x500 px</li>
                                 <li>Tamaño máximo: 2 MB</li>
@@ -100,6 +103,8 @@
                                 <option value="contactanos">Contactanos</option>
                                 <option value="proyectos">Proyectos</option>
                                 <option value="blog">Blog</option>
+                                <option value="nosotros">Nosotros</option>
+                                <option value="productos">Productos</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">

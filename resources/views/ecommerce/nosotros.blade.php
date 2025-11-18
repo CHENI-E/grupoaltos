@@ -434,7 +434,53 @@
 
 <div class="page-content">
 
-  <section class="content_banner_nosotros" style="width: 100%;
+
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @forelse ($banners as $index => $banner)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                @if ($banner->url_boton)
+                    <a href="{{ $banner->url_boton }}" target="_blank">
+                        <img 
+                            data-desktop="{{ asset($banner->imagen) }}" 
+                            data-mobile="{{ asset($banner->imagen_movil) }}" 
+                            class="d-block w-100" 
+                            alt="{{ $banner->titulo ?? 'Banner' }}" 
+                            loading="lazy"
+                        >
+                    </a>
+                @else
+                    <img 
+                        data-desktop="{{ asset($banner->imagen) }}" 
+                        data-mobile="{{ asset($banner->imagen_movil) }}" 
+                        class="d-block w-100" 
+                        alt="{{ $banner->titulo ?? 'Banner' }}"
+                    >
+                @endif
+            </div>
+        @empty
+            <div class="carousel-item active">
+                {{-- <img src="{{ asset('ecommerce/assets/images/portada_solicitada.png') }}" class="d-block w-100" alt="Banner predeterminado"> --}}
+            </div>
+        @endforelse
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+
+
+
+  {{-- <section class="content_banner_nosotros" style="width: 100%;
     position: relative;
     height: 900px;
     background-image: 
@@ -452,23 +498,22 @@
       </div>
       <img src="{{ asset('ecommerce/assets/images/nosotros.png') }}" width="100%" alt="">
     </div>
-  </section>
+  </section> --}}
 
   {{-- SECTION NUESTRO PROPOSITO --}}
   <section class="container pt-5 pb-5">
-  <h1 class="pd-titulo text-center title_proposito">NUESTRO PROPÓSITO</h1>
+  <h1 class="pd-titulo text-center title_proposito">{{ $identities->title ?? '' }}</h1>
   <div class="row mt-4 justify-content-between">
     <div class="col-lg-6 px-4">
       <div style="text-align:right;">
-        <h1 style="font-family: 'Orbitron', sans-serif !important; color:#e75322;">MISIÓN</h1>
-        <p>Añadir más valor y seguridad a la vida de las personas que trabajan en altura.</p>
+        <h1 style="font-family: 'Orbitron', sans-serif !important; color:#e75322;">{{ $identities->title_card_one ?? '' }}</h1>
+        <p>{{ $identities->content_card_one ?? '' }}</p>
       </div>
     </div>
     <div class="col-lg-6 px-4s">
       <div style="text-align:left;">
-        <h1 style="font-family: 'Orbitron', sans-serif !important; color:#e75322;">VISIÓN</h1>
-        <p>Convertirnos en la compañía más grande y moderna en la fabricación y 
-          comercialización de sistemas de andamiajes, encofrados y equipos de seguridad. Generando puestos de trabajo a miles de familias.</p>
+        <h1 style="font-family: 'Orbitron', sans-serif !important; color:#e75322;">{{ $identities->title_card_two ?? '' }}</h1>
+        <p>{{ $identities->content_card_two ?? '' }}</p>
       </div>
     </div>
   </div>
@@ -572,7 +617,7 @@
   </section>
 
   {{-- NUESTROS CLIENTES --}}
-  <section class="pt-5 pb-5">
+  {{-- <section class="pt-5 pb-5">
     <div class="container pt-5 pb-5">
       <div class="text-center pb-3">
         <div class="text-center d-flex align-items-center justify-content-center mb-2">
@@ -601,7 +646,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> --}}
 
 </div>
 
@@ -626,6 +671,27 @@
             992:{ items:4 }
         }
     });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+      function updateBannerImages() {
+          const isMobile = $(window).width() <= 768;
+
+          $('#carouselExampleControls .carousel-item img').each(function() {
+              const desktop = $(this).data('desktop');
+              const mobile = $(this).data('mobile');
+              $(this).attr('src', isMobile ? mobile : desktop);
+          });
+      }
+
+      // Ejecutar al cargar
+      updateBannerImages();
+
+      // Ejecutar cada vez que redimensionas la ventana
+      $(window).on('resize', function() {
+          updateBannerImages();
+      });
   });
 </script>
 @endsection
