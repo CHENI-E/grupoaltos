@@ -12,7 +12,7 @@ class ServicioController extends Controller
     
     public function index()
     {
-        $servicios = Service::where('estado', 1)->get();
+        $servicios = Service::where('estado', 1)->paginate(8);
         $banners = Banner::where('tipo', 'servicios')->get();
         return view('ecommerce.servicio', compact('servicios', 'banners'));
     }
