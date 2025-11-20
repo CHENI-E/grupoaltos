@@ -370,7 +370,7 @@
     color: var(--text-secondary);
   }
 
-  /* Paginación Moderna y Colorida */
+  /* Paginación Moderna y Profesional */
   .pagination-container {
     display: flex;
     justify-content: center;
@@ -379,11 +379,12 @@
 
   .pagination {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     list-style: none;
     padding: 0;
     margin: 0;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .pagination .page-item {
@@ -394,26 +395,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    height: 44px;
-    padding: 8px 14px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
     background: white;
     border: 2px solid #e0e0e0;
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--text-primary);
     font-weight: 700;
     font-size: 14px;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    line-height: 1;
+  }
+
+  /* Estilos especiales para flechas */
+  .pagination .page-link svg,
+  .pagination .page-link i {
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .pagination .page-link:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
     color: white;
-    border-color: #2563eb;
+    border-color: var(--primary-blue);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(4, 39, 117, 0.3);
   }
 
   .pagination .page-item.active .page-link {
@@ -436,6 +448,14 @@
     border-color: #e0e0e0;
     transform: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  /* Asegurar que las flechas de Laravel estén centradas */
+  .pagination .page-link span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
 
   /* Responsive */
