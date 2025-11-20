@@ -370,92 +370,108 @@
     color: var(--text-secondary);
   }
 
-  /* Paginación Moderna y Profesional */
+  /* Paginación Perfectamente Alineada */
   .pagination-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 50px;
+    padding: 0 20px;
   }
 
   .pagination {
-    display: flex;
-    gap: 8px;
+    display: inline-flex;
+    gap: 6px;
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-wrap: wrap;
     align-items: center;
   }
 
   .pagination .page-item {
-    display: inline-block;
+    display: flex;
   }
 
   .pagination .page-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     padding: 0;
+    margin: 0;
     background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 14px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 15px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     line-height: 1;
+    vertical-align: middle;
   }
 
-  /* Estilos especiales para flechas */
-  .pagination .page-link svg,
-  .pagination .page-link i {
-    font-size: 16px;
+  /* Centrar perfectamente el contenido de los links */
+  .pagination .page-link * {
     line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    vertical-align: middle;
   }
 
-  .pagination .page-link:hover {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+  /* Asegurar SVGs centrados */
+  .pagination .page-link svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: auto;
+  }
+
+  /* Estado hover */
+  .pagination .page-link:hover:not(.disabled) {
+    background: var(--primary-blue);
     color: white;
     border-color: var(--primary-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(4, 39, 117, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(4, 39, 117, 0.25);
   }
 
+  /* Página activa */
   .pagination .page-item.active .page-link {
-    background: linear-gradient(135deg, var(--accent-orange) 0%, #ff6b3d 100%);
+    background: var(--accent-orange);
     color: white;
     border-color: var(--accent-orange);
-    box-shadow: 0 4px 12px rgba(231, 83, 34, 0.3);
+    box-shadow: 0 3px 8px rgba(231, 83, 34, 0.3);
+    font-weight: 700;
   }
 
+  .pagination .page-item.active .page-link:hover {
+    background: #ff6b3d;
+    border-color: #ff6b3d;
+  }
+
+  /* Estado deshabilitado */
   .pagination .page-item.disabled .page-link {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: not-allowed;
-    transform: none;
-    background: #f8f9fa;
+    background: #f5f7fa;
+    border-color: #e1e8ed;
+    color: #6c757d;
   }
 
   .pagination .page-item.disabled .page-link:hover {
-    background: #f8f9fa;
-    color: var(--text-primary);
-    border-color: #e0e0e0;
+    background: #f5f7fa;
+    border-color: #e1e8ed;
+    color: #6c757d;
     transform: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
 
-  /* Asegurar que las flechas de Laravel estén centradas */
-  .pagination .page-link span {
+  /* Puntos suspensivos */
+  .pagination .page-item.disabled span {
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
   }
 
   /* Responsive */
@@ -640,10 +656,63 @@
                 </div>
             </div>
 
-            {{-- Paginación --}}
+            {{-- Paginación Personalizada --}}
             @if($servicios->hasPages())
                 <div class="pagination-container" id="paginationContainer">
-                    {{ $servicios->links() }}
+                    <nav aria-label="Navegación de servicios">
+                        <ul class="pagination">
+                            {{-- Botón Anterior --}}
+                            @if ($servicios->onFirstPage())
+                                <li class="page-item disabled">
+                                    <span class="page-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $servicios->previousPageUrl() }}" rel="prev">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @endif
+
+                            {{-- Números de Página --}}
+                            @foreach ($servicios->getUrlRange(1, $servicios->lastPage()) as $page => $url)
+                                @if ($page == $servicios->currentPage())
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ $page }}</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
+                                @endif
+                            @endforeach
+
+                            {{-- Botón Siguiente --}}
+                            @if ($servicios->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $servicios->nextPageUrl() }}" rel="next">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </span>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
                 </div>
             @endif
         </div>
