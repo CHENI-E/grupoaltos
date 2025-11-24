@@ -35,7 +35,7 @@ class BlogController extends Controller
         }
 
         $query->orderBy('fecha', 'desc');
-
+        
         $blog = $query->get();
 
         $banners = Banner::where('tipo', 'blog')->get();

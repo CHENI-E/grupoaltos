@@ -518,20 +518,22 @@
     </div>
   </div>
   <div class="row text-center py-5">
-
-    <div class="col-12 col-md-4 custom-col">
-      <img src="{{ asset('ecommerce/assets/images/RECURSOS/recursos-11.png') }}" class="w-100 pb-1" style="height: auto;" alt="Imagen 1">
+    
+    @foreach ($imagesValues as $index => $imageValue )
+    <div class="col-12 col-md-4 {{ $index === 1 ? 'middle-lower' : '' }}">
+      <img src="{{ $imageValue->images }}" class="w-100 pb-1" style="height: auto;" alt="Imagen 1">
     </div>
+    @endforeach
 
-    <!-- Segunda imagen (abajo, al medio) -->
-    <div class="col-12 col-md-4 middle-lower">
+    
+    <!-- <div class="col-12 col-md-4 middle-lower">
       <img src="{{ asset('ecommerce/assets/images/RECURSOS/recursos-12.png') }}" class="w-100 pb-1" style="height: auto;" alt="Imagen 2">
     </div>
 
-    <!-- Tercera imagen (arriba) -->
+
     <div class="col-12 col-md-4 custom-col">
       <img src="{{ asset('ecommerce/assets/images/RECURSOS/recursos-13.png') }}" class="w-100 pb-1" style="height: auto;" alt="Imagen 3">
-    </div>
+    </div> -->
 
   </div>
   </section>

@@ -31,7 +31,7 @@
             <div class="card custom-card">
                 <div class="card-body row">
 
-                    <form action="{{ route('admin.seccion.identities.store') }}" class="col-lg-12 d-flex flex-column align-items-center" method="POST">
+                    <form action="{{ route('admin.seccion.identities.store') }}" class="col-lg-12 d-flex flex-column align-items-center" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3 col-lg-4 col-12">
                             <label for="" class="form-label">Titulo</label>
@@ -100,6 +100,33 @@
                             </div>
 
                         </div>
+                        <br>
+                        <hr>
+
+                        {{-- Mostrar imágenes guardadas --}}
+                        <div class="row mb-4 text-center col-lg-12">
+                            <p><b>Imágenes guardadas</b></p>
+                            @forelse($imagesValue as $imageValue)
+                                <div class="col-md-3 mb-3 image-card" data-id="{{ $imageValue->id }}">
+                                    <div class="card">
+                                        <img src="{{ asset($imageValue->images) }}" class="card-img-top" alt="Imagen">
+                                        <div class="card-body text-center">
+                                            <input type="checkbox" name="delete_images[]" value="{{ $imageValue->id }}">
+                                            <label>Eliminar</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <p style="color: #919191; font-size: 0.7rem;">No hay imágenes guardadas.</p>
+                            @endforelse
+                        </div>
+
+                        <p><b>Agregar nuevas imágenes</b></p>
+                        <div id="fileInputsImageValues" class="row col-lg-12"></div>
+                        <button type="button" class="btn btn-outline-primary mb-3 btn-sm" id="addInputImageValues">+ Agregar imagen</button>
+                        <hr>
+                        <br>
+
 
                         <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
 

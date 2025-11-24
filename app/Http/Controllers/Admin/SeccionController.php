@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Identity;
+use App\Models\ImagesValue;
 use App\Models\AboutMe;
 use App\Models\Customer;
 use App\Models\ClientImage;
@@ -18,32 +19,158 @@ class SeccionController extends Controller
     {
         $aboutMe = AboutMe::where('id', 1)->first();
         $identity = Identity::where('id', 1)->first();
+        $imagesValue = ImagesValue::all(); // Obtener todas las imágenes
         $customer = Customer::with('clientImages')->where('id', 1)->first();
         $clientImages = $customer->clientImages;
-        return view('admin.seccion.inicio.index', compact('identity', 'aboutMe', 'customer', 'clientImages'));
+        return view('admin.seccion.inicio.index', compact('identity', 'aboutMe', 'customer', 'clientImages', 'imagesValue'));
     }
 
     public function storeIdentities(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'string|max:255',
-            'subtitle' => 'string|max:255',
-            'title_card_one' => 'string|max:255',
-            'content_card_one' => 'string',
-            'color_card_one' => 'nullable|string|max:7',
-            'title_card_two' => 'string|max:255',
-            'content_card_two' => 'string',
-            'color_card_two' => 'nullable|string|max:7',
-            'title_card_three' => 'string|max:255',
-            'content_card_three' => 'string',
-            'color_card_three' => 'nullable|string|max:7',
-        ]);
+        try {
+            // Log inicial para debugging
+            Log::info('=== INICIO storeIdentities ===');
+            Log::info('Tiene archivos: ' . ($request->hasFile('images') ? 'SI' : 'NO'));
+            if ($request->hasFile('images')) {
+                Log::info('Cantidad de archivos: ' . count($request->file('images')));
+            }
+            
+            DB::beginTransaction();
 
-        Identity::updateOrCreate(
-            ['id' => 1],
-            $validatedData
-        );
-        return redirect()->back()->with('success_identities', 'Se guardaron los cambios de la Seccion de Identidad.');
+            // Determinar la ruta base según entorno
+            if (env('PRODUCTION') == 1) {
+                // Producción: guardar en public_html
+                $baseUploadPath = base_path('../public_html/uploads/imagen/Values/');
+            } else {
+                // Local: guardar en public del proyecto
+                $baseUploadPath = public_path('uploads/imagen/Values/');
+            }
+
+            Log::info('Ruta de subida: ' . $baseUploadPath);
+
+            // Eliminar imágenes si se enviaron IDs para eliminar
+            if ($request->has('delete_images') && is_array($request->delete_images)) {
+                Log::info('Imágenes a eliminar: ' . count($request->delete_images));
+                foreach ($request->delete_images as $imageId) {
+                    $image = ImagesValue::find($imageId);
+                    if ($image) {
+                        // Eliminar archivo físico
+                        $filePath = $baseUploadPath . basename($image->images);
+                        if (File::exists($filePath)) {
+                            File::delete($filePath);
+                            Log::info('Archivo eliminado: ' . $filePath);
+                        }
+                        // Eliminar registro de la base de datos (soft delete)
+                        $image->delete();
+                        Log::info('Registro eliminado ID: ' . $imageId);
+                    }
+                }
+            }
+
+            // Validación de datos
+            $validated = $request->validate([
+                'title' => 'nullable|string|max:255',
+                'subtitle' => 'nullable|string|max:255',
+                'title_card_one' => 'nullable|string|max:255',
+                'content_card_one' => 'nullable|string',
+                'color_card_one' => 'nullable|string|max:7',
+                'title_card_two' => 'nullable|string|max:255',
+                'content_card_two' => 'nullable|string',
+                'color_card_two' => 'nullable|string|max:7',
+                'title_card_three' => 'nullable|string|max:255',
+                'content_card_three' => 'nullable|string',
+                'color_card_three' => 'nullable|string|max:7',
+                'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // Max 5MB
+            ]);
+
+            Log::info('Validación exitosa');
+
+            // Actualizar o crear el registro de Identity
+            $identity = Identity::updateOrCreate(
+                ['id' => 1],
+                [
+                    'title' => $request->title,
+                    'subtitle' => $request->subtitle,
+                    'title_card_one' => $request->title_card_one,
+                    'content_card_one' => $request->content_card_one,
+                    'color_card_one' => $request->color_card_one,
+                    'title_card_two' => $request->title_card_two,
+                    'content_card_two' => $request->content_card_two,
+                    'color_card_two' => $request->color_card_two,
+                    'title_card_three' => $request->title_card_three,
+                    'content_card_three' => $request->content_card_three,
+                    'color_card_three' => $request->color_card_three,
+                ]
+            );
+
+            Log::info('Identity actualizado ID: ' . $identity->id);
+
+            // Subir nuevas imágenes
+            if ($request->hasFile('images')) {
+                Log::info('Procesando archivos de imágenes...');
+                
+                // Crear directorio si no existe
+                if (!File::isDirectory($baseUploadPath)) {
+                    File::makeDirectory($baseUploadPath, 0755, true);
+                    Log::info('Directorio creado: ' . $baseUploadPath);
+                }
+
+                $uploadedCount = 0;
+                foreach ($request->file('images') as $index => $image) {
+                    if ($image->isValid()) {
+                        // Generar nombre único para la imagen
+                        $randomName = uniqid() . '_' . time() . '_' . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                        
+                        Log::info("Procesando imagen {$index}: {$randomName}");
+                        
+                        // Mover imagen al directorio
+                        $moved = $image->move($baseUploadPath, $randomName);
+                        
+                        if ($moved) {
+                            // Crear registro en la base de datos usando el campo 'images'
+                            $imageRecord = ImagesValue::create([
+                                'images' => 'uploads/imagen/Values/' . $randomName
+                            ]);
+                            
+                            Log::info("Imagen guardada - ID: {$imageRecord->id}, Path: {$imageRecord->images}");
+                            $uploadedCount++;
+                        } else {
+                            Log::error("Error al mover imagen: {$randomName}");
+                        }
+                    } else {
+                        Log::error("Archivo inválido en índice: {$index}");
+                    }
+                }
+                
+                Log::info("Total de imágenes subidas: {$uploadedCount}");
+            } else {
+                Log::info('No se recibieron archivos para subir');
+            }
+
+            DB::commit();
+            Log::info('=== FIN storeIdentities EXITOSO ===');
+            
+            return redirect()->back()->with('success_identities', 'Se guardaron los cambios de la Sección de Identidad correctamente.');
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            DB::rollBack();
+            Log::error('Error de validación: ' . json_encode($e->errors()));
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('error_identities', 'Error de validación. Revisa los datos ingresados.');
+                
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error al guardar identidades: ' . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return redirect()->back()
+                ->withInput()
+                ->with('error_identities', 'Ocurrió un error al guardar los datos. Intenta nuevamente. Error: ' . $e->getMessage());
+        }
     }
 
     public function storeAboutMe(Request $request)
