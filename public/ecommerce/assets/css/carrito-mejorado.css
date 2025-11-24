@@ -1,0 +1,331 @@
+/* ==========================================
+   ESTILOS MEJORADOS PARA EL CARRITO DE COMPRAS
+   Grupo Altos - Sistema de Cotización
+   ========================================== */
+
+/* ============ OFFCANVAS DEL CARRITO ============ */
+.carrito-offcanvas {
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.carrito-offcanvas .offcanvas-header {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============ LISTA DE PRODUCTOS ============ */
+.cart-item-mejorado {
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 0;
+}
+
+.cart-item-mejorado:hover {
+    transform: translateX(-3px);
+}
+
+.cart-item-imagen img {
+    transition: transform 0.3s ease;
+}
+
+.cart-item-mejorado:hover .cart-item-imagen img {
+    transform: scale(1.05);
+}
+
+/* ============ CONTROLES DE CANTIDAD ============ */
+.cantidad-control {
+    user-select: none;
+}
+
+.btn-cantidad-minus,
+.btn-cantidad-plus {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.btn-cantidad-minus:active,
+.btn-cantidad-plus:active {
+    transform: scale(0.9);
+}
+
+/* ============ CARRITO VACÍO ============ */
+.carrito-vacio i {
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ============ RESUMEN DEL CARRITO ============ */
+.carrito-resumen {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.carrito-resumen:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* ============ NOTIFICACIONES TOAST ============ */
+.toast-notificacion {
+    animation: slideInRight 0.3s ease-out, fadeOut 0.3s ease-in 2.7s;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+/* ============ BOTONES PRINCIPALES ============ */
+#btnCotizar,
+#btnEnviarCotizacion {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+#btnCotizar i,
+#btnEnviarCotizacion i {
+    transition: transform 0.3s ease;
+}
+
+#btnCotizar:hover i,
+#btnEnviarCotizacion:hover i {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* ============ MODAL DE COTIZACIÓN ============ */
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#resumenProductosModal::-webkit-scrollbar {
+    width: 6px;
+}
+
+#resumenProductosModal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#resumenProductosModal::-webkit-scrollbar-thumb {
+    background: #042775;
+    border-radius: 10px;
+}
+
+#resumenProductosModal::-webkit-scrollbar-thumb:hover {
+    background: #103cad;
+}
+
+/* ============ INPUTS Y FORMULARIOS ============ */
+.modal-content input[type="text"],
+.modal-content textarea {
+    background: #fafafa;
+}
+
+.modal-content input[type="text"]:hover,
+.modal-content textarea:hover {
+    background: #fff;
+    border-color: #042775;
+}
+
+/* ============ BADGE ANIMADO ============ */
+.cart-badge {
+    animation: badgeAppear 0.3s ease;
+}
+
+@keyframes badgeAppear {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ============ LÍNEAS SEPARADORAS ============ */
+.cart-item-mejorado + hr {
+    margin: 12px 0;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.cart-item-mejorado:hover + hr {
+    opacity: 1;
+}
+
+/* ============ BOTONES SECUNDARIOS ============ */
+.btn-outline-danger,
+.btn-outline-primary {
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.btn-outline-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(4, 39, 117, 0.3);
+}
+
+/* ============ ALERTS Y MENSAJES ============ */
+.alert-info {
+    animation: alertSlideIn 0.5s ease;
+}
+
+@keyframes alertSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 576px) {
+    .cart-item-imagen img {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .cart-item-info h6 {
+        font-size: 13px !important;
+    }
+    
+    .cantidad-control {
+        font-size: 12px;
+    }
+    
+    .toast-notificacion {
+        right: 10px !important;
+        top: 70px !important;
+        min-width: 260px;
+    }
+    
+    .modal-dialog {
+        margin: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carrito-offcanvas {
+        width: 90% !important;
+    }
+}
+
+/* ============ ESTADOS LOADING ============ */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============ EFECTO HOVER EN ELIMINAR ============ */
+.cart-item-mejorado [onclick*="eliminarDelCarrito"] {
+    transition: all 0.2s ease;
+}
+
+.cart-item-mejorado [onclick*="eliminarDelCarrito"]:hover {
+    transform: scale(1.2);
+    color: #dc3545 !important;
+}
+
+/* ============ SOMBRAS Y PROFUNDIDAD ============ */
+.card-shadow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.card-shadow-hover:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ============ ANIMACIÓN DE CARGA ============ */
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+.skeleton-loader {
+    animation: shimmer 1.2s ease-in-out infinite;
+    background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-size: 800px 104px;
+}
+
+/* ============ MEJORAS DE ACCESIBILIDAD ============ */
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #042775;
+    outline-offset: 2px;
+}
+
+/* ============ BOTÓN NAVBAR MINIMALISTA ============ */
+.btn-carrito-minimal {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+}
+
+.cart-badge-minimal {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Efecto focus minimalista */
+.btn-carrito-minimal:focus {
+    outline: none;
+    background: rgba(4, 39, 117, 0.12);
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+    .carrito-offcanvas,
+    .whatsapp-float,
+    .btn-carrito-navbar,
+    button {
+        display: none !important;
+    }
+}

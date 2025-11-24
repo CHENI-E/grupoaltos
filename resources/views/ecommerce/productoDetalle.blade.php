@@ -124,13 +124,62 @@
     }
 
     .btnAgregarCarrito {
-    transition: all 0.4s ease; /* animación suave */
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btnAgregarCarrito::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+    }
+
+    .btnAgregarCarrito:active::before {
+        width: 300px;
+        height: 300px;
     }
 
     .btn-success-cart {
-        background-color: #28a745 !important; /* verde tienda */
+        background-color: #28a745 !important;
         border-color: #28a745 !important;
         color: #fff !important;
+        animation: successPulse 0.5s ease;
+    }
+
+    @keyframes successPulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    .animate-badge {
+        animation: badgeBounce 0.6s ease;
+    }
+
+    @keyframes badgeBounce {
+        0%, 100% {
+            transform: scale(1);
+        }
+        25% {
+            transform: scale(1.3) rotate(-5deg);
+        }
+        50% {
+            transform: scale(0.9) rotate(5deg);
+        }
+        75% {
+            transform: scale(1.2) rotate(-3deg);
+        }
     }
 </style>
 

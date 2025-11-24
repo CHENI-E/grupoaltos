@@ -21,6 +21,7 @@
 
   <link href="{{ asset('ecommerce/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('ecommerce/assets/css/dark-theme.css') }}" rel="stylesheet">
+  <link href="{{ asset('ecommerce/assets/css/carrito-mejorado.css') }}?v={{ time() }}" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
  {{--  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet"> --}}
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -86,6 +87,267 @@
         --bs-btn-disabled-color: #fff !important;
         --bs-btn-disabled-bg: #042775 !important;
         --bs-btn-disabled-border-color: #042775 !important;
+    }
+
+    /* ==================== ESTILOS DEL CARRITO MEJORADO ==================== */
+    
+    /* Offcanvas del carrito */
+    .carrito-offcanvas {
+      width: 420px !important;
+    }
+    
+    @media (max-width: 576px) {
+      .carrito-offcanvas {
+        width: 100% !important;
+      }
+    }
+    
+    /* Body del carrito con scroll personalizado */
+    .carrito-body {
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #042775 #f1f1f1;
+    }
+    
+    .carrito-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .carrito-body::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    .carrito-body::-webkit-scrollbar-thumb {
+      background: #042775;
+      border-radius: 10px;
+    }
+    
+    .carrito-body::-webkit-scrollbar-thumb:hover {
+      background: #103cad;
+    }
+    
+    /* Items del carrito */
+    .cart-item-mejorado {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .cart-item-mejorado:hover {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 0 -8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    /* Botones de cantidad */
+    .btn-cantidad-minus,
+    .btn-cantidad-plus {
+      transition: all 0.2s ease;
+    }
+    
+    .btn-cantidad-minus:hover,
+    .btn-cantidad-plus:hover {
+      background: #042775 !important;
+      color: white !important;
+      border-radius: 4px;
+      transform: scale(1.1);
+    }
+    
+    /* Badge del contador */
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: bold;
+      min-width: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    
+    /* Animación de entrada para notificaciones */
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    /* Botón de cotizar */
+    #btnCotizar {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #btnCotizar:hover {
+      background: #20c05c !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+    
+    #btnCotizar:active {
+      transform: translateY(0);
+    }
+    
+    /* Botón del modal */
+    #btnEnviarCotizacion {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    #btnEnviarCotizacion:hover {
+      background: #20c05c !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+    
+    /* Inputs del modal */
+    .modal-content input,
+    .modal-content textarea {
+      transition: all 0.3s ease;
+    }
+    
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+      border-color: #042775 !important;
+      box-shadow: 0 0 0 0.2rem rgba(4, 39, 117, 0.15) !important;
+      transform: translateY(-1px);
+    }
+    
+    /* Carrito vacío */
+    .carrito-vacio {
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Efecto ripple en botones */
+    .btn-ecomm::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-ecomm:active::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* ==================== BOTÓN DEL CARRITO MINIMALISTA ==================== */
+    .btn-carrito-minimal {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #042775;
+    }
+
+    .btn-carrito-minimal:hover {
+      background: rgba(4, 39, 117, 0.08);
+    }
+
+    .btn-carrito-minimal i {
+      font-size: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-carrito-minimal:hover i {
+      transform: scale(1.1);
+    }
+
+    .cart-badge-minimal {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: #e75322;
+      color: white;
+      border-radius: 10px;
+      min-width: 18px;
+      height: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 0 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .cart-badge-minimal.active {
+      display: flex;
+    }
+
+    /* Animación sutil al agregar producto */
+    @keyframes cartBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .btn-carrito-minimal.bounce i {
+      animation: cartBounce 0.4s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .btn-carrito-minimal {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .btn-carrito-minimal i {
+        font-size: 22px;
+      }
+
+      .cart-badge-minimal {
+        top: 4px;
+        right: 4px;
+        min-width: 16px;
+        height: 16px;
+        font-size: 9px;
+      }
     }
 
     .whatsapp-float {
@@ -224,25 +486,14 @@
           </ul>
         </div>
       </div>
-      <ul class="navbar-nav secondary-menu flex-row">
+      <ul class="navbar-nav secondary-menu flex-row align-items-center gap-3">
         
-        {{-- <li class="nav-item">
-          <a class="nav-link dark-mode-icon" href="javascript:;">
-            <div class="mode-icon">
-              <i class="bi bi-moon"></i>
-            </div>
-          </a>
-        </li> --}}
-
-        <li class="nav-item p-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" style="background: #e75322; border-radius: 49%; margin-right: 10px;">
-          <a class="nav-link position-relative" href="javascript:;">
-            <div class="cart-badge"></div>
-            <i class="bi bi-basket2" style="color: white;"></i>
-          </a>
-        </li>
-
+        <!-- Botón del Carrito Minimalista -->
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('login') }}"><i class="bi bi-person-circle"></i></a>
+          <button class="btn-carrito-minimal" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-label="Ver carrito de compras">
+            <i class="bi bi-bag"></i>
+            <span class="cart-badge-minimal"></span>
+          </button>
         </li>
 
       </ul>
@@ -318,26 +569,111 @@
 
 
   <!--start cart-->
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
+  <div class="offcanvas offcanvas-end carrito-offcanvas" data-bs-scroll="true" tabindex="-1" id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header bg-section-2">
-      <h5 class="mb-0 fw-bold title_carrito" id="offcanvasRightLabel"></h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="offcanvas-header" style="background: linear-gradient(135deg, #042775 0%, #103cad 100%); color: white; padding: 20px;">
+      <div>
+        <h5 class="mb-0 fw-bold title_carrito" id="offcanvasRightLabel" style="font-size: 18px; color: white;"></h5>
+        <small style="opacity: 0.9;">Revisa tus productos</small>
+      </div>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body carrito-body" style="padding: 20px;">
 
       <div class="cart-list" id="contenedorCarrito">
       </div>
 
     </div>
-    <div class="offcanvas-footer p-3 border-top">
-      <div class="d-grid">
-        <button type="button" class="btn btn-lg btn-primary btn-ecomm px-5 py-3" id="btnCotizar">COTIZAR AL WHATSAPP</button>
+    <div class="offcanvas-footer p-3 border-top" style="background: #f8f9fa;">
+      <div class="d-flex justify-content-between mb-2">
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="vaciarCarrito()" style="border-radius: 6px;">
+          <i class="bi bi-trash me-1"></i>Vaciar carrito
+        </button>
+        <a href="/productos" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">
+          <i class="bi bi-plus-circle me-1"></i>Seguir comprando
+        </a>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-lg btn-ecomm" id="btnCotizar" style="background: #25D366; border: none; color: white; padding: 14px; font-weight: 600; border-radius: 8px; transition: all 0.3s;">
+          <i class="bi bi-whatsapp me-2"></i>SOLICITAR COTIZACIÓN
+        </button>
+        <small class="text-center text-muted" style="font-size: 11px;">
+          <i class="bi bi-shield-check me-1"></i>Cotización sin compromiso
+        </small>
       </div>
     </div>
 
   </div>
-  <!--end cat-->
+  <!--end cart-->
+
+  <!-- Modal de confirmación de cotización -->
+  <div class="modal fade" id="modalCotizacion" tabindex="-1" aria-labelledby="modalCotizacionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+        <div class="modal-header" style="background: linear-gradient(135deg, #042775 0%, #103cad 100%); color: white; border-radius: 12px 12px 0 0; padding: 24px;">
+          <div>
+            <h5 class="modal-title fw-bold" id="modalCotizacionLabel" style="color: white;">
+              <i class="bi bi-clipboard-check me-2"></i>Confirmar Cotización
+            </h5>
+            <small style="opacity: 0.9;">Completa tus datos para recibir la cotización</small>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding: 30px;">
+          <!-- Formulario de datos del cliente -->
+          <div class="mb-4">
+            <h6 class="fw-bold mb-3" style="color: #042775;">
+              <i class="bi bi-person-circle me-2"></i>Tus Datos
+            </h6>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nombreCliente" class="form-label" style="font-weight: 500; color: #555;">Nombre completo <span style="color: red;">*</span></label>
+                <input type="text" class="form-control" id="nombreCliente" placeholder="Ej: Juan Pérez" required style="border-radius: 8px; padding: 12px; border: 2px solid #e0e0e0;">
+              </div>
+              <div class="col-md-6">
+                <label for="empresaCliente" class="form-label" style="font-weight: 500; color: #555;">Empresa (opcional)</label>
+                <input type="text" class="form-control" id="empresaCliente" placeholder="Ej: Constructora ABC" style="border-radius: 8px; padding: 12px; border: 2px solid #e0e0e0;">
+              </div>
+              <div class="col-12">
+                <label for="mensajeAdicional" class="form-label" style="font-weight: 500; color: #555;">Mensaje adicional (opcional)</label>
+                <textarea class="form-control" id="mensajeAdicional" rows="2" placeholder="Información adicional que desees agregar..." style="border-radius: 8px; padding: 12px; border: 2px solid #e0e0e0;"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumen de productos -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-3" style="color: #042775;">
+              <i class="bi bi-basket2 me-2"></i>Resumen de Productos
+            </h6>
+            <div style="max-height: 300px; overflow-y: auto; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+              <div id="resumenProductosModal"></div>
+            </div>
+          </div>
+
+          <!-- Total -->
+          <div class="d-flex justify-content-between align-items-center p-3" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; border-left: 4px solid #042775;">
+            <span style="font-size: 18px; font-weight: 700; color: #333;">TOTAL ESTIMADO:</span>
+            <span style="font-size: 24px; font-weight: 700; color: #042775;" id="totalModal">S/0.00</span>
+          </div>
+
+          <div class="alert alert-info mt-3 d-flex align-items-start" style="border-radius: 8px; border-left: 4px solid #17a2b8; background: #e7f5ff;">
+            <i class="bi bi-info-circle-fill me-2 mt-1" style="font-size: 18px;"></i>
+            <small>Al hacer clic en "Enviar Cotización", serás redirigido a WhatsApp con un mensaje prellenado. El precio final puede variar según disponibilidad.</small>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding: 20px; border-top: 2px solid #e9ecef;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 10px 24px;">
+            <i class="bi bi-x-circle me-2"></i>Cancelar
+          </button>
+          <button type="button" class="btn" id="btnEnviarCotizacion" style="background: #25D366; color: white; border: none; border-radius: 8px; padding: 10px 24px; font-weight: 600;">
+            <i class="bi bi-whatsapp me-2"></i>Enviar Cotización
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end modal-->
 
 
   <!--start quick view-->
