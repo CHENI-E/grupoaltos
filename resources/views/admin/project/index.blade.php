@@ -81,6 +81,29 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-12 product-documents-container">
+                                            <p class="fw-medium mb-2 fs-14">Banner Principal  <b class="text-danger">( Opcional )</b> :</p>
+                                            <input type="file" class="form-control banner_principal" name="banner_principal" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
+                                            <input type="text" id="banner_principal_defecto" name="banner_principal_defecto" hidden>
+                                        </div>
+
+                                        <div id="preview-card-container-banner" class="col-xl-12">
+                                            <div class="card shadow-sm border rounded">
+                                                <div style="height: 200px; overflow: hidden;" class="text-center">
+                                                    <img id="preview_banner_principal"
+                                                        src="https://cdn-icons-png.flaticon.com/512/12048/12048902.png"
+                                                        class="card-img-top"
+                                                        alt="Vista previa"
+                                                        style="width: 50%; height: 100%; object-fit: cover;">
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <button type="button" id="btn_remove_banner_principal" class="btn btn-outline-danger btn-sm">
+                                                        Quitar Imagen
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-12 product-documents-container">
                                             <p class="fw-medium mb-2 fs-14">Imagen Detalle  <b class="text-danger">( Opcional )</b> :</p>
                                             <input type="file" class="form-control imagen_detalle" name="imagen_detalle" accept=".png, .jpg, .jpeg" data-max-file-size="3MB" data-max-files="1">
                                             <input type="text" id="imagen_defecto_detalle" name="imagen_defecto_detalle" hidden>

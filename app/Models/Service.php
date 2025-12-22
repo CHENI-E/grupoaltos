@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Service extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre', 'slug', 'descripcion', 'imagen', 'estado', 'imagen_detalle', 'documento'];
+    protected $fillable = ['nombre', 'slug', 'descripcion', 'imagen', 'estado', 'imagen_detalle', 'documento', 'banner_principal'];
 
     protected static function booted()
     {

@@ -127,6 +127,13 @@ $(document).ready(function() {
     });
 
     configurarPrevisualizadorImagen({
+        inputSelector: '.banner_principal',
+        previewImageSelector: '#preview_banner_principal',
+        removeButtonSelector: '#btn_remove_banner_principal',
+        placeholderUrl: 'https://cdn-icons-png.flaticon.com/512/12048/12048902.png'
+    });
+
+    configurarPrevisualizadorImagen({
         inputSelector: '.imagen_detalle',
         previewImageSelector: '#preview_imagen_detalle',
         removeButtonSelector: '#btn_remove_imagen_detalle',
@@ -151,9 +158,11 @@ $(document).on('click', '.btn_editar', function() {
             quill.root.innerHTML = data.descripcion;
             $('#input-estado').val(data.estado);
             $('#previewImage').attr('src', data.imagen ? `${APP_URL}${data.imagen}` : '#').fadeIn();
-            $('#preview_imagen_detalle').attr('src', data.imagen_detalle ? APP_URL + '/' + data.imagen_detalle : placeholderUrl);
+            $('#preview_banner_principal').attr('src', data.banner_principal ? APP_URL + '/' + data.banner_principal : 'https://cdn-icons-png.flaticon.com/512/12048/12048902.png');
+            $('#preview_imagen_detalle').attr('src', data.imagen_detalle ? APP_URL + '/' + data.imagen_detalle : 'https://cdn-icons-png.flaticon.com/512/12048/12048902.png');
             $('#id_servicio').val(data.id);
             $('#imagen_defecto').val(data.imagen);
+            $('#banner_principal_defecto').val(data.banner_principal);
             $('#imagen_defecto_detalle').val(data.imagen_detalle);
         },
         error: function(xhr, status, error) {

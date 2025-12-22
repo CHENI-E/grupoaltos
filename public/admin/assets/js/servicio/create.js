@@ -93,6 +93,13 @@ $(document).ready(function () {
     });
 
     configurarPrevisualizadorImagen({
+        inputSelector: '.banner_principal',
+        previewImageSelector: '#preview_banner_principal',
+        removeButtonSelector: '#btn_remove_banner_principal',
+        placeholderUrl: 'https://cdn-icons-png.flaticon.com/512/12048/12048902.png'
+    });
+
+    configurarPrevisualizadorImagen({
         inputSelector: '.imagen_detalle',
         previewImageSelector: '#preview_imagen_detalle',
         removeButtonSelector: '#btn_remove_imagen_detalle',
@@ -136,7 +143,7 @@ $(document).ready(function () {
 
                     // Limpiar el formulario (opcional)
                     $('#formulario_create_servicio')[0].reset();
-                    $('#btn_remove_imagen_detalle, #resetImage').click();
+                    $('#btn_remove_banner_principal, #btn_remove_imagen_detalle, #resetImage').click();
                     quill.root.innerHTML = '';
 
                 }else{

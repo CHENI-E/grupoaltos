@@ -27,6 +27,7 @@ class ServicioController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:1048',
             'estado' => 'required|boolean',
             'imagen_detalle' => 'nullable|image|mimes:jpeg,png,jpg|max:1048',
+            'banner_principal' => 'nullable|image|mimes:jpeg,png,jpg|max:1048',
         ]);
 
         try {
@@ -38,6 +39,19 @@ class ServicioController extends Controller
             } else {
                 // Local: guardar en el public del proyecto
                 $ruta = public_path('uploads/servicios');
+            }
+
+            if ($request->hasFile('banner_principal')) {
+                $bannerPrincipal = $request->file('banner_principal');
+                $nombreArchivoBanner = time() . '_banner_' . $bannerPrincipal->getClientOriginalName();
+
+                // Crear carpeta si no existe
+                if (!file_exists($ruta)) {
+                    mkdir($ruta, 0777, true);
+                }
+
+                $bannerPrincipal->move($ruta, $nombreArchivoBanner);
+                $bannerPrincipalRuta = 'uploads/servicios/' . $nombreArchivoBanner;
             }
 
             if ($request->hasFile('imagen_detalle')) {
@@ -71,6 +85,7 @@ class ServicioController extends Controller
                 'imagen' => $imagenRuta,
                 'estado' => $request->estado,
                 'imagen_detalle' => $imagenRutaDetalle,
+                'banner_principal' => $bannerPrincipalRuta ?? null,
             ]);
 
             return response()->json([
@@ -110,8 +125,10 @@ class ServicioController extends Controller
             'descripcion' => 'nullable|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'imagen_detalle' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'banner_principal' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'imagen_defecto' => 'required',
             'imagen_defecto_detalle' => 'required',
+            'banner_principal_defecto' => 'nullable',
             'estado' => 'required|boolean',
         ]);
 
@@ -126,6 +143,33 @@ class ServicioController extends Controller
             $servicio->nombre = $request->nombre;
             $servicio->descripcion = $request->descripcion;
             $servicio->estado = $request->estado;
+
+            if ($request->hasFile('banner_principal')) {
+
+                if (env('PRODUCTION') == 1) {
+                    $ruta = base_path('../public_html/uploads/servicios');
+                    $oldFilePathBanner = base_path('../public_html/' . $servicio->banner_principal);
+                } else {
+                    $ruta = public_path('uploads/servicios');
+                    $oldFilePathBanner = public_path($servicio->banner_principal);
+                }
+
+                if ($servicio->banner_principal && file_exists($oldFilePathBanner)) {
+                    unlink($oldFilePathBanner);
+                }
+
+                $bannerPrincipal = $request->file('banner_principal');
+                $nombreArchivoBanner = time() . '_banner_' . $bannerPrincipal->getClientOriginalName();
+
+                if (!file_exists($ruta)) {
+                    mkdir($ruta, 0777, true);
+                }
+
+                $bannerPrincipal->move($ruta, $nombreArchivoBanner);
+                $servicio->banner_principal = 'uploads/servicios/' . $nombreArchivoBanner;
+            }else{
+                $servicio->banner_principal = $request->banner_principal_defecto;
+            }
 
             if ($request->hasFile('imagen_detalle')) {
 
@@ -201,9 +245,11 @@ class ServicioController extends Controller
             if (env('PRODUCTION') == 1) {
                 $filePath = base_path('../public_html/' . $servicio->imagen);
                 $oldFilePathDetalle = base_path('../public_html/' . $servicio->imagen_detalle);
+                $oldFilePathBanner = base_path('../public_html/' . $servicio->banner_principal);
             } else {
                 $filePath = public_path($servicio->imagen);
                 $oldFilePathDetalle = public_path($servicio->imagen_detalle);
+                $oldFilePathBanner = public_path($servicio->banner_principal);
             }
 
             if ($servicio->imagen && file_exists($filePath)) {
@@ -212,6 +258,10 @@ class ServicioController extends Controller
 
             if ($servicio->imagen_detalle && file_exists($oldFilePathDetalle)) {
                 unlink($oldFilePathDetalle);
+            }
+
+            if ($servicio->banner_principal && file_exists($oldFilePathBanner)) {
+                unlink($oldFilePathBanner);
             }
 
             $servicio->delete();

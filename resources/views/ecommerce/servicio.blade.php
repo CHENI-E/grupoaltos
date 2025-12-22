@@ -177,7 +177,7 @@
     padding: 30px;
   }
 
-  .service-item:nth-child(8n+1) .service-image-vibrant {
+  /* .service-item:nth-child(8n+1) .service-image-vibrant {
     background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
   }
 
@@ -203,7 +203,7 @@
 
   .service-item:nth-child(8n+7) .service-image-vibrant {
     background: linear-gradient(135deg, var(--accent-orange) 0%, #ff6b3d 100%);
-  }
+  } */
 
   .service-item:nth-child(8n+8) .service-image-vibrant {
     background: linear-gradient(135deg, #064ba0 0%, #4facfe 100%);

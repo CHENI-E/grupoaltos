@@ -22,7 +22,7 @@
         background: #f8f9fa;
     }
 
-    /* Hero Banner Premium con Video */
+    /* Hero Banner Premium con Imagen de Fondo */
     .hero-banner-premium {
         position: relative;
         height: 500px;
@@ -31,17 +31,9 @@
         justify-content: center;
         background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
         overflow: hidden;
-    }
-
-    .hero-banner-premium video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-        opacity: 0.4;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .hero-banner-premium::before {
@@ -709,12 +701,8 @@
 @section('content')
 
 {{-- Hero Banner Premium --}}
-<section class="hero-banner-premium">
-    <video autoplay muted loop playsinline>
-        <source src="{{ asset('ecommerce/assets/webvideomontaje.mp4') }}" type="video/mp4">
-        Tu navegador no soporta video HTML5.
-    </video>
-
+<section class="hero-banner-premium" style="background-image: url('{{ asset($servicio->banner_principal ?? 'ecommerce/assets/images/default-banner.jpg') }}');">
+    
     <div class="hero-content-premium">
         <span class="hero-badge">Servicio Profesional</span>
         <h1>{{ $servicio->nombre }}</h1>

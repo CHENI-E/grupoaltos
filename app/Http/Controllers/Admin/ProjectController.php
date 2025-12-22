@@ -27,6 +27,7 @@ class ProjectController extends Controller
             'imagen' => 'required|image|mimes:jpeg,png,jpg|max:1048',
             'estado' => 'required|boolean',
             'imagen_detalle' => 'nullable|image|mimes:jpeg,png,jpg|max:1048',
+            'banner_principal' => 'nullable|image|mimes:jpeg,png,jpg|max:1048',
         ]);
 
         try {
@@ -38,6 +39,19 @@ class ProjectController extends Controller
             } else {
                 // Local: guardar en el public del proyecto
                 $ruta = public_path('uploads/proyectos');
+            }
+
+            if ($request->hasFile('banner_principal')) {
+                $bannerPrincipal = $request->file('banner_principal');
+                $nombreArchivoBanner = time() . '_banner_' . $bannerPrincipal->getClientOriginalName();
+
+                // Crear carpeta si no existe
+                if (!file_exists($ruta)) {
+                    mkdir($ruta, 0777, true);
+                }
+
+                $bannerPrincipal->move($ruta, $nombreArchivoBanner);
+                $bannerPrincipalRuta = 'uploads/proyectos/' . $nombreArchivoBanner;
             }
 
             if ($request->hasFile('imagen_detalle')) {
@@ -71,6 +85,7 @@ class ProjectController extends Controller
                 'imagen' => $imagenRuta,
                 'estado' => $request->estado,
                 'imagen_detalle' => $imagenRutaDetalle,
+                'banner_principal' => $bannerPrincipalRuta ?? null,
             ]);
 
             return response()->json([
@@ -111,8 +126,10 @@ class ProjectController extends Controller
             'descripcion' => 'nullable|string',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'imagen_detalle' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'banner_principal' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'imagen_defecto' => 'required',
             'imagen_defecto_detalle' => 'required',
+            'banner_principal_defecto' => 'nullable',
             'estado' => 'required|boolean',
         ]);
 
@@ -127,6 +144,33 @@ class ProjectController extends Controller
             $proyecto->nombre = $request->nombre;
             $proyecto->descripcion = $request->descripcion;
             $proyecto->estado = $request->estado;
+
+            if ($request->hasFile('banner_principal')) {
+
+                if (env('PRODUCTION') == 1) {
+                    $ruta = base_path('../public_html/uploads/proyectos');
+                    $oldFilePathBanner = base_path('../public_html/' . $proyecto->banner_principal);
+                } else {
+                    $ruta = public_path('uploads/proyectos');
+                    $oldFilePathBanner = public_path($proyecto->banner_principal);
+                }
+
+                if ($proyecto->banner_principal && file_exists($oldFilePathBanner)) {
+                    unlink($oldFilePathBanner);
+                }
+
+                $bannerPrincipal = $request->file('banner_principal');
+                $nombreArchivoBanner = time() . '_banner_' . $bannerPrincipal->getClientOriginalName();
+
+                if (!file_exists($ruta)) {
+                    mkdir($ruta, 0777, true);
+                }
+
+                $bannerPrincipal->move($ruta, $nombreArchivoBanner);
+                $proyecto->banner_principal = 'uploads/proyectos/' . $nombreArchivoBanner;
+            }else{
+                $proyecto->banner_principal = $request->banner_principal_defecto;
+            }
 
             if ($request->hasFile('imagen_detalle')) {
 
@@ -202,9 +246,11 @@ class ProjectController extends Controller
             if (env('PRODUCTION') == 1) {
                 $filePath = base_path('../public_html/' . $proyecto->imagen);
                 $oldFilePathDetalle = base_path('../public_html/' . $proyecto->imagen_detalle);
+                $oldFilePathBanner = base_path('../public_html/' . $proyecto->banner_principal);
             } else {
                 $filePath = public_path($proyecto->imagen);
                 $oldFilePathDetalle = public_path($proyecto->imagen_detalle);
+                $oldFilePathBanner = public_path($proyecto->banner_principal);
             }
 
             if ($proyecto->imagen && file_exists($filePath)) {
@@ -213,6 +259,10 @@ class ProjectController extends Controller
 
             if ($proyecto->imagen_detalle && file_exists($oldFilePathDetalle)) {
                 unlink($oldFilePathDetalle);
+            }
+
+            if ($proyecto->banner_principal && file_exists($oldFilePathBanner)) {
+                unlink($oldFilePathBanner);
             }
 
             $proyecto->delete();

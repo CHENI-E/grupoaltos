@@ -27,16 +27,9 @@
     justify-content: center;
     color: white;
     overflow: hidden;
-  }
-
-  .hero-banner-detail video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .hero-banner-detail::before {
@@ -636,14 +629,9 @@
 
 @section('content')
 
-{{-- Hero Banner con Video de Fondo Mejorado --}}
-<section class="hero-banner-detail">
-    <!-- Video de fondo -->
-    <video autoplay muted loop playsinline>
-      <source src="{{ asset('ecommerce/assets/webvideomontaje.mp4') }}" type="video/mp4">
-      Tu navegador no soporta video HTML5.
-    </video>
-
+{{-- Hero Banner con Imagen de Fondo Mejorado --}}
+<section class="hero-banner-detail" style="background-image: url('{{ asset($proyecto->banner_principal ?? 'ecommerce/assets/images/default-banner.jpg') }}');">
+    
     <!-- Contenido del Hero -->
     <div class="hero-content-detail">
       <div class="project-badge-hero">
@@ -960,11 +948,11 @@
             var scrolled = $(window).scrollTop();
             $('.hero-banner-detail video').css('transform', 'translateY(' + (scrolled * 0.4) + 'px)');
         });
-
-        // ===== LAZY LOADING MEJORADO PARA IMÁGENES =====
-        $('img').each(function() {
-            $(this).on('load', function() {
-                $(this).css({
+        // ===== EFECTO PARALLAX SUAVE EN LA IMAGEN DE FONDO =====
+        $(window).on('scroll', function() {
+            var scrolled = $(window).scrollTop();
+            $('.hero-banner-detail').css('background-position', 'center ' + (scrolled * 0.4) + 'px');
+        });     $(this).css({
                     'animation': 'fadeIn 0.5s ease-out',
                     'opacity': '1'
                 });
