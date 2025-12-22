@@ -121,6 +121,18 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
         Route::delete('/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('destroy'); */
     });
 
+    Route::prefix('informationExtra')->name('informationExtra.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\InformationExtraController::class, 'index'])->name('index');
+        Route::post('/store', [App\Http\Controllers\Admin\InformationExtraController::class, 'storeInicioMapa'])->name('storeInicioMapa');
+    });
+
+    Route::prefix('valores')->name('valores.')->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\ValoresController::class, 'index'])->name('index');
+        Route::post('/store', [App\Http\Controllers\Admin\ValoresController::class, 'storeValores'])->name('store');
+    });
+
+
+
 
 });
 

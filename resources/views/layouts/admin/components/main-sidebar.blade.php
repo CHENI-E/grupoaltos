@@ -91,6 +91,12 @@
                                     <li class="slide">
                                         <a href="{{ route('admin.blog.index') }}" class="side-menu__item">Blog</a>
                                     </li>
+                                    <li class="slide">
+                                        <a href="{{ route('admin.informationExtra.index') }}" class="side-menu__item">Información Extra</a>
+                                    </li>
+                                    <li class="slide">
+                                        <a href="{{ route('admin.valores.index') }}" class="side-menu__item">Valores</a>
+                                    </li>
                                 </ul>
                             </li>
                             <!-- End::slide -->

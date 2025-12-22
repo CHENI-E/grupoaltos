@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Models\InformationPage;
 
 class InicioController extends Controller
 {
@@ -25,7 +26,14 @@ class InicioController extends Controller
         $identity = Identity::where('id', 1)->first();
         $banners = Banner::where('tipo', 'inicio')->get();
         $customers = Customer::with('clientImages')->where('id', 1)->first();
-        return view('ecommerce.inicio', compact('banners', 'identity', 'aboutMe', 'category', 'customers'));
+        $iniciomapa = InformationPage::where('tipo', 'inicio_mapa')
+            ->whereNull('orden')
+            ->first();
+        $iniciomapa_items = InformationPage::where('tipo', 'inicio_mapa')
+            ->where('orden', 'items')
+            ->orderBy('created_at', 'asc')
+            ->get();
+        return view('ecommerce.inicio', compact('banners', 'identity', 'aboutMe', 'category', 'customers', 'iniciomapa', 'iniciomapa_items'));
     }
 
     public function emailPostula(Request $request)

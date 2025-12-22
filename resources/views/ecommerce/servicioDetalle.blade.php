@@ -794,37 +794,6 @@
                 </div>
 
 
-                {{-- Proceso de Trabajo --}}
-                <div class="card-premium" data-aos="fade-up" data-aos-delay="200">
-                    <h3>
-                        <i class="bi bi-diagram-3"></i>
-                        Nuestro Proceso de Trabajo
-                    </h3>
-                    <div class="process-timeline">
-                        <div class="process-step">
-                            <span class="process-number">1</span>
-                            <div class="process-content">
-                                <h4>Inscripción</h4>
-                                <p>Regístrate en el curso de tu interés y recibe confirmación de tu plaza.</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <span class="process-number">2</span>
-                            <div class="process-content">
-                                <h4>Capacitación</h4>
-                                <p>Participa en clases teórico-prácticas con instructores especializados.</p>
-                            </div>
-                        </div>
-                        <div class="process-step">
-                            <span class="process-number">3</span>
-                            <div class="process-content">
-                                <h4>Certificación</h4>
-                                <p>Obtén tu certificado al completar satisfactoriamente el curso.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 {{-- Galería --}}
                 <div class="card-premium gallery-premium" data-aos="fade-up" data-aos-delay="300">
                     <h3>

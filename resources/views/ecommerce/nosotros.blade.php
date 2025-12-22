@@ -541,24 +541,27 @@
   {{-- SECTION VALORES --}}
   <section style="background: #042775" class="pt-5 pb-5">
     <div class="container">
-      <h1 class="text-center pb-5" style="color: white; font-family: 'Orbitron', sans-serif !important;">VALORES</h1>
+      <h1 class="text-center pb-5" style="color: white; font-family: 'Orbitron', sans-serif !important;">{{ $valores->texto1 ?? 'VALORES' }}</h1>
       
       <div class="valo_contenedor">
         
         <div class="valo_grid">
-            <!-- Card 1 -->
+            @foreach ($valores_items as $item)
             <div class="valo_card">
                 <div class="valo_icono_contenedor">
-                    <img src="{{ asset('ecommerce/assets/images/RECURSOS/ICONOS WEB-10.png') }}" width="50px" alt="">
+                    <img src="{{ asset($item->imagen) }}" width="50px" alt="">
                 </div>
                 <div class="valo_contenido">
-                    <h3 class="valo_nombre">Seguridad primera</h3>
-                    <p class="valo_descripcion">Garantizamos que cada solución proteja la vida de quienes trabajan en altura.</p>
+                    <h3 class="valo_nombre">{{ $item->texto1 }}</h3>
+                    <p class="valo_descripcion">{{ $item->texto2 }}</p>
                 </div>
             </div>
+            @endforeach
+            <!-- Card 1 -->
+
 
             <!-- Card 2 -->
-            <div class="valo_card">
+            {{-- <div class="valo_card">
                 <div class="valo_icono_contenedor">
                     <img src="{{ asset('ecommerce/assets/images/RECURSOS/ICONOS WEB-15.png') }}" width="50px" alt="">
                 </div>
@@ -610,7 +613,7 @@
                     <h3 class="valo_nombre">Confianza y Transparencia</h3>
                     <p class="valo_descripcion">Demostramos valor y actitud presente en cualquier momento de la jornada.</p>
                 </div>
-            </div>
+            </div> --}}
         </div>
         
       </div>

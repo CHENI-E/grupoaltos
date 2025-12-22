@@ -361,19 +361,35 @@
 
           <div class="col-lg-6">
 
-            <span style="background: #002366; padding: 10px 20px; border-radius: 10px; color: white; text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 900 !important; ">REALIZAMOS</span>
+            <span style="background: #002366; padding: 10px 20px; border-radius: 10px; color: white; text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: 900 !important; ">{{ $iniciomapa->texto1 ?? '' }}</span>
             <div class="mt-3">
-              <p class="pd-titulo_mapa" style="color: #103cad; font-size:55px; font-family: 'Orbitron', sans-serif; font-weight: 900 !important;">ENVIOS A TODO EL PERÚ</p>
+              <p class="pd-titulo_mapa" style="color: #103cad; font-size:55px; font-family: 'Orbitron', sans-serif; font-weight: 900 !important;">{{ $iniciomapa->texto2 ?? '' }}</p>
             </div>
 
-            <div class="d-flex align-items-center gap-3 mb-3 justify-content-start">
-              <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-02.png') }}" style="width: 30px;" alt="">
-              <span style="color: #888888ad; font-family: 'Orbitron', sans-serif;">Llevamos nuestros productos a cada región</span>
-            </div>
+            @foreach ($iniciomapa_items as $item)
+              @if($loop->first) 
+                <div class="d-flex align-items-center gap-3 mb-3 justify-content-start">
+                  <img src="{{ asset($item->imagen) }}" style="width: 30px;" alt="">
+                  <span style="color: #888888ad; font-family: 'Orbitron', sans-serif;">{{ $item->texto1 ?? '' }}</span>
+                </div>
+              @endif
+            @endforeach
 
             <div class="row">
 
+              @foreach ($iniciomapa_items as $item)
+              @if($loop->first) @continue @endif
               <div class="col-lg-12 d-flex align-items-center justify-content-start" 
+                style="background: white; padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img src="{{ asset($item->imagen) }}" class="mx-1" style="width: 60px;" alt="">
+                <div class="content_texto_caja mx-1">
+                  <span style="color: #103cad; font-family: 'Arial'; font-weight: 700 !important;">{{ $item->texto1 ?? '' }}</span>
+                </div>
+              </div>
+                  
+              @endforeach
+
+              {{-- <div class="col-lg-12 d-flex align-items-center justify-content-start" 
                 style="background: white; padding: 10px 20px; border-radius: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;">
                 <img src="{{ asset('ecommerce/assets/images/ICONOS-WEB/ICONOS WEB-03.png') }}" class="mx-1" style="width: 60px;" alt="">
                 <div class="content_texto_caja mx-1">
@@ -395,7 +411,7 @@
                 <div class="content_texto_caja mx-1">
                   <span style="color: #103cad; font-family: 'Arial'; font-weight: 700 !important;">Aliados logísticos <b style="font-weight: 950 !important;">(Con los principales operadores logísticos del país)</b></span>
                 </div>
-              </div>
+              </div> --}}
 
             </div>
 
