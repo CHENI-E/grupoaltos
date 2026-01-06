@@ -426,6 +426,205 @@
       }
     }
 
+    /* ==================== BOTÓN LIBRO DE RECLAMACIONES ==================== */
+    .btn-libro-reclamaciones {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 28px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border: 2px solid #e75322;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(231, 83, 34, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-libro-reclamaciones::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(231, 83, 34, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-libro-reclamaciones:hover::before {
+      left: 100%;
+    }
+
+    .btn-libro-reclamaciones:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(231, 83, 34, 0.35);
+      border-color: #042775;
+    }
+
+    .libro-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #e75322 0%, #ff6b3d 100%);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(231, 83, 34, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-libro-reclamaciones:hover .libro-icon-wrapper {
+      transform: rotate(10deg) scale(1.1);
+      background: linear-gradient(135deg, #042775 0%, #103cad 100%);
+    }
+
+    .libro-icon {
+      font-size: 26px;
+      color: white;
+      animation: libro-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes libro-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .libro-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .libro-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #042775;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .libro-subtitle {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e75322;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .libro-info {
+      max-width: 300px;
+    }
+
+    /* Animación de entrada */
+    .btn-libro-reclamaciones {
+      animation: slideInFromBottom 0.8s ease-out;
+    }
+
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .btn-libro-reclamaciones {
+        padding: 14px 20px;
+        gap: 12px;
+      }
+
+      .libro-icon-wrapper {
+        width: 45px;
+        height: 45px;
+      }
+
+      .libro-icon {
+        font-size: 22px;
+      }
+
+      .libro-title {
+        font-size: 12px;
+      }
+
+      .libro-subtitle {
+        font-size: 16px;
+      }
+
+      .libro-info {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn-libro-reclamaciones {
+        padding: 12px 16px;
+        gap: 10px;
+      }
+
+      .libro-icon-wrapper {
+        width: 40px;
+        height: 40px;
+      }
+
+      .libro-icon {
+        font-size: 20px;
+      }
+
+      .libro-title {
+        font-size: 11px;
+      }
+
+      .libro-subtitle {
+        font-size: 14px;
+      }
+    }
+
+    /* Efecto de brillo adicional */
+    @keyframes libro-shine {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Badge opcional para destacar */
+    .libro-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #e75322;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 12px;
+      animation: badge-bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes badge-bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
 </style>
 
 
@@ -557,7 +756,35 @@
           </div>
         </div>
        </div><!--end row-->
-       <div class="my-5"></div>
+       
+       <!-- Libro de Reclamaciones Section -->
+       <div class="row mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+         <div class="col-12">
+           <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
+             <a href="https://reclamovirtual.pe/reclamar/industrias-altos/chorrillos" 
+                target="_blank" 
+                class="btn-libro-reclamaciones">
+               <div class="libro-icon-wrapper">
+                 <i class="bi bi-book libro-icon"></i>
+               </div>
+               <div class="libro-text">
+                 <span class="libro-title">Libro de</span>
+                 <span class="libro-subtitle">Reclamaciones</span>
+               </div>
+             </a>
+             <div class="libro-info text-white">
+               <p class="mb-1 small" style="opacity: 0.9;">
+                 <i class="bi bi-shield-check me-2"></i>Tu opinión nos ayuda a mejorar
+               </p>
+               <p class="mb-0 small" style="opacity: 0.7;">
+                 Registra tu reclamo de manera virtual y segura
+               </p>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <div class="my-4"></div>
 
     </div>
   </section>
